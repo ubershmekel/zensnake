@@ -2,7 +2,8 @@ extends Node2D
 
 # --- Movement Settings ---
 const TILE_SIZE := 32
-const MOVE_INTERVAL := 0.3  # seconds between tile moves
+const SNAKE_MOVE_SIZE := 20
+const MOVE_INTERVAL := 0.1  # seconds between moves
 
 # --- Node References ---
 @onready var head: Node2D = $Head
@@ -19,12 +20,11 @@ var snake_positions: Array[Vector2] = []
 
 var direction := Vector2.UP
 var time_passed := 0.0
-var snake_size := 4
+var snake_size := 14
 
 func _ready():
-	# 1. Create one unified list of all snake parts, starting with the head
-	#snake_nodes.push_back(head)
-	#snake_nodes.push_back(body_element)
+	# Keep 
+	$SnakeHead.z_index = 1
 	
 	# 2. Store the STARTING positions of all nodes
 	#    (Make sure to line them up in the editor behind the head!)
@@ -53,14 +53,29 @@ func move() -> void:
 
 	# --- 2. Update Position DATA ---
 	# Calculate the new position for the head
-	var new_head_pos = snake_positions[0] + direction * TILE_SIZE
-	
+	var new_head_pos = snake_positions[0] + direction * SNAKE_MOVE_SIZE
+
+	# Wrap around the viewport edges so the snake reappears on the opposite side
+	var view_size: Vector2 = get_viewport().get_visible_rect().size
+	# X wrap
+	if new_head_pos.x < 0:
+		new_head_pos.x = view_size.x - TILE_SIZE
+	elif new_head_pos.x >= view_size.x:
+		new_head_pos.x = 0
+	# Y wrap
+	if new_head_pos.y < 0:
+		new_head_pos.y = view_size.y - TILE_SIZE
+	elif new_head_pos.y >= view_size.y:
+		new_head_pos.y = 0
+
 	# Add the new head position to the FRONT of the list
 	snake_positions.insert(0, new_head_pos)
 	
 	if len(snake_nodes) < snake_size:
+		# grow!
 		# birth another body part
 		var new_body: Node2D = $SnakeBody.duplicate()
+		new_body.z_index = 0
 		add_child(new_body)
 		snake_nodes.push_back(new_body)
 	else:
@@ -73,10 +88,12 @@ func move() -> void:
 	for i in range(snake_nodes.size()):
 		snake_nodes[i].position = snake_positions[i]
 
+
 func _unhandled_input(event: InputEvent) -> void:
-	# This is your original logic, but with one key change:
-	# We set 'new_direction' (the buffer) instead of 'direction' directly.
-	# This prevents changing direction multiple times between moves.
 	if (event is InputEventScreenTouch and event.pressed) or \
 	   (event is InputEventMouseButton and event.pressed):
 		direction = -direction
+		if direction == Vector2.DOWN:
+			$SnakeHead.rotation = PI
+		else:
+			$SnakeHead.rotation = 0
