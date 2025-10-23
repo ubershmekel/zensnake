@@ -11,11 +11,11 @@ script = ExtResource("1_h7iqs")
 [node name="Snake" type="Node2D" parent="."]
 script = ExtResource("1_vasa2")
 
+[node name="SnakeBody" parent="Snake" instance=ExtResource("4_4fuuu")]
+
 [node name="SnakeHead" type="Node2D" parent="Snake"]
 
 [node name="Sprite2D" type="Sprite2D" parent="Snake/SnakeHead"]
 texture = ExtResource("1_l1rk1")
 region_enabled = true
 region_rect = Rect2(0, 32, 32, 32)
-
-[node name="SnakeBody" parent="Snake" instance=ExtResource("4_4fuuu")]

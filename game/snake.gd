@@ -17,9 +17,9 @@ const MOVE_INTERVAL := 0.3  # seconds between tile moves
 # This will store the grid positions for each node
 var snake_positions: Array[Vector2] = []
 
-var direction := Vector2.RIGHT
-var new_direction := Vector2.RIGHT # Input buffer
+var direction := Vector2.UP
 var time_passed := 0.0
+var snake_size := 4
 
 func _ready():
 	# 1. Create one unified list of all snake parts, starting with the head
@@ -29,7 +29,7 @@ func _ready():
 	# 2. Store the STARTING positions of all nodes
 	#    (Make sure to line them up in the editor behind the head!)
 	for segment in snake_nodes:
-		snake_positions.push_back(Vector2(300, 300))
+		snake_positions.push_back(Vector2(300, 600))
 
 
 func _process(delta: float) -> void:
@@ -38,33 +38,40 @@ func _process(delta: float) -> void:
 	# Check if it's time to move
 	if time_passed >= MOVE_INTERVAL:
 		time_passed = 0.0 # Reset timer
-		
-		# --- 1. Update Direction ---
-		# Check if the buffered direction is a 180-degree turn
-		## (e.g., current is RIGHT (1,0), new is LEFT (-1,0). Sum is (0,0))
-		#if direction + new_direction != Vector2.ZERO:
-			#direction = new_direction
-		#else:
-			## The attempted move was invalid (into itself),
-			## so reset the buffer to the current, valid direction
-			#new_direction = direction
+		move()
 
-		# --- 2. Update Position DATA ---
-		# Calculate the new position for the head
-		var new_head_pos = snake_positions[0] + direction * TILE_SIZE
-		
-		# Add the new head position to the FRONT of the list
-		snake_positions.insert(0, new_head_pos)
-		
+func move() -> void:
+	# --- 1. Update Direction ---
+	# Check if the buffered direction is a 180-degree turn
+	## (e.g., current is RIGHT (1,0), new is LEFT (-1,0). Sum is (0,0))
+	#if direction + new_direction != Vector2.ZERO:
+		#direction = new_direction
+	#else:
+		## The attempted move was invalid (into itself),
+		## so reset the buffer to the current, valid direction
+		#new_direction = direction
+
+	# --- 2. Update Position DATA ---
+	# Calculate the new position for the head
+	var new_head_pos = snake_positions[0] + direction * TILE_SIZE
+	
+	# Add the new head position to the FRONT of the list
+	snake_positions.insert(0, new_head_pos)
+	
+	if len(snake_nodes) < snake_size:
+		# birth another body part
+		var new_body: Node2D = $SnakeBody.duplicate()
+		add_child(new_body)
+		snake_nodes.push_back(new_body)
+	else:
 		# Remove the very last position (the tail)
 		snake_positions.pop_back()
-		
-		# --- 3. Update Visuals ---
-		# Loop through all nodes and set their position
-		# from our master position list.
-		for i in range(snake_nodes.size()):
-			snake_nodes[i].position = snake_positions[i]
-
+	
+	# --- 3. Update Visuals ---
+	# Loop through all nodes and set their position
+	# from our master position list.
+	for i in range(snake_nodes.size()):
+		snake_nodes[i].position = snake_positions[i]
 
 func _unhandled_input(event: InputEvent) -> void:
 	# This is your original logic, but with one key change:
