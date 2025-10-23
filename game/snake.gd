@@ -3,7 +3,15 @@ extends Node2D
 # --- Movement Settings ---
 const TILE_SIZE := 32
 const SNAKE_MOVE_SIZE := 20
-const MOVE_INTERVAL := 0.1  # seconds between moves
+const MOVE_INTERVAL := 0.08  # seconds between moves
+const ROTATE_RATE := 15.0
+const ROTATION_INTERVAL := MOVE_INTERVAL
+
+var is_tapping := false
+var direction := Vector2.UP
+var time_passed := 0.0
+var snake_size := 14
+var rotation_time_passed := 0.0
 
 # --- Node References ---
 @onready var head: Node2D = $Head
@@ -18,12 +26,9 @@ const MOVE_INTERVAL := 0.1  # seconds between moves
 # This will store the grid positions for each node
 var snake_positions: Array[Vector2] = []
 
-var direction := Vector2.UP
-var time_passed := 0.0
-var snake_size := 14
 
 func _ready():
-	# Keep 
+	# Keep
 	$SnakeHead.z_index = 1
 	
 	# 2. Store the STARTING positions of all nodes
@@ -34,6 +39,13 @@ func _ready():
 
 func _process(delta: float) -> void:
 	time_passed += delta
+	rotation_time_passed += delta
+	
+	if rotation_time_passed >= ROTATION_INTERVAL:
+		rotation_time_passed = 0.0
+		var rotation_amount_deg = -ROTATE_RATE if is_tapping else ROTATE_RATE
+		direction = direction.rotated(deg_to_rad(rotation_amount_deg))
+		$SnakeHead.rotation = direction.angle() + PI / 2
 	
 	# Check if it's time to move
 	if time_passed >= MOVE_INTERVAL:
@@ -90,10 +102,5 @@ func move() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if (event is InputEventScreenTouch and event.pressed) or \
-	   (event is InputEventMouseButton and event.pressed):
-		direction = -direction
-		if direction == Vector2.DOWN:
-			$SnakeHead.rotation = PI
-		else:
-			$SnakeHead.rotation = 0
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
+		is_tapping = event.pressed
