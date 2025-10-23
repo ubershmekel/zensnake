@@ -13,9 +13,21 @@ script = ExtResource("1_vasa2")
 
 [node name="SnakeBody" parent="Snake" instance=ExtResource("4_4fuuu")]
 
+[node name="Sprite2D2" type="Sprite2D" parent="Snake/SnakeBody"]
+texture = ExtResource("1_l1rk1")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
 [node name="SnakeHead" type="Node2D" parent="Snake"]
 
 [node name="Sprite2D" type="Sprite2D" parent="Snake/SnakeHead"]
 texture = ExtResource("1_l1rk1")
 region_enabled = true
-region_rect = Rect2(0, 32, 32, 32)
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="Apple" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Apple"]
+texture = ExtResource("1_l1rk1")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
