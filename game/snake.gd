@@ -101,6 +101,10 @@ func move() -> void:
 		snake_nodes[i].position = snake_positions[i]
 
 
+func _on_apple_eaten():
+	# Grow!
+	snake_size += 20
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch or event is InputEventMouseButton:
 		is_tapping = event.pressed
