@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
-[ext_resource type="Texture2D" uid="uid://bwn407lo2nk7u" path="res://assets/snake.png" id="1_l1rk1"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
+[ext_resource type="Texture2D" uid="uid://ndyuh2di7alh" path="res://assets/bg.png" id="5_dakft"]
 [ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/apple.gd" id="5_dxrkv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxrkv"]
@@ -14,6 +14,12 @@ size = Vector2(640, 720)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
 
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+texture = ExtResource("5_dakft")
+centered = false
+
 [node name="Snake" parent="." instance=ExtResource("2_4fuuu")]
 
 [node name="Apple" type="Area2D" parent="."]
@@ -21,8 +27,6 @@ script = ExtResource("5_dxrkv")
 
 [node name="Sprite2D" type="Sprite2D" parent="Apple"]
 scale = Vector2(2, 2)
-texture = ExtResource("1_l1rk1")
-region_enabled = true
 region_rect = Rect2(64, 0, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apple"]

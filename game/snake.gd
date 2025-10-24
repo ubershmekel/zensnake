@@ -8,8 +8,6 @@ const ROTATE_RATE := 15.0
 const ROTATION_INTERVAL := MOVE_INTERVAL
 
 @export var hotkey = KEY_A
-@export var headTexture: Texture2D
-@export var bodyTexture: Texture2D
 
 var is_hotkey_pressed := false
 var is_button_down := false
@@ -25,13 +23,11 @@ var rotation_time_passed := 0.0
 @onready var snake_nodes: Array[Node2D] = [$SnakeHead, $SnakeBody]
 # This will store the grid positions for each node
 var snake_positions: Array[Vector2] = []
-
+var body_textures: Array[Texture2D] = []
 
 func _ready():
 	# Keep
 	$SnakeHead.z_index = 1
-	$SnakeHead/Sprite2D.texture = headTexture
-	$SnakeBody/Sprite2D.texture = bodyTexture
 	$SnakeBody.z_index = -1
 	
 	# 2. Store the STARTING positions of all nodes
@@ -39,7 +35,20 @@ func _ready():
 	var start = Vector2(randi() % 300 + 100, randi() % 300 + 100)
 	for segment in snake_nodes:
 		snake_positions.push_back(start)
+	
+	load_skin("snake")
 
+func load_skin(name: String) -> void:
+	var base_path = "res://assets/%s/" % name
+
+	$SnakeHead/Sprite2D.texture = load(base_path + "head.png")
+	
+	body_textures = []
+	for i in range(1, 6):
+		var tex_path = base_path + "body%d.png" % (i + 1)
+		body_textures.append(load(tex_path))
+	
+	$SnakeBody/Sprite2D.texture = body_textures[0]
 
 func _process(delta: float) -> void:
 	time_passed += delta
@@ -56,6 +65,15 @@ func _process(delta: float) -> void:
 	if time_passed >= MOVE_INTERVAL:
 		time_passed = 0.0 # Reset timer
 		move()
+
+func grow() -> void:
+	var new_body: Node2D = $SnakeBody.duplicate()
+	new_body.name = "SnakeBody_" + str(snake_nodes.size())
+	new_body.z_index = 0
+	new_body.get_node("Sprite2D").texture = body_textures[randi() % body_textures.size()]
+	add_child(new_body)
+	snake_nodes.push_back(new_body)
+
 
 func move() -> void:
 	# --- 1. Update Direction ---
@@ -91,12 +109,7 @@ func move() -> void:
 	if len(snake_nodes) < snake_size:
 		# grow!
 		# birth another body part
-		var new_body: Node2D = $SnakeBody.duplicate()
-		new_body.name = "SnakeBody_" + str(snake_nodes.size())
-		new_body.z_index = 0
-		#new_body.get_node("Sprite2D").texture = skin
-		add_child(new_body)
-		snake_nodes.push_back(new_body)
+		grow()
 	else:
 		# Remove the very last position (the tail)
 		snake_positions.pop_back()

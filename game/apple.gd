@@ -4,6 +4,16 @@ signal eaten
 
 const TILE_SIZE = 32
 
+@export var textures: Array[Texture2D] = [
+	preload("res://assets/eat/apple.png"),
+	preload("res://assets/eat/banana.png"),
+	preload("res://assets/eat/cherries.png"),
+	preload("res://assets/eat/chili.png"),
+	preload("res://assets/eat/grapes.png"),
+	preload("res://assets/eat/orange.png"),
+	preload("res://assets/eat/waterm.png"),
+]
+
 func _ready():
 	# Connect the area_entered signal to our function
 	self.area_entered.connect(_on_area_entered)
@@ -17,6 +27,9 @@ func _on_area_entered(area):
 
 func reposition():
 	randomize()
+	if textures.size() > 0:
+		$Sprite2D.texture = textures[randi() % textures.size()]
+
 	var viewport_size = get_viewport().get_visible_rect().size
 	var x_tiles = floor(viewport_size.x / TILE_SIZE)
 	var y_tiles = floor(viewport_size.y / TILE_SIZE)
