@@ -16,8 +16,9 @@ var snakes = []
 func _ready():
 	$Snake.position.x = 0
 	$Snake.position.y = 0
-	# Connect the apple's "eaten" signal to the snake's "_on_apple_eaten" function.
-	$Apple.eaten.connect($Snake._on_apple_eaten)
+	# Connect the apple's "eaten" signal to our local handler so we can forward
+	# the event to the specific snake instance that ate the apple.
+	$Apple.eaten.connect(_on_apple_eaten)
 	$Apple.reposition()
 	snakes = [$Snake]
 
@@ -29,12 +30,23 @@ func _ready():
 		add_child(new_snake)
 		new_snake.hotkey = KEY_B
 		# Assign caterpy textures to the duplicated second-player snake
-		$Snake.load_skin("caterpy")
+		# Load the caterpy skin on the new snake (not the original)
+		new_snake.load_skin("caterpy")
 		snakes.append(new_snake)
+
+
+func _on_apple_eaten(snake):
+	# Forward the eaten event to the snake instance that ate the apple.
+	# We call its handler so the proper snake grows.
+	if snake and snake.has_method("_on_apple_eaten"):
+		snake._on_apple_eaten()
 
 # The top controls the first snake
 # The bottom controls the last snake
 # When there is only one snake that means it's just the 1
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	snakes[0].is_button_down = left_button.is_pressed()
-	snakes[-1].is_button_down = right_button.is_pressed()
+	if snakes.size() == 2:
+		snakes[1].is_button_down = right_button.is_pressed()
+	else:
+		snakes[0].is_button_down = snakes[0].is_button_down or right_button.is_pressed()

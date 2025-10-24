@@ -1,6 +1,7 @@
 extends Area2D
 
-signal eaten
+# Emit which snake (Node) ate the apple so the correct snake can react
+signal eaten(snake)
 
 const TILE_SIZE = 32
 
@@ -22,7 +23,10 @@ func _ready():
 func _on_area_entered(area):
 	# We only care if the area that entered is the snake's head
 	if area.name == 'SnakeHead':
-		emit_signal("eaten")
+		# The head Area2D is a child of the snake Node2D instance.
+		# Emit the parent snake so the game can call the correct snake's grow method.
+		var snake = area.get_parent()
+		emit_signal("eaten", snake)
 		reposition()
 
 func reposition():

@@ -1,25 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://ch3j7m8k1g545"]
+[gd_scene load_steps=5 format=3 uid="uid://ch3j7m8k1g545"]
 
 [ext_resource type="Script" uid="uid://bs0p4sgee8ia8" path="res://game/main_menu.gd" id="1_2gctw"]
+[ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_20tr2"]
+[ext_resource type="Texture2D" uid="uid://d2lqlglfmw0pj" path="res://assets/buttons/1p.png" id="3_wo36y"]
+[ext_resource type="Texture2D" uid="uid://bj5bnqujjquv1" path="res://assets/buttons/2p.png" id="4_t606k"]
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_2gctw")
 
+[node name="Background" parent="." instance=ExtResource("2_20tr2")]
+
 [node name="Button1P" type="Button" parent="."]
-offset_left = 204.0
-offset_top = 599.0
-offset_right = 331.0
-offset_bottom = 744.0
+offset_left = 120.0
+offset_top = 120.0
+offset_right = 580.0
+offset_bottom = 580.0
 theme_override_font_sizes/font_size = 100
-text = "1P"
+icon = ExtResource("3_wo36y")
 
 [node name="Button2P" type="Button" parent="."]
-offset_left = 401.0
-offset_top = 464.0
-offset_right = 528.0
-offset_bottom = 609.0
+offset_left = 680.0
+offset_top = 120.0
+offset_right = 1140.0
+offset_bottom = 580.0
 theme_override_font_sizes/font_size = 100
-text = "2P"
+icon = ExtResource("4_t606k")
 
 [connection signal="pressed" from="Button1P" to="." method="_on_button_1p_pressed"]
 [connection signal="pressed" from="Button2P" to="." method="_on_button_2p_pressed"]

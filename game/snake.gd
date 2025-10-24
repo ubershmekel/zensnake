@@ -2,7 +2,7 @@ extends Node2D
 
 # --- Movement Settings ---
 const TILE_SIZE := 32
-const SNAKE_MOVE_SIZE := 20
+const SNAKE_MOVE_SIZE := 26
 const MOVE_INTERVAL := 0.08  # seconds between moves
 const ROTATE_RATE := 15.0
 const ROTATION_INTERVAL := MOVE_INTERVAL
@@ -13,7 +13,7 @@ var is_hotkey_pressed := false
 var is_button_down := false
 var direction := Vector2.UP
 var time_passed := 0.0
-var snake_size := 14
+var snake_size := 3
 var rotation_time_passed := 0.0
 
 @export var body_element: Node2D
@@ -27,8 +27,8 @@ var body_textures: Array[Texture2D] = []
 
 func _ready():
 	# Keep
-	$SnakeHead.z_index = 1
-	$SnakeBody.z_index = -1
+	$SnakeHead.z_index = 11
+	$SnakeBody.z_index = 10
 	
 	# 2. Store the STARTING positions of all nodes
 	#    (Make sure to line them up in the editor behind the head!)
@@ -38,8 +38,8 @@ func _ready():
 	
 	load_skin("snake")
 
-func load_skin(name: String) -> void:
-	var base_path = "res://assets/%s/" % name
+func load_skin(skin_name: String) -> void:
+	var base_path = "res://assets/%s/" % skin_name
 
 	$SnakeHead/Sprite2D.texture = load(base_path + "head.png")
 	
@@ -69,24 +69,14 @@ func _process(delta: float) -> void:
 func grow() -> void:
 	var new_body: Node2D = $SnakeBody.duplicate()
 	new_body.name = "SnakeBody_" + str(snake_nodes.size())
-	new_body.z_index = 0
+	new_body.z_index = 10
 	new_body.get_node("Sprite2D").texture = body_textures[randi() % body_textures.size()]
 	add_child(new_body)
 	snake_nodes.push_back(new_body)
 
 
 func move() -> void:
-	# --- 1. Update Direction ---
-	# Check if the buffered direction is a 180-degree turn
-	## (e.g., current is RIGHT (1,0), new is LEFT (-1,0). Sum is (0,0))
-	#if direction + new_direction != Vector2.ZERO:
-		#direction = new_direction
-	#else:
-		## The attempted move was invalid (into itself),
-		## so reset the buffer to the current, valid direction
-		#new_direction = direction
-
-	# --- 2. Update Position DATA ---
+	# Update Position DATA
 	# Calculate the new position for the head
 	var new_head_pos = snake_positions[0] + direction * SNAKE_MOVE_SIZE
 
@@ -106,7 +96,7 @@ func move() -> void:
 	# Add the new head position to the FRONT of the list
 	snake_positions.insert(0, new_head_pos)
 	
-	if len(snake_nodes) < snake_size:
+	if snake_nodes.size() < snake_size:
 		# grow!
 		# birth another body part
 		grow()
