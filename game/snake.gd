@@ -12,6 +12,7 @@ const ROTATION_INTERVAL := MOVE_INTERVAL
 @export var bodyTexture: Texture2D
 
 var is_hotkey_pressed := false
+var is_button_down := false
 var direction := Vector2.UP
 var time_passed := 0.0
 var snake_size := 14
@@ -43,10 +44,11 @@ func _ready():
 func _process(delta: float) -> void:
 	time_passed += delta
 	rotation_time_passed += delta
+	var is_reversing := is_hotkey_pressed or is_button_down
 	
 	if rotation_time_passed >= ROTATION_INTERVAL:
 		rotation_time_passed = 0.0
-		var rotation_amount_deg = -ROTATE_RATE if is_hotkey_pressed else ROTATE_RATE
+		var rotation_amount_deg = -ROTATE_RATE if is_reversing else ROTATE_RATE
 		direction = direction.rotated(deg_to_rad(rotation_amount_deg))
 		$SnakeHead.rotation = direction.angle() + PI / 2
 	
