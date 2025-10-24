@@ -7,17 +7,16 @@ const MOVE_INTERVAL := 0.08  # seconds between moves
 const ROTATE_RATE := 15.0
 const ROTATION_INTERVAL := MOVE_INTERVAL
 
-var is_tapping := false
+@export var hotkey = KEY_A
+@export var headTexture: Texture2D
+@export var bodyTexture: Texture2D
+
+var is_hotkey_pressed := false
 var direction := Vector2.UP
 var time_passed := 0.0
 var snake_size := 14
 var rotation_time_passed := 0.0
 
-# --- Node References ---
-@onready var head: Node2D = $Head
-# This array will hold your 4 body parts.
-# You must drag-and-drop your 4 body nodes into this array
-# in the Godot Inspector.
 @export var body_element: Node2D
 
 # --- Internal State ---
@@ -30,11 +29,15 @@ var snake_positions: Array[Vector2] = []
 func _ready():
 	# Keep
 	$SnakeHead.z_index = 1
+	$SnakeHead/Sprite2D.texture = headTexture
+	$SnakeBody/Sprite2D.texture = bodyTexture
+	$SnakeBody.z_index = -1
 	
 	# 2. Store the STARTING positions of all nodes
 	#    (Make sure to line them up in the editor behind the head!)
+	var start = Vector2(randi() % 300 + 100, randi() % 300 + 100)
 	for segment in snake_nodes:
-		snake_positions.push_back(Vector2(300, 600))
+		snake_positions.push_back(start)
 
 
 func _process(delta: float) -> void:
@@ -43,7 +46,7 @@ func _process(delta: float) -> void:
 	
 	if rotation_time_passed >= ROTATION_INTERVAL:
 		rotation_time_passed = 0.0
-		var rotation_amount_deg = -ROTATE_RATE if is_tapping else ROTATE_RATE
+		var rotation_amount_deg = -ROTATE_RATE if is_hotkey_pressed else ROTATE_RATE
 		direction = direction.rotated(deg_to_rad(rotation_amount_deg))
 		$SnakeHead.rotation = direction.angle() + PI / 2
 	
@@ -87,7 +90,9 @@ func move() -> void:
 		# grow!
 		# birth another body part
 		var new_body: Node2D = $SnakeBody.duplicate()
+		new_body.name = "SnakeBody_" + str(snake_nodes.size())
 		new_body.z_index = 0
+		#new_body.get_node("Sprite2D").texture = skin
 		add_child(new_body)
 		snake_nodes.push_back(new_body)
 	else:
@@ -106,5 +111,5 @@ func _on_apple_eaten():
 	snake_size += 20
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch or event is InputEventMouseButton:
-		is_tapping = event.pressed
+	if event is InputEventKey and event.keycode == hotkey:
+		is_hotkey_pressed = event.is_pressed()

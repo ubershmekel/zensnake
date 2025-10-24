@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="zensnake"
-run/main_scene="uid://ijpro01eklid"
+run/main_scene="uid://ch3j7m8k1g545"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
