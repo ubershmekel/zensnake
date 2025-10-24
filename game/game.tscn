@@ -9,7 +9,7 @@
 radius = 32.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fuuu"]
-size = Vector2(720, 640)
+size = Vector2(640, 720)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
@@ -28,15 +28,10 @@ region_rect = Rect2(64, 0, 32, 32)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apple"]
 shape = SubResource("CircleShape2D_dxrkv")
 
-[node name="TopButton" type="TouchScreenButton" parent="."]
-position = Vector2(360, 320)
+[node name="LeftButton" type="TouchScreenButton" parent="."]
+position = Vector2(320, 360)
 shape = SubResource("RectangleShape2D_4fuuu")
 
-[node name="BottomButton" type="TouchScreenButton" parent="."]
-position = Vector2(360, 960)
+[node name="RightButton" type="TouchScreenButton" parent="."]
+position = Vector2(960, 360)
 shape = SubResource("RectangleShape2D_4fuuu")
-
-[connection signal="pressed" from="TopButton" to="." method="_on_top_button_pressed"]
-[connection signal="released" from="TopButton" to="." method="_on_top_button_released"]
-[connection signal="pressed" from="BottomButton" to="." method="_on_bottom_button_pressed"]
-[connection signal="released" from="BottomButton" to="." method="_on_bottom_button_released"]

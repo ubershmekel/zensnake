@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var bottom_button := $BottomButton
-@onready var top_button := $TopButton
+@onready var right_button := $RightButton
+@onready var left_button := $LeftButton
 
 # player_count gets overwritten by the buttons in the main menu
 var player_count = 1
@@ -24,14 +24,6 @@ func _ready():
 # The top controls the first snake
 # The bottom controls the last snake
 # When there is only one snake that means it's just the 1
-func _on_top_button_pressed() -> void:
-	snakes[0].is_button_down = true
-
-func _on_top_button_released() -> void:
-	snakes[0].is_button_down = false
-
-func _on_bottom_button_pressed() -> void:
-	snakes[-1].is_button_down = true
-
-func _on_bottom_button_released() -> void:
-	snakes[-1].is_button_down = false
+func _process(delta) -> void:
+	snakes[0].is_button_down = left_button.is_pressed()
+	snakes[-1].is_button_down = right_button.is_pressed()
