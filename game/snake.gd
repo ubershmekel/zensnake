@@ -83,14 +83,14 @@ func move() -> void:
 	# Wrap around the viewport edges so the snake reappears on the opposite side
 	var view_size: Vector2 = get_viewport().get_visible_rect().size
 	# X wrap
-	if new_head_pos.x < 0:
-		new_head_pos.x = view_size.x - TILE_SIZE
-	elif new_head_pos.x >= view_size.x:
+	if new_head_pos.x < -TILE_SIZE:
+		new_head_pos.x = view_size.x
+	elif new_head_pos.x >= view_size.x + TILE_SIZE:
 		new_head_pos.x = 0
 	# Y wrap
-	if new_head_pos.y < 0:
-		new_head_pos.y = view_size.y - TILE_SIZE
-	elif new_head_pos.y >= view_size.y:
+	if new_head_pos.y < -TILE_SIZE:
+		new_head_pos.y = view_size.y
+	elif new_head_pos.y >= view_size.y + TILE_SIZE:
 		new_head_pos.y = 0
 
 	# Add the new head position to the FRONT of the list
