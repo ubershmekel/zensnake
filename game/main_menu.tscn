@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch3j7m8k1g545"]
+[gd_scene load_steps=8 format=3 uid="uid://ch3j7m8k1g545"]
 
 [ext_resource type="Script" uid="uid://bs0p4sgee8ia8" path="res://game/main_menu.gd" id="1_2gctw"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_20tr2"]
 [ext_resource type="Texture2D" uid="uid://d2lqlglfmw0pj" path="res://assets/buttons/1p.png" id="3_wo36y"]
 [ext_resource type="Texture2D" uid="uid://bj5bnqujjquv1" path="res://assets/buttons/2p.png" id="4_t606k"]
+[ext_resource type="Texture2D" uid="uid://cm8jlum7qdv5x" path="res://assets/snake/head-large.png" id="5_7k2rn"]
+[ext_resource type="Texture2D" uid="uid://dcnd3gri12us" path="res://assets/caterpy/head-large.png" id="6_wr6kv"]
 
 [sub_resource type="SystemFont" id="SystemFont_wo36y"]
 
@@ -29,13 +31,38 @@ theme_override_font_sizes/font_size = 100
 icon = ExtResource("4_t606k")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 729.0
+offset_left = 151.0
 offset_top = 518.0
-offset_right = 1143.0
+offset_right = 690.0
 offset_bottom = 651.0
+mouse_filter = 2
 theme_override_fonts/normal_font = SubResource("SystemFont_wo36y")
 theme_override_font_sizes/normal_font_size = 40
-text = "tap either side or use \"a\" and \"b\" keys"
+text = "\"a\" key or tap
+turns left"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="."]
+offset_left = 722.0
+offset_top = 471.0
+offset_right = 1136.0
+offset_bottom = 652.0
+mouse_filter = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_wo36y")
+theme_override_font_sizes/normal_font_size = 40
+text = "Use \"a\" and \"b\" keys
+or tap left/right halfs of the screen"
+
+[node name="Head-large" type="Sprite2D" parent="."]
+position = Vector2(135, 202)
+texture = ExtResource("5_7k2rn")
+
+[node name="Head-large2" type="Sprite2D" parent="."]
+position = Vector2(1142, 201)
+texture = ExtResource("5_7k2rn")
+
+[node name="Head-large3" type="Sprite2D" parent="."]
+position = Vector2(1020, 190)
+texture = ExtResource("6_wr6kv")
 
 [connection signal="pressed" from="Button1P" to="." method="_on_button_1p_pressed"]
 [connection signal="pressed" from="Button2P" to="." method="_on_button_2p_pressed"]

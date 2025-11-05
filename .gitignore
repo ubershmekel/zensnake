@@ -6,3 +6,4 @@ export.zip
 exports.zip
 export/
 exports/
+*.zip
