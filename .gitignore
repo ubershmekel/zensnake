@@ -7,3 +7,4 @@ exports.zip
 export/
 exports/
 *.zip
+.vscode/settings.json

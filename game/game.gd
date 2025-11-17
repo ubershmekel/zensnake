@@ -2,12 +2,7 @@ extends Node2D
 
 @onready var right_button := $RightButton
 @onready var left_button := $LeftButton
-
-# Preload snake textures
-const SNAKE_HEAD = preload("res://assets/snake/head.png")
-const SNAKE_BODY = preload("res://assets/snake/body1.png")
-const CATERPY_HEAD = preload("res://assets/caterpy/head.png")
-const CATERPY_BODY = preload("res://assets/caterpy/body1.png")
+@onready var full_screen_button := $FullScreenButton
 
 # player_count gets overwritten by the buttons in the main menu
 var player_count = 1
@@ -34,6 +29,15 @@ func _ready():
 		new_snake.load_skin("caterpy")
 		snakes.append(new_snake)
 
+		# disable fullscreen button
+		full_screen_button.visible = false
+		right_button.visible = true
+		left_button.visible = true
+	else:
+		full_screen_button.visible = true
+		right_button.visible = false
+		left_button.visible = false
+
 
 func _on_apple_eaten(snake):
 	# Forward the eaten event to the snake instance that ate the apple.
@@ -45,8 +49,8 @@ func _on_apple_eaten(snake):
 # The bottom controls the last snake
 # When there is only one snake that means it's just the 1
 func _process(_delta) -> void:
-	snakes[0].is_button_down = left_button.is_pressed()
 	if snakes.size() == 2:
+		snakes[0].is_button_down = left_button.is_pressed()
 		snakes[1].is_button_down = right_button.is_pressed()
 	else:
-		snakes[0].is_button_down = snakes[0].is_button_down or right_button.is_pressed()
+		snakes[0].is_button_down = full_screen_button.is_pressed()

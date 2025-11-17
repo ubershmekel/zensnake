@@ -1,17 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://sx70eol2d43p"]
+[gd_scene load_steps=5 format=3 uid="uid://sx70eol2d43p"]
 
 [ext_resource type="Script" uid="uid://yqbhanmpc8f7" path="res://game/snake.gd" id="1_ynf1u"]
-[ext_resource type="Texture2D" uid="uid://c4l4jlrhb0rxw" path="res://assets/head1.png" id="2_mttf6"]
-[ext_resource type="Texture2D" uid="uid://22k5in2jdrdk" path="res://assets/body1.png" id="3_wt7of"]
-[ext_resource type="Texture2D" uid="uid://d0oljuftqpliw" path="res://assets/body2.png" id="4_m4e6x"]
+[ext_resource type="Texture2D" uid="uid://dvl7fxl080lhi" path="res://assets/snake/body1.png" id="3_wt7of"]
+[ext_resource type="Texture2D" uid="uid://c6uvu5ofxni6q" path="res://assets/snake/body2.png" id="4_m4e6x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4fuuu"]
 radius = 18.0
 
 [node name="Snake" type="Node2D"]
 script = ExtResource("1_ynf1u")
-headTexture = ExtResource("2_mttf6")
-bodyTexture = ExtResource("3_wt7of")
 
 [node name="SnakeHead" type="Area2D" parent="."]
 
