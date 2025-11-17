@@ -2,8 +2,8 @@ extends Node2D
 
 # --- Movement Settings ---
 const TILE_SIZE := 32
-const SNAKE_MOVE_SIZE := 26
-const MOVE_INTERVAL := 0.08  # seconds between moves
+const SNAKE_MOVE_SIZE := 40
+const MOVE_INTERVAL := 0.1  # seconds between moves
 const ROTATE_RATE := 15.0
 const ROTATION_INTERVAL := MOVE_INTERVAL
 
