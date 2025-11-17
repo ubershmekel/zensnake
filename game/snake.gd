@@ -3,11 +3,12 @@ extends Node2D
 # --- Movement Settings ---
 const TILE_SIZE := 32
 const SNAKE_MOVE_SIZE := 40
-const MOVE_INTERVAL := 0.1  # seconds between moves
+const MOVE_INTERVAL := 0.1 # seconds between moves
 const ROTATE_RATE := 15.0
 const ROTATION_INTERVAL := MOVE_INTERVAL
 
 @export var hotkey = KEY_A
+@export var static_body = false
 
 var is_hotkey_pressed := false
 var is_button_down := false
@@ -21,8 +22,6 @@ var rotation_time_passed := 0.0
 # --- Internal State ---
 # This will hold ALL snake nodes (head + body)
 @onready var snake_nodes: Array[Node2D] = [$SnakeHead, $SnakeBody]
-# This will store the grid positions for each node
-var snake_positions: Array[Vector2] = []
 var body_textures: Array[Texture2D] = []
 
 func _ready():
@@ -34,7 +33,7 @@ func _ready():
 	#    (Make sure to line them up in the editor behind the head!)
 	var start = Vector2(randi() % 300 + 100, randi() % 300 + 100)
 	for segment in snake_nodes:
-		snake_positions.push_back(start)
+		segment.position = start
 	
 	load_skin("snake")
 
@@ -57,7 +56,7 @@ func _process(delta: float) -> void:
 	
 	if rotation_time_passed >= ROTATION_INTERVAL:
 		rotation_time_passed = 0.0
-		var rotation_amount_deg = -ROTATE_RATE if is_reversing else ROTATE_RATE
+		var rotation_amount_deg = - ROTATE_RATE if is_reversing else ROTATE_RATE
 		direction = direction.rotated(deg_to_rad(rotation_amount_deg))
 		$SnakeHead.rotation = direction.angle() + PI / 2
 	
@@ -66,19 +65,21 @@ func _process(delta: float) -> void:
 		time_passed = 0.0 # Reset timer
 		move()
 
-func grow() -> void:
+func grow(custom_position: Vector2) -> void:
 	var new_body: Node2D = $SnakeBody.duplicate()
 	new_body.name = "SnakeBody_" + str(snake_nodes.size())
 	new_body.z_index = 10
 	new_body.get_node("Sprite2D").texture = body_textures[randi() % body_textures.size()]
+	var new_segment_position := Vector2.ZERO
+	new_segment_position = custom_position
+	new_body.position = new_segment_position
 	add_child(new_body)
 	snake_nodes.push_back(new_body)
 
 
 func move() -> void:
-	# Update Position DATA
-	# Calculate the new position for the head
-	var new_head_pos = snake_positions[0] + direction * SNAKE_MOVE_SIZE
+	var previous_head_pos = snake_nodes[0].position
+	var new_head_pos = previous_head_pos + direction * SNAKE_MOVE_SIZE
 
 	# Wrap around the viewport edges so the snake reappears on the opposite side
 	var view_size: Vector2 = get_viewport().get_visible_rect().size
@@ -93,23 +94,29 @@ func move() -> void:
 	elif new_head_pos.y >= view_size.y + TILE_SIZE:
 		new_head_pos.y = 0
 
-	# Add the new head position to the FRONT of the list
-	snake_positions.insert(0, new_head_pos)
-	
+	var previous_position: Vector2 = previous_head_pos
+	var last_body_pos = snake_nodes[-1].position
+	snake_nodes[0].position = new_head_pos
+	var grow_pos = last_body_pos
+	if static_body:
+		grow_pos = previous_head_pos
 	if snake_nodes.size() < snake_size:
 		# grow!
 		# birth another body part
-		grow()
+		grow(grow_pos)
+	if static_body:
+		if snake_nodes.size() > 1:
+			# Move the last body segment directly behind the head instead of
+			# shifting every segment's position.
+			var tail = snake_nodes.pop_back()
+			tail.position = previous_head_pos
+			snake_nodes.insert(1, tail)
 	else:
-		# Remove the very last position (the tail)
-		snake_positions.pop_back()
-	
-	# --- 3. Update Visuals ---
-	# Loop through all nodes and set their position
-	# from our master position list.
-	for i in range(snake_nodes.size()):
-		snake_nodes[i].position = snake_positions[i]
-
+		# Move all the body parts just like the head moved
+		for i in range(1, snake_nodes.size()):
+			var current_position = snake_nodes[i].position
+			snake_nodes[i].position = previous_position
+			previous_position = current_position
 
 func _on_apple_eaten():
 	# Grow!
