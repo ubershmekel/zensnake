@@ -35,8 +35,9 @@ func reposition():
 		$Sprite2D.texture = textures[randi() % textures.size()]
 
 	var viewport_size = get_viewport().get_visible_rect().size
-	var x_tiles = floor(viewport_size.x / TILE_SIZE)
-	var y_tiles = floor(viewport_size.y / TILE_SIZE)
-	var random_x = randi() % int(x_tiles)
-	var random_y = randi() % int(y_tiles)
+	var x_tiles = int(floor(viewport_size.x / TILE_SIZE))
+	var y_tiles = int(floor(viewport_size.y / TILE_SIZE))
+	var random_x = randi_range(1, x_tiles - 1)
+	var random_y = randi_range(1, y_tiles - 1)
 	position = Vector2(random_x * TILE_SIZE, random_y * TILE_SIZE)
+	z_index = 10

@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=9 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_dxrkv"]
+[ext_resource type="Texture2D" uid="uid://blrxr0hpocrqn" path="res://assets/eat/orange.png" id="5_dakft"]
 [ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/apple.gd" id="5_dxrkv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxrkv"]
-radius = 32.0
+radius = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxrkv"]
 size = Vector2(1280, 720)
@@ -26,20 +27,24 @@ script = ExtResource("5_dxrkv")
 
 [node name="Sprite2D" type="Sprite2D" parent="Apple"]
 scale = Vector2(2, 2)
+texture = ExtResource("5_dakft")
 region_rect = Rect2(64, 0, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apple"]
 shape = SubResource("CircleShape2D_dxrkv")
 
 [node name="FullScreenButton" type="TouchScreenButton" parent="."]
+visible = false
 position = Vector2(640, 360)
 shape = SubResource("RectangleShape2D_dxrkv")
 shape_centered = false
 
 [node name="LeftButton" type="TouchScreenButton" parent="."]
+visible = false
 position = Vector2(160, 360)
 shape = SubResource("RectangleShape2D_4fuuu")
 
 [node name="RightButton" type="TouchScreenButton" parent="."]
+visible = false
 position = Vector2(1120, 360)
 shape = SubResource("RectangleShape2D_4fuuu")
