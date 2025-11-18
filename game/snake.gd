@@ -9,6 +9,7 @@ const ROTATION_INTERVAL := MOVE_INTERVAL
 
 @export var hotkey = KEY_A
 @export var static_body = false
+@export var smooth_tween = false
 
 var is_hotkey_pressed := false
 var is_button_down := false
@@ -108,7 +109,7 @@ func move() -> void:
 		# grow!
 		# birth another body part
 		grow(grow_pos)
-	_animate_segment_to(snake_nodes[0], new_head_pos, wrapped)
+	_animate_segment_to(snake_nodes[0], new_head_pos)
 	if static_body:
 		if snake_nodes.size() > 1:
 			# Move the last body segment directly behind the head instead of
@@ -132,13 +133,22 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == hotkey:
 		is_hotkey_pressed = event.is_pressed()
 
-func _animate_segment_to(node: Node2D, target_position: Vector2, instant: bool = false) -> void:
+func _animate_segment_to(node: Node2D, target_position: Vector2, cancel_tween = false) -> void:
+	if smooth_tween:
+		var view_size: Vector2 = get_viewport().get_visible_rect().size
+		if abs(node.position.x - target_position.x) > view_size.x * 0.5:
+			cancel_tween = true
+		if abs(node.position.y - target_position.y) > view_size.y * 0.5:
+			cancel_tween = true
+	
 	if node_move_tweens.has(node) and node_move_tweens[node]:
 		node_move_tweens[node].kill()
 		node_move_tweens.erase(node)
-	if instant:
+	
+	if not smooth_tween or cancel_tween:
 		node.position = target_position
 		return
+	
 	var tween := create_tween()
 	tween.tween_property(node, "position", target_position, MOVE_INTERVAL).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 	node_move_tweens[node] = tween

@@ -22,6 +22,7 @@ script = ExtResource("1_h7iqs")
 
 [node name="Snake" parent="." instance=ExtResource("2_4fuuu")]
 static_body = true
+smooth_tween = true
 
 [node name="Apple" type="Area2D" parent="."]
 script = ExtResource("5_dxrkv")
