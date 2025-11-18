@@ -23,6 +23,7 @@ var rotation_time_passed := 0.0
 # This will hold ALL snake nodes (head + body)
 @onready var snake_nodes: Array[Node2D] = [$SnakeHead, $SnakeBody]
 var body_textures: Array[Texture2D] = []
+var node_move_tweens: Dictionary = {}
 
 func _ready():
 	# Keep
@@ -83,20 +84,23 @@ func move() -> void:
 
 	# Wrap around the viewport edges so the snake reappears on the opposite side
 	var view_size: Vector2 = get_viewport().get_visible_rect().size
+	var wrapped := false
 	# X wrap
 	if new_head_pos.x < -TILE_SIZE:
 		new_head_pos.x = view_size.x
+		wrapped = true
 	elif new_head_pos.x >= view_size.x + TILE_SIZE:
 		new_head_pos.x = 0
+		wrapped = true
 	# Y wrap
 	if new_head_pos.y < -TILE_SIZE:
 		new_head_pos.y = view_size.y
+		wrapped = true
 	elif new_head_pos.y >= view_size.y + TILE_SIZE:
 		new_head_pos.y = 0
+		wrapped = true
 
-	var previous_position: Vector2 = previous_head_pos
 	var last_body_pos = snake_nodes[-1].position
-	snake_nodes[0].position = new_head_pos
 	var grow_pos = last_body_pos
 	if static_body:
 		grow_pos = previous_head_pos
@@ -104,18 +108,20 @@ func move() -> void:
 		# grow!
 		# birth another body part
 		grow(grow_pos)
+	_animate_segment_to(snake_nodes[0], new_head_pos, wrapped)
 	if static_body:
 		if snake_nodes.size() > 1:
 			# Move the last body segment directly behind the head instead of
 			# shifting every segment's position.
 			var tail = snake_nodes.pop_back()
-			tail.position = previous_head_pos
+			_animate_segment_to(tail, previous_head_pos, true)
 			snake_nodes.insert(1, tail)
 	else:
 		# Move all the body parts just like the head moved
+		var previous_position: Vector2 = previous_head_pos
 		for i in range(1, snake_nodes.size()):
 			var current_position = snake_nodes[i].position
-			snake_nodes[i].position = previous_position
+			_animate_segment_to(snake_nodes[i], previous_position)
 			previous_position = current_position
 
 func _on_apple_eaten():
@@ -125,3 +131,14 @@ func _on_apple_eaten():
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == hotkey:
 		is_hotkey_pressed = event.is_pressed()
+
+func _animate_segment_to(node: Node2D, target_position: Vector2, instant: bool = false) -> void:
+	if node_move_tweens.has(node) and node_move_tweens[node]:
+		node_move_tweens[node].kill()
+		node_move_tweens.erase(node)
+	if instant:
+		node.position = target_position
+		return
+	var tween := create_tween()
+	tween.tween_property(node, "position", target_position, MOVE_INTERVAL).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	node_move_tweens[node] = tween
