@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fuuu"]
 size = Vector2(320, 720)
 
-[node name="LeftButton" type="TouchScreenButton"]
+[node name="TopButton" type="TouchScreenButton"]
 texture_normal = ExtResource("1_ue4q6")
 shape = SubResource("RectangleShape2D_4fuuu")
 script = ExtResource("2_uo800")

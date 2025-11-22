@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var right_button := $RightButton
-@onready var left_button := $LeftButton
+@onready var bottom_button := $BottomButton
+@onready var top_button := $TopButton
 @onready var full_screen_button := $FullScreenButton
 
 # player_count gets overwritten by the buttons in the main menu
@@ -40,12 +40,12 @@ func _ready():
 
 		# disable fullscreen button
 		full_screen_button.visible = false
-		right_button.visible = true
-		left_button.visible = true
+		bottom_button.visible = true
+		top_button.visible = true
 	else:
 		full_screen_button.visible = true
-		right_button.visible = false
-		left_button.visible = false
+		bottom_button.visible = false
+		top_button.visible = false
 
 
 func _on_apple_eaten(snake, fruit: FruitData = null):
@@ -59,7 +59,7 @@ func _on_apple_eaten(snake, fruit: FruitData = null):
 # When there is only one snake that means it's just the 1
 func _process(_delta) -> void:
 	if snakes.size() == 2:
-		snakes[0].is_button_down = left_button.is_pressed()
-		snakes[1].is_button_down = right_button.is_pressed()
+		snakes[0].is_button_down = top_button.is_pressed()
+		snakes[1].is_button_down = bottom_button.is_pressed()
 	else:
 		snakes[0].is_button_down = full_screen_button.is_pressed()

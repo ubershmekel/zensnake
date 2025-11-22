@@ -36,16 +36,15 @@ region_rect = Rect2(64, 0, 32, 32)
 shape = SubResource("CircleShape2D_dxrkv")
 
 [node name="FullScreenButton" type="TouchScreenButton" parent="."]
+visible = false
 position = Vector2(360, 640)
 shape = SubResource("RectangleShape2D_dxrkv")
 shape_centered = false
 
-[node name="RightButton" parent="." instance=ExtResource("6_dakft")]
-visible = false
+[node name="BottomButton" parent="." instance=ExtResource("6_dakft")]
 position = Vector2(720, 960)
 rotation = 1.5708
 
-[node name="LeftButton" parent="." instance=ExtResource("6_dakft")]
-visible = false
+[node name="TopButton" parent="." instance=ExtResource("6_dakft")]
 position = Vector2(720, 0)
 rotation = 1.5708

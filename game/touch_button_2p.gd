@@ -7,9 +7,9 @@ var _base_color: Color = Color(1, 1, 1, 1)
 
 func _ready() -> void:
 	match name:
-		"LeftButton":
+		"TopButton":
 			_base_color = GREEN
-		"RightButton":
+		"BottomButton":
 			_base_color = ORANGE
 	modulate = _base_color
 
