@@ -8,6 +8,10 @@ extends Node2D
 var player_count = 1
 var snakes = []
 
+const SKIN_SNAKE: String = "snake"
+const SKIN_CATERPY: String = "caterpy"
+const SKINS: Array[String] = [SKIN_SNAKE, SKIN_CATERPY]
+
 func _ready():
 	$Snake.position.x = 0
 	$Snake.position.y = 0
@@ -18,7 +22,12 @@ func _ready():
 	snakes = [$Snake]
 
 	# Apply textures to the primary snake
-	$Snake.load_skin("snake")
+	if player_count == 1:
+		randomize()
+		var skin: String = SKINS[randi() % SKINS.size()]
+		$Snake.load_skin(skin)
+	else:
+		$Snake.load_skin(SKIN_SNAKE)
 	
 	if player_count == 2:
 		var new_snake = $Snake.duplicate()
@@ -26,7 +35,7 @@ func _ready():
 		new_snake.hotkey = KEY_B
 		# Assign caterpy textures to the duplicated second-player snake
 		# Load the caterpy skin on the new snake (not the original)
-		new_snake.load_skin("caterpy")
+		new_snake.load_skin(SKIN_CATERPY)
 		snakes.append(new_snake)
 
 		# disable fullscreen button
