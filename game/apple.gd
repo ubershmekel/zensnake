@@ -1,19 +1,56 @@
 extends Area2D
 
-# Emit which snake (Node) ate the apple so the correct snake can react
-signal eaten(snake)
+# Emit which snake (Node) ate the apple so the correct snake can react, along with the effect to apply
+signal eaten(snake, fruit: FruitData)
 
 const TILE_SIZE = 32
 
-@export var textures: Array[Texture2D] = [
-	preload("res://assets/eat/apple.png"),
-	preload("res://assets/eat/banana.png"),
-	preload("res://assets/eat/cherries.png"),
-	preload("res://assets/eat/chili.png"),
-	preload("res://assets/eat/grapes.png"),
-	preload("res://assets/eat/orange.png"),
-	preload("res://assets/eat/waterm.png"),
+@export var fruits: Array[FruitData] = [
+	FruitData.new(
+		"apple",
+		preload("res://assets/eat/apple.png"),
+		false,
+		false
+	),
+	FruitData.new(
+		"banana",
+		preload("res://assets/eat/banana.png"),
+		false,
+		true
+	),
+	FruitData.new(
+		"cherries",
+		preload("res://assets/eat/cherries.png"),
+		true,
+		false
+	),
+	FruitData.new(
+		"chili",
+		preload("res://assets/eat/chili.png"),
+		true,
+		true
+	),
+	FruitData.new(
+		"grapes",
+		preload("res://assets/eat/grapes.png"),
+		false,
+		false
+	),
+	FruitData.new(
+		"orange",
+		preload("res://assets/eat/orange.png"),
+		false,
+		true
+	),
+	FruitData.new(
+		"watermelon",
+		preload("res://assets/eat/waterm.png"),
+		true,
+		false
+	),
 ]
+
+var _current_fruit: FruitData = null
 
 func _ready():
 	# Connect the area_entered signal to our function
@@ -26,13 +63,16 @@ func _on_area_entered(area):
 		# The head Area2D is a child of the snake Node2D instance.
 		# Emit the parent snake so the game can call the correct snake's grow method.
 		var snake = area.get_parent()
-		emit_signal("eaten", snake)
+		emit_signal("eaten", snake, _current_fruit)
 		reposition()
 
 func reposition():
 	randomize()
-	if textures.size() > 0:
-		$Sprite2D.texture = textures[randi() % textures.size()]
+	if fruits.size() > 0:
+		var random_index = randi() % fruits.size()
+		_current_fruit = fruits[random_index]
+		var fruit_texture: Texture2D = _current_fruit.texture
+		$Sprite2D.texture = fruit_texture
 
 	var viewport_size = get_viewport().get_visible_rect().size
 	var x_tiles = int(floor(viewport_size.x / TILE_SIZE))

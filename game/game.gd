@@ -39,11 +39,11 @@ func _ready():
 		left_button.visible = false
 
 
-func _on_apple_eaten(snake):
+func _on_apple_eaten(snake, fruit: FruitData = null):
 	# Forward the eaten event to the snake instance that ate the apple.
 	# We call its handler so the proper snake grows.
 	if snake and snake.has_method("_on_apple_eaten"):
-		snake._on_apple_eaten()
+		snake._on_apple_eaten(fruit)
 
 # The top controls the first snake
 # The bottom controls the last snake

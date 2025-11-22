@@ -85,21 +85,16 @@ func move() -> void:
 
 	# Wrap around the viewport edges so the snake reappears on the opposite side
 	var view_size: Vector2 = get_viewport().get_visible_rect().size
-	var wrapped := false
 	# X wrap
 	if new_head_pos.x < -TILE_SIZE:
 		new_head_pos.x = view_size.x
-		wrapped = true
 	elif new_head_pos.x >= view_size.x + TILE_SIZE:
 		new_head_pos.x = 0
-		wrapped = true
 	# Y wrap
 	if new_head_pos.y < -TILE_SIZE:
 		new_head_pos.y = view_size.y
-		wrapped = true
 	elif new_head_pos.y >= view_size.y + TILE_SIZE:
 		new_head_pos.y = 0
-		wrapped = true
 
 	var last_body_pos = snake_nodes[-1].position
 	var grow_pos = last_body_pos
@@ -125,9 +120,12 @@ func move() -> void:
 			_animate_segment_to(snake_nodes[i], previous_position)
 			previous_position = current_position
 
-func _on_apple_eaten():
+func _on_apple_eaten(fruit: FruitData = null):
 	# Grow!
 	snake_size += 20
+	if fruit:
+		static_body = fruit.static_body
+		smooth_tween = fruit.smooth_tween
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == hotkey:
