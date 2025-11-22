@@ -11,7 +11,7 @@
 radius = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dxrkv"]
-size = Vector2(1280, 720)
+size = Vector2(720, 1280)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
@@ -36,15 +36,16 @@ region_rect = Rect2(64, 0, 32, 32)
 shape = SubResource("CircleShape2D_dxrkv")
 
 [node name="FullScreenButton" type="TouchScreenButton" parent="."]
-visible = false
-position = Vector2(640, 360)
+position = Vector2(360, 640)
 shape = SubResource("RectangleShape2D_dxrkv")
 shape_centered = false
 
 [node name="RightButton" parent="." instance=ExtResource("6_dakft")]
+visible = false
 position = Vector2(720, 960)
 rotation = 1.5708
 
 [node name="LeftButton" parent="." instance=ExtResource("6_dakft")]
+visible = false
 position = Vector2(720, 0)
 rotation = 1.5708
