@@ -66,7 +66,7 @@ texture = ExtResource("5_7k2rn")
 position = Vector2(151, 193)
 texture = ExtResource("6_wr6kv")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Title"]
+[node name="Instructions1p" type="RichTextLabel" parent="Title"]
 offset_left = 169.0
 offset_top = 378.0
 offset_right = 1047.0
@@ -78,7 +78,7 @@ theme_override_font_sizes/normal_font_size = 40
 text = "For 1 player use the \"a\" key on a keyboard
 or tap to turn left"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Title"]
+[node name="Instructions2p" type="RichTextLabel" parent="Title"]
 offset_left = 179.0
 offset_top = 551.0
 offset_right = 1097.0

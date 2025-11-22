@@ -17,7 +17,20 @@ func play(playerCount: int) -> void:
 @onready var press_start = $Title
 @onready var mode_select = $ModeSelect
 
+func device_is_touch() -> bool:
+	# is_touchscreen_available is true on web and PC for some reason
+	# DisplayServer.is_touchscreen_available()
+	if OS.get_name() == "Android" or OS.get_name() == "iOS":
+		return true
+	else:
+		return false
+
+
 func _ready():
+	if device_is_touch():
+		$Title/Instructions1p.text = "For 1 player tap and hold anywhere on the screen to turn left"
+		$Title/Instructions2p.text = "For 2 players, the left and right edges of the screen are the turn left button"
+
 	show_press_start()
 
 func show_press_start():

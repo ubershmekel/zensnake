@@ -8,3 +8,4 @@ export/
 exports/
 *.zip
 .vscode/settings.json
+*.tmp
