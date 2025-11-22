@@ -13,9 +13,10 @@
 script = ExtResource("1_2gctw")
 
 [node name="Background" parent="." instance=ExtResource("2_20tr2")]
+position = Vector2(720, 0)
+rotation = 1.5708
 
 [node name="ModeSelect" type="Node2D" parent="."]
-visible = false
 
 [node name="Button1P" type="Button" parent="ModeSelect"]
 offset_left = 119.0
@@ -26,10 +27,10 @@ theme_override_font_sizes/font_size = 100
 icon = ExtResource("3_wo36y")
 
 [node name="Button2P" type="Button" parent="ModeSelect"]
-offset_left = 696.0
-offset_top = 198.0
-offset_right = 1156.0
-offset_bottom = 658.0
+offset_left = 106.0
+offset_top = 774.0
+offset_right = 566.0
+offset_bottom = 1234.0
 theme_override_font_sizes/font_size = 100
 icon = ExtResource("4_t606k")
 
@@ -38,39 +39,39 @@ position = Vector2(135, 202)
 texture = ExtResource("5_7k2rn")
 
 [node name="Head-large2" type="Sprite2D" parent="ModeSelect"]
-position = Vector2(1142, 201)
+position = Vector2(575, 873)
 texture = ExtResource("5_7k2rn")
 
 [node name="Head-kat" type="Sprite2D" parent="ModeSelect"]
-position = Vector2(1020, 190)
+position = Vector2(526, 750)
 texture = ExtResource("6_wr6kv")
 
 [node name="Title" type="Node2D" parent="."]
 
 [node name="CenterContainer" type="CenterContainer" parent="Title"]
-offset_right = 1280.0
+offset_right = 723.0
 offset_bottom = 400.0
 
 [node name="Label" type="Label" parent="Title/CenterContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 120
-text = "kat and noodles"
-horizontal_alignment = 1
+text = "kat
+and noodles"
 
 [node name="Head-large" type="Sprite2D" parent="Title"]
-position = Vector2(853, 130)
+position = Vector2(610, 190)
 texture = ExtResource("5_7k2rn")
 
 [node name="Head-kat" type="Sprite2D" parent="Title"]
-position = Vector2(151, 193)
+position = Vector2(273, 103)
 texture = ExtResource("6_wr6kv")
 
 [node name="Instructions1p" type="RichTextLabel" parent="Title"]
-offset_left = 169.0
-offset_top = 378.0
-offset_right = 1047.0
-offset_bottom = 511.0
+offset_left = 30.0
+offset_top = 500.0
+offset_right = 630.0
+offset_bottom = 750.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_wo36y")
@@ -79,10 +80,10 @@ text = "For 1 player use the \"a\" key on a keyboard
 or tap to turn left"
 
 [node name="Instructions2p" type="RichTextLabel" parent="Title"]
-offset_left = 179.0
-offset_top = 551.0
-offset_right = 1097.0
-offset_bottom = 660.0
+offset_left = 40.0
+offset_top = 800.0
+offset_right = 640.0
+offset_bottom = 1050.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_wo36y")

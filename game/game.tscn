@@ -17,6 +17,8 @@ size = Vector2(1280, 720)
 script = ExtResource("1_h7iqs")
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
+position = Vector2(720, 0)
+rotation = 1.5708
 
 [node name="Snake" parent="." instance=ExtResource("2_4fuuu")]
 static_body = true
@@ -40,6 +42,9 @@ shape = SubResource("RectangleShape2D_dxrkv")
 shape_centered = false
 
 [node name="RightButton" parent="." instance=ExtResource("6_dakft")]
-position = Vector2(960, 0)
+position = Vector2(720, 960)
+rotation = 1.5708
 
 [node name="LeftButton" parent="." instance=ExtResource("6_dakft")]
+position = Vector2(720, 0)
+rotation = 1.5708
