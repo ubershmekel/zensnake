@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkf7wuly2daas"]
+
+[ext_resource type="Texture2D" uid="uid://khofvv21a18a" path="res://assets/buttons/2p-quarter-button.png" id="1_ue4q6"]
+[ext_resource type="Script" uid="uid://uaditmv5s6a3" path="res://game/touch_button_2p.gd" id="2_uo800"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fuuu"]
+size = Vector2(320, 720)
+
+[node name="LeftButton" type="TouchScreenButton"]
+texture_normal = ExtResource("1_ue4q6")
+shape = SubResource("RectangleShape2D_4fuuu")
+script = ExtResource("2_uo800")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]
+[connection signal="released" from="." to="." method="_on_released"]
