@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://khofvv21a18a"
-path="res://.godot/imported/2p-quarter-button.png-33a5e41694ce3330a41ec49a8cc32965.ctex"
+uid="uid://cysrgyovjams2"
+path="res://.godot/imported/quarter-button-orange.png-0714e93d304819b9c2506c1410a5bc07.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/buttons/2p-quarter-button.png"
-dest_files=["res://.godot/imported/2p-quarter-button.png-33a5e41694ce3330a41ec49a8cc32965.ctex"]
+source_file="res://assets/buttons/quarter-button-orange.png"
+dest_files=["res://.godot/imported/quarter-button-orange.png-0714e93d304819b9c2506c1410a5bc07.ctex"]
 
 [params]
 

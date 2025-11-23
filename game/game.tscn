@@ -17,8 +17,6 @@ size = Vector2(720, 1280)
 script = ExtResource("1_h7iqs")
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
-position = Vector2(720, 0)
-rotation = 1.5708
 
 [node name="Snake" parent="." instance=ExtResource("2_4fuuu")]
 static_body = true
@@ -41,10 +39,27 @@ position = Vector2(360, 640)
 shape = SubResource("RectangleShape2D_dxrkv")
 shape_centered = false
 
-[node name="BottomButton" parent="." instance=ExtResource("6_dakft")]
-position = Vector2(720, 960)
-rotation = 1.5708
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TopButton" parent="." instance=ExtResource("6_dakft")]
-position = Vector2(720, 0)
-rotation = 1.5708
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BottomButton" parent="CanvasLayer/GridContainer" instance=ExtResource("6_dakft")]
+layout_mode = 2
+
+[node name="Button" type="TextureButton" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button2" type="TextureButton" parent="CanvasLayer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopButton" parent="CanvasLayer/GridContainer" instance=ExtResource("6_dakft")]
+layout_mode = 2

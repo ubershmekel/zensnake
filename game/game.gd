@@ -1,7 +1,7 @@
 extends Node2D
 
-@onready var bottom_button := $BottomButton
-@onready var top_button := $TopButton
+@onready var bottom_button := $CanvasLayer/GridContainer/BottomButton
+@onready var top_button := $CanvasLayer/GridContainer/TopButton
 @onready var full_screen_button := $FullScreenButton
 
 # player_count gets overwritten by the buttons in the main menu
