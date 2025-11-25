@@ -39,25 +39,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+[node name="TwoPlayerButtons" type="GridContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BottomButton" parent="CanvasLayer/GridContainer" instance=ExtResource("6_dakft")]
+[node name="BottomButton" parent="CanvasLayer/TwoPlayerButtons" instance=ExtResource("6_dakft")]
 layout_mode = 2
+base_color = Color(0.803922, 0.380392, 0.239216, 1)
 
-[node name="Button" type="TextureButton" parent="CanvasLayer/GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="Button2" type="TextureButton" parent="CanvasLayer/GridContainer"]
+[node name="Button" type="TextureButton" parent="CanvasLayer/TwoPlayerButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TopButton" parent="CanvasLayer/GridContainer" instance=ExtResource("6_dakft")]
+[node name="Button2" type="TextureButton" parent="CanvasLayer/TwoPlayerButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopButton" parent="CanvasLayer/TwoPlayerButtons" instance=ExtResource("6_dakft")]
 layout_mode = 2

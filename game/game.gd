@@ -1,8 +1,9 @@
 extends Node2D
 
-@onready var bottom_button := $CanvasLayer/GridContainer/BottomButton
-@onready var top_button := $CanvasLayer/GridContainer/TopButton
+@onready var bottom_button := $CanvasLayer/TwoPlayerButtons/BottomButton
+@onready var top_button := $CanvasLayer/TwoPlayerButtons/TopButton
 @onready var full_screen_button := $CanvasLayer/FullScreenButton
+@onready var two_player_buttons := $CanvasLayer/TwoPlayerButtons
 
 # player_count gets overwritten by the buttons in the main menu
 var player_count = 1
@@ -40,12 +41,10 @@ func _ready():
 
 		# disable fullscreen button
 		full_screen_button.visible = false
-		bottom_button.visible = true
-		top_button.visible = true
+		two_player_buttons.visible = true
 	else:
 		full_screen_button.visible = true
-		bottom_button.visible = false
-		top_button.visible = false
+		two_player_buttons.visible = false
 
 
 func _on_apple_eaten(snake, fruit: FruitData = null):
@@ -59,7 +58,8 @@ func _on_apple_eaten(snake, fruit: FruitData = null):
 # When there is only one snake that means it's just the 1
 func _process(_delta) -> void:
 	if snakes.size() == 2:
-		snakes[0].is_button_down = top_button.is_pressed()
-		snakes[1].is_button_down = bottom_button.is_pressed()
+		snakes[0].is_button_down = top_button.is_down
+		snakes[1].is_button_down = bottom_button.is_down
 	else:
 		snakes[0].is_button_down = full_screen_button.is_pressed()
+		print("button pressed", snakes[0].is_button_down)
