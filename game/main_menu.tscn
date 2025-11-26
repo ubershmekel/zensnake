@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch3j7m8k1g545"]
+[gd_scene load_steps=9 format=3 uid="uid://ch3j7m8k1g545"]
 
 [ext_resource type="Script" uid="uid://bs0p4sgee8ia8" path="res://game/main_menu.gd" id="1_2gctw"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_20tr2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://tyjib3ocbfq3" path="res://assets/buttons/2p.png" id="4_t606k"]
 [ext_resource type="Texture2D" uid="uid://cm8jlum7qdv5x" path="res://assets/snake/head-large.png" id="5_7k2rn"]
 [ext_resource type="Texture2D" uid="uid://dcnd3gri12us" path="res://assets/caterpy/head-large.png" id="6_wr6kv"]
+[ext_resource type="Script" uid="uid://bh6vhu0ij84u1" path="res://game/mute_button.gd" id="7_wr6kv"]
 
 [sub_resource type="SystemFont" id="SystemFont_wo36y"]
 
@@ -15,6 +16,7 @@ script = ExtResource("1_2gctw")
 [node name="Background" parent="." instance=ExtResource("2_20tr2")]
 
 [node name="ModeSelect" type="Node2D" parent="."]
+visible = false
 
 [node name="Button1P" type="Button" parent="ModeSelect"]
 offset_left = 119.0
@@ -47,8 +49,9 @@ texture = ExtResource("6_wr6kv")
 [node name="Title" type="Node2D" parent="."]
 
 [node name="CenterContainer" type="CenterContainer" parent="Title"]
+offset_top = 100.0
 offset_right = 723.0
-offset_bottom = 400.0
+offset_bottom = 500.0
 
 [node name="Label" type="Label" parent="Title/CenterContainer"]
 layout_mode = 2
@@ -57,19 +60,19 @@ theme_override_font_sizes/font_size = 120
 text = "kat
 and noodles"
 
-[node name="Head-large" type="Sprite2D" parent="Title"]
+[node name="Head-large" type="Sprite2D" parent="Title/CenterContainer"]
 position = Vector2(610, 190)
 texture = ExtResource("5_7k2rn")
 
-[node name="Head-kat" type="Sprite2D" parent="Title"]
+[node name="Head-kat" type="Sprite2D" parent="Title/CenterContainer"]
 position = Vector2(273, 103)
 texture = ExtResource("6_wr6kv")
 
 [node name="Instructions1p" type="RichTextLabel" parent="Title"]
-offset_left = 30.0
-offset_top = 500.0
-offset_right = 630.0
-offset_bottom = 750.0
+offset_left = 40.0
+offset_top = 600.0
+offset_right = 640.0
+offset_bottom = 850.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_wo36y")
@@ -79,9 +82,9 @@ or tap to turn left"
 
 [node name="Instructions2p" type="RichTextLabel" parent="Title"]
 offset_left = 40.0
-offset_top = 800.0
+offset_top = 850.0
 offset_right = 640.0
-offset_bottom = 1050.0
+offset_bottom = 1100.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = SubResource("SystemFont_wo36y")
@@ -89,5 +92,13 @@ theme_override_font_sizes/normal_font_size = 40
 text = "For 2 players use \"a\" and \"b\" keys on a keyboard
 or tap left or right halfs of the screen"
 
+[node name="MuteButton" type="CheckButton" parent="."]
+offset_right = 44.0
+offset_bottom = 24.0
+theme_override_font_sizes/font_size = 60
+text = "MUTE"
+script = ExtResource("7_wr6kv")
+
 [connection signal="pressed" from="ModeSelect/Button1P" to="." method="_on_button_1p_pressed"]
 [connection signal="pressed" from="ModeSelect/Button2P" to="." method="_on_button_2p_pressed"]
+[connection signal="toggled" from="MuteButton" to="MuteButton" method="_on_toggled"]
