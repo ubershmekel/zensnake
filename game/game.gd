@@ -62,4 +62,3 @@ func _process(_delta) -> void:
 		snakes[1].is_button_down = bottom_button.is_down
 	else:
 		snakes[0].is_button_down = full_screen_button.is_pressed()
-		print("button pressed", snakes[0].is_button_down)

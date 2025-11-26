@@ -126,6 +126,7 @@ func _on_apple_eaten(fruit: FruitData = null):
 	if fruit:
 		static_body = fruit.static_body
 		smooth_tween = fruit.smooth_tween
+		AudioManager.play_eat()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == hotkey:
