@@ -122,7 +122,7 @@ func move() -> void:
 
 func _on_apple_eaten(fruit: FruitData = null):
 	# Grow!
-	snake_size += 20
+	snake_size += 10
 	if fruit:
 		static_body = fruit.static_body
 		smooth_tween = fruit.smooth_tween

@@ -15,12 +15,11 @@ script = ExtResource("1_2gctw")
 [node name="Background" parent="." instance=ExtResource("2_20tr2")]
 
 [node name="ModeSelect" type="Node2D" parent="."]
-visible = false
 
 [node name="Button1P" type="Button" parent="ModeSelect"]
-offset_left = 119.0
+offset_left = 140.0
 offset_top = 199.0
-offset_right = 579.0
+offset_right = 600.0
 offset_bottom = 659.0
 theme_override_font_sizes/font_size = 100
 icon = ExtResource("3_wo36y")
