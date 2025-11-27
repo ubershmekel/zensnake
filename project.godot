@@ -13,10 +13,12 @@ config_version=5
 config/name="zensnake"
 run/main_scene="uid://ch3j7m8k1g545"
 config/features=PackedStringArray("4.5", "GL Compatibility")
+boot_splash/image="uid://bdbbr6t6n6lc6"
 config/icon="res://icon.svg"
 
 [autoload]
 
+Settings="*res://game/settings.gd"
 AudioManager="*res://game/audio_manager.gd"
 
 [display]
