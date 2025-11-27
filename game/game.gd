@@ -62,3 +62,8 @@ func _process(_delta) -> void:
 		snakes[1].is_button_down = bottom_button.is_down
 	else:
 		snakes[0].is_button_down = full_screen_button.is_pressed()
+
+
+func _on_pause_button_pressed() -> void:
+	get_tree().paused = true
+	$CanvasLayer/PauseMenu.visible = true
