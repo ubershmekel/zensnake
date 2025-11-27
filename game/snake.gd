@@ -3,7 +3,7 @@ extends Node2D
 # --- Movement Settings ---
 const TILE_SIZE := 32
 const SNAKE_MOVE_SIZE := 40
-const MOVE_INTERVAL := 0.1 # seconds between moves
+const MOVE_INTERVAL := 0.12 # seconds between moves
 const ROTATE_RATE := 15.0
 const ROTATION_INTERVAL := MOVE_INTERVAL
 
@@ -23,13 +23,18 @@ var rotation_time_passed := 0.0
 # --- Internal State ---
 # This will hold ALL snake nodes (head + body)
 @onready var snake_nodes: Array[Node2D] = [$SnakeHead, $SnakeBody]
+@onready var _head_sprite: Sprite2D = $SnakeHead/Sprite2D
 var body_textures: Array[Texture2D] = []
 var node_move_tweens: Dictionary = {}
+var _head_pop_tween: Tween = null
+var _head_base_scale: Vector2
 
 func _ready():
 	# Keep
 	$SnakeHead.z_index = 11
 	$SnakeBody.z_index = 10
+
+	_head_base_scale = _head_sprite.scale
 	
 	# 2. Store the STARTING positions of all nodes
 	#    (Make sure to line them up in the editor behind the head!)
@@ -127,6 +132,7 @@ func _on_apple_eaten(fruit: FruitData = null):
 		static_body = fruit.static_body
 		smooth_tween = fruit.smooth_tween
 		AudioManager.play_eat()
+	_play_head_pop()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == hotkey:
@@ -151,3 +157,13 @@ func _animate_segment_to(node: Node2D, target_position: Vector2, cancel_tween = 
 	var tween := create_tween()
 	tween.tween_property(node, "position", target_position, MOVE_INTERVAL).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 	node_move_tweens[node] = tween
+
+func _play_head_pop() -> void:
+	if _head_pop_tween:
+		_head_pop_tween.kill()
+	_head_sprite.scale = _head_base_scale
+
+	var pop_scale := _head_base_scale * 1.25
+	_head_pop_tween = create_tween()
+	_head_pop_tween.tween_property(_head_sprite, "scale", pop_scale, 0.32).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_head_pop_tween.tween_property(_head_sprite, "scale", _head_base_scale, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
