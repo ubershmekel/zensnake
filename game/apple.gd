@@ -81,4 +81,4 @@ func reposition():
 	# y starts at 2 to avoid the iphone's dynamic island
 	var random_y = randi_range(2, y_tiles - 1)
 	position = Vector2(random_x * TILE_SIZE, random_y * TILE_SIZE)
-	z_index = 10
+	z_index = 100
