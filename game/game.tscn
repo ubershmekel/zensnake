@@ -79,6 +79,7 @@ grow_horizontal = 0
 grow_vertical = 2
 texture_normal = ExtResource("7_l8g03")
 script = ExtResource("8_j8tme")
+base_color = Color(0.47018766, 0.23004624, 0.016702045, 1)
 metadata/_custom_type_script = "uid://uaditmv5s6a3"
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_3vho3")]

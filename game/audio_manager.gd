@@ -14,14 +14,20 @@ func _ready() -> void:
 	music_player.bus = BUS_MUSIC
 	#music_player.volume_db = linear_to_db(0.1)
 	add_child(music_player)
-	play_music()
+	music_yes()
 
-func play_music():
+func sfx_no():
+	# stop the SFX bus
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(BUS_SFX), true)
+
+func sfx_yes():
+	AudioServer.set_bus_mute(AudioServer.get_bus_index(BUS_SFX), false)
+
+func music_yes():
 	music_player.play(play_head)
-	play(SfxId.EAT3)
-	
+	# play(SfxId.EAT3)
 
-func stop_music():
+func music_no():
 	play_head = music_player.get_playback_position()
 	music_player.stop()
 

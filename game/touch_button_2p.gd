@@ -41,15 +41,19 @@ func _input(event: InputEvent) -> void:
 
 func _handle_touch(event: InputEventScreenTouch) -> void:
 	var inside := get_global_rect().has_point(event.position)
+	var idx := event.index
+	var was_pressed := _pressed_fingers.has(idx)
 
 	if event.pressed:
 		if inside:
-			_hover_fingers[event.index] = true
-			_pressed_fingers[event.index] = true
+			_hover_fingers[idx] = true
+			_pressed_fingers[idx] = true
 			_refresh_state()
 	else:
-		_pressed_fingers.erase(event.index)
-		_hover_fingers.erase(event.index)
+		_pressed_fingers.erase(idx)
+		_hover_fingers.erase(idx)
+		if was_pressed and inside:
+			_trigger_pressed()
 		_refresh_state()
 
 
@@ -67,6 +71,7 @@ func _handle_drag(event: InputEventScreenDrag) -> void:
 		_hover_fingers.erase(idx)
 		if was_pressed:
 			_pressed_fingers.erase(idx)
+			_on_cancel()
 			_refresh_state()
 
 
@@ -82,9 +87,19 @@ func _refresh_state() -> void:
 		else:
 			_on_button_up()
 
+func _trigger_pressed() -> void:
+	_on_pressed()
+	pressed.emit()
+
 
 func _on_button_down() -> void:
 	create_tween().tween_property(self, "modulate", BRIGHT, 0.05)
 
 func _on_button_up() -> void:
 	create_tween().tween_property(self, "modulate", base_color, 0.12)
+
+func _on_pressed() -> void:
+	pass
+
+func _on_cancel() -> void:
+	pass

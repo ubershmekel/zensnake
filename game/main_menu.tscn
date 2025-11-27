@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch3j7m8k1g545"]
+[gd_scene load_steps=8 format=3 uid="uid://ch3j7m8k1g545"]
 
 [ext_resource type="Script" uid="uid://bs0p4sgee8ia8" path="res://game/main_menu.gd" id="1_2gctw"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_20tr2"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://tyjib3ocbfq3" path="res://assets/buttons/2p.png" id="4_t606k"]
 [ext_resource type="Texture2D" uid="uid://cm8jlum7qdv5x" path="res://assets/snake/head-large.png" id="5_7k2rn"]
 [ext_resource type="Texture2D" uid="uid://dcnd3gri12us" path="res://assets/caterpy/head-large.png" id="6_wr6kv"]
-[ext_resource type="Script" uid="uid://bh6vhu0ij84u1" path="res://game/mute_button.gd" id="7_wr6kv"]
 
 [sub_resource type="SystemFont" id="SystemFont_wo36y"]
 
@@ -92,13 +91,5 @@ theme_override_font_sizes/normal_font_size = 40
 text = "For 2 players use \"a\" and \"b\" keys on a keyboard
 or tap left or right halfs of the screen"
 
-[node name="MuteButton" type="CheckButton" parent="."]
-offset_right = 44.0
-offset_bottom = 24.0
-theme_override_font_sizes/font_size = 60
-text = "MUTE"
-script = ExtResource("7_wr6kv")
-
 [connection signal="pressed" from="ModeSelect/Button1P" to="." method="_on_button_1p_pressed"]
 [connection signal="pressed" from="ModeSelect/Button2P" to="." method="_on_button_2p_pressed"]
-[connection signal="toggled" from="MuteButton" to="MuteButton" method="_on_toggled"]
