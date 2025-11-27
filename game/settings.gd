@@ -16,11 +16,11 @@ func _load() -> void:
 	var config := ConfigFile.new()
 	var err := config.load(CONFIG_PATH)
 	if err == OK:
-		_music_is_playing = config.get_value(SECTION_AUDIO, KEY_MUSIC_is_playing, false)
-		_sfx_is_playing = config.get_value(SECTION_AUDIO, KEY_SFX_is_playing, false)
+		_music_is_playing = config.get_value(SECTION_AUDIO, KEY_MUSIC_is_playing, true)
+		_sfx_is_playing = config.get_value(SECTION_AUDIO, KEY_SFX_is_playing, true)
 	else:
-		_music_is_playing = false
-		_sfx_is_playing = false
+		_music_is_playing = true
+		_sfx_is_playing = true
 
 func _save() -> void:
 	var config := ConfigFile.new()

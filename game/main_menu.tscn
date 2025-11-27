@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch3j7m8k1g545"]
+[gd_scene load_steps=11 format=3 uid="uid://ch3j7m8k1g545"]
 
 [ext_resource type="Script" uid="uid://bs0p4sgee8ia8" path="res://game/main_menu.gd" id="1_2gctw"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_20tr2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dcnd3gri12us" path="res://assets/caterpy/head-large.png" id="6_wr6kv"]
 [ext_resource type="Script" uid="uid://dwek2f4wyily3" path="res://game/intro_snake.gd" id="7_cdr06"]
 [ext_resource type="Texture2D" uid="uid://cyy0ta378rv1x" path="res://assets/snake/body3.png" id="8_ipm4r"]
+[ext_resource type="Texture2D" uid="uid://5rj2phnvmccy" path="res://assets/eat/cherries.png" id="9_7mn57"]
 
 [sub_resource type="SystemFont" id="SystemFont_wo36y"]
 
@@ -129,6 +130,11 @@ theme_override_fonts/normal_font = SubResource("SystemFont_wo36y")
 theme_override_font_sizes/normal_font_size = 40
 text = "For 2 players use \"a\" and \"b\" keys on a keyboard
 or tap left or right halfs of the screen"
+
+[node name="Sprite2D" type="Sprite2D" parent="Title"]
+position = Vector2(187, 572)
+scale = Vector2(2, 2)
+texture = ExtResource("9_7mn57")
 
 [connection signal="pressed" from="ModeSelect/Button1P" to="." method="_on_button_1p_pressed"]
 [connection signal="pressed" from="ModeSelect/Button2P" to="." method="_on_button_2p_pressed"]
