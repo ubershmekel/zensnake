@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ch3j7m8k1g545"]
+[gd_scene load_steps=11 format=3 uid="uid://ch3j7m8k1g545"]
 
 [ext_resource type="Script" uid="uid://bs0p4sgee8ia8" path="res://game/main_menu.gd" id="1_2gctw"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_20tr2"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://tyjib3ocbfq3" path="res://assets/buttons/2p.png" id="4_t606k"]
 [ext_resource type="Texture2D" uid="uid://cm8jlum7qdv5x" path="res://assets/snake/head-large.png" id="5_7k2rn"]
 [ext_resource type="Texture2D" uid="uid://dcnd3gri12us" path="res://assets/caterpy/head-large.png" id="6_wr6kv"]
+[ext_resource type="Script" uid="uid://dwek2f4wyily3" path="res://game/intro_snake.gd" id="7_cdr06"]
+[ext_resource type="Texture2D" uid="uid://cyy0ta378rv1x" path="res://assets/snake/body3.png" id="8_ipm4r"]
+[ext_resource type="Texture2D" uid="uid://beqhhy7tg7bwd" path="res://assets/snake/body4.png" id="9_6akxf"]
 
 [sub_resource type="SystemFont" id="SystemFont_wo36y"]
 
@@ -15,6 +18,7 @@ script = ExtResource("1_2gctw")
 [node name="Background" parent="." instance=ExtResource("2_20tr2")]
 
 [node name="ModeSelect" type="Node2D" parent="."]
+visible = false
 
 [node name="Button1P" type="Button" parent="ModeSelect"]
 offset_left = 140.0
@@ -45,6 +49,38 @@ position = Vector2(526, 750)
 texture = ExtResource("6_wr6kv")
 
 [node name="Title" type="Node2D" parent="."]
+
+[node name="IntroSnake" type="Node2D" parent="Title"]
+z_index = 2
+script = ExtResource("7_cdr06")
+
+[node name="Head" type="Node2D" parent="Title/IntroSnake"]
+z_index = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Title/IntroSnake/Head"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_7k2rn")
+
+[node name="Body1" type="Node2D" parent="Title/IntroSnake"]
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Title/IntroSnake/Body1"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_ipm4r")
+
+[node name="Body2" type="Node2D" parent="Title/IntroSnake"]
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Title/IntroSnake/Body2"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("9_6akxf")
+
+[node name="Tail" type="Node2D" parent="Title/IntroSnake"]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="Title/IntroSnake/Tail"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("8_ipm4r")
 
 [node name="CenterContainer" type="CenterContainer" parent="Title"]
 offset_top = 100.0
@@ -77,6 +113,14 @@ theme_override_fonts/normal_font = SubResource("SystemFont_wo36y")
 theme_override_font_sizes/normal_font_size = 40
 text = "For 1 player use the \"a\" key on a keyboard
 or tap to turn left"
+
+[node name="HoldButton" type="Button" parent="Title"]
+offset_left = 80.0
+offset_top = 1120.0
+offset_right = 700.0
+offset_bottom = 1250.0
+theme_override_font_sizes/font_size = 64
+text = "hold down to turn left"
 
 [node name="Instructions2p" type="RichTextLabel" parent="Title"]
 offset_left = 40.0
