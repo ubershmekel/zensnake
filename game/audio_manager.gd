@@ -45,10 +45,7 @@ func set_music_is_playing(is_playing: bool) -> void:
 	_music_is_playing = is_playing
 	if is_playing:
 		music_player.play(play_head)
-		# set music_player to loop
-		music_player.set_loop(true)
-
-		
+		music_player.stream.loop = true
 	else:
 		play_head = music_player.get_playback_position()
 		music_player.stop()
