@@ -64,7 +64,6 @@ func _update_segments(jitter: float = 0.0) -> void:
 
 	for i in range(_segments.size()):
 		var dir_angle := base_angle + step_angle * i
-		var dir := Vector2.RIGHT.rotated(dir_angle)
 
 		if i == 0:
 			_segments[i].position = Vector2.ZERO

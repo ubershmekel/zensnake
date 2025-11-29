@@ -15,7 +15,9 @@ const BUS_SFX := "Sfx"
 var music_player: AudioStreamPlayer
 var song = preload("res://assets/audio/Wholesome2.mp3")
 var play_head = 0
-var _music_is_playing := true
+# _music_is_playing is defaulted to false because when the app starts
+# we want the music to start up (go from false to true)
+var _music_is_playing := false
 var _sfx_is_playing := true
 
 
@@ -24,10 +26,8 @@ func _ready() -> void:
 	music_player.stream = song
 	music_player.bus = BUS_MUSIC
 	add_child(music_player)
-	_music_is_playing = Settings.is_music_is_playing()
-	_sfx_is_playing = Settings.is_sfx_is_playing()
-	set_sfx_is_playing(_sfx_is_playing)
-	set_music_is_playing(_music_is_playing)
+	set_sfx_is_playing(Settings.is_sfx_is_playing())
+	set_music_is_playing(Settings.is_music_is_playing())
 
 
 func set_sfx_is_playing(is_playing: bool) -> void:
@@ -45,6 +45,10 @@ func set_music_is_playing(is_playing: bool) -> void:
 	_music_is_playing = is_playing
 	if is_playing:
 		music_player.play(play_head)
+		# set music_player to loop
+		music_player.set_loop(true)
+
+		
 	else:
 		play_head = music_player.get_playback_position()
 		music_player.stop()
