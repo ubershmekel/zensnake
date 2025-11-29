@@ -20,6 +20,7 @@ var _sfx_volume := 1.0
 
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	music_player = AudioStreamPlayer.new()
 	music_player.stream = song
 	music_player.bus = BUS_MUSIC
