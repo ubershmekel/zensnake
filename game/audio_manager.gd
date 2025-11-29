@@ -15,10 +15,8 @@ const BUS_SFX := "Sfx"
 var music_player: AudioStreamPlayer
 var song = preload("res://assets/audio/Wholesome2.mp3")
 var play_head = 0
-# _music_is_playing is defaulted to false because when the app starts
-# we want the music to start up (go from false to true)
-var _music_is_playing := false
-var _sfx_is_playing := true
+var _music_volume := 1.0
+var _sfx_volume := 1.0
 
 
 func _ready() -> void:
@@ -26,36 +24,27 @@ func _ready() -> void:
 	music_player.stream = song
 	music_player.bus = BUS_MUSIC
 	add_child(music_player)
-	set_sfx_is_playing(Settings.is_sfx_is_playing())
-	set_music_is_playing(Settings.is_music_is_playing())
+	set_music_volume(Settings.get_music_volume())
+	set_sfx_volume(Settings.get_sfx_volume())
+	music_player.play(play_head)
+	music_player.stream.loop = true
 
 
-func set_sfx_is_playing(is_playing: bool) -> void:
-	if is_playing == _sfx_is_playing:
-		return
+func set_music_volume(volume: float) -> void:
+	_music_volume = clamp(volume, 0.0, 1.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(BUS_MUSIC), linear_to_db(_music_volume))
+	Settings.set_music_volume(_music_volume)
 
-	_sfx_is_playing = is_playing
-	AudioServer.set_bus_mute(AudioServer.get_bus_index(BUS_SFX), !is_playing)
-	Settings.set_sfx_is_playing(is_playing)
+func set_sfx_volume(volume: float) -> void:
+	_sfx_volume = clamp(volume, 0.0, 1.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(BUS_SFX), linear_to_db(_sfx_volume))
+	Settings.set_sfx_volume(_sfx_volume)
 
-func set_music_is_playing(is_playing: bool) -> void:
-	if is_playing == _music_is_playing:
-		return
+func get_music_volume() -> float:
+	return _music_volume
 
-	_music_is_playing = is_playing
-	if is_playing:
-		music_player.play(play_head)
-		music_player.stream.loop = true
-	else:
-		play_head = music_player.get_playback_position()
-		music_player.stop()
-	Settings.set_music_is_playing(is_playing)
-
-func is_music_enabled() -> bool:
-	return _music_is_playing
-
-func is_sfx_enabled() -> bool:
-	return _sfx_is_playing
+func get_sfx_volume() -> float:
+	return _sfx_volume
 
 func play_eat():
 	const options = [SfxId.EAT1, SfxId.EAT2, SfxId.EAT3]
@@ -63,9 +52,6 @@ func play_eat():
 	play(choice)
 
 func play(id: SfxId) -> void:
-	if !_sfx_is_playing:
-		return
-
 	if not sfx.has(id):
 		push_warning("Unknown SFX id: %s" % [id])
 		return

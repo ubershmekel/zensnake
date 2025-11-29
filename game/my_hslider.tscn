@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://debbl3lgy7dp3"]
+
+[ext_resource type="Texture2D" uid="uid://h5sl5vix4j0t" path="res://assets/buttons/slider-grabber.png" id="1_f1eus"]
+[ext_resource type="Texture2D" uid="uid://dqpsakhpc8ll5" path="res://assets/buttons/slider-highlight.png" id="2_5c841"]
+[ext_resource type="Texture2D" uid="uid://dhoy783uoh8xa" path="res://assets/buttons/slider-disabled.png" id="3_nyjls"]
+
+[node name="Slider" type="HSlider"]
+theme_override_icons/grabber = ExtResource("1_f1eus")
+theme_override_icons/grabber_highlight = ExtResource("2_5c841")
+theme_override_icons/grabber_disabled = ExtResource("3_nyjls")
+step = 10.0

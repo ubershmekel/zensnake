@@ -2,11 +2,11 @@ extends Node
 
 const CONFIG_PATH := "user://settings.cfg"
 const SECTION_AUDIO := "audio"
-const KEY_MUSIC_is_playing := "music_is_playing"
-const KEY_SFX_is_playing := "sfx_is_playing"
+const KEY_MUSIC_VOLUME := "music_volume"
+const KEY_SFX_VOLUME := "sfx_volume"
 
-var _music_is_playing := false
-var _sfx_is_playing := false
+var _music_volume := 1.0
+var _sfx_volume := 1.0
 
 
 func _ready() -> void:
@@ -16,30 +16,30 @@ func _load() -> void:
 	var config := ConfigFile.new()
 	var err := config.load(CONFIG_PATH)
 	if err == OK:
-		_music_is_playing = config.get_value(SECTION_AUDIO, KEY_MUSIC_is_playing, true)
-		_sfx_is_playing = config.get_value(SECTION_AUDIO, KEY_SFX_is_playing, true)
+		_music_volume = config.get_value(SECTION_AUDIO, KEY_MUSIC_VOLUME, 1.0)
+		_sfx_volume = config.get_value(SECTION_AUDIO, KEY_SFX_VOLUME, 1.0)
 	else:
-		_music_is_playing = true
-		_sfx_is_playing = true
+		_music_volume = 1.0
+		_sfx_volume = 1.0
 
 func _save() -> void:
 	var config := ConfigFile.new()
-	config.set_value(SECTION_AUDIO, KEY_MUSIC_is_playing, _music_is_playing)
-	config.set_value(SECTION_AUDIO, KEY_SFX_is_playing, _sfx_is_playing)
+	config.set_value(SECTION_AUDIO, KEY_MUSIC_VOLUME, _music_volume)
+	config.set_value(SECTION_AUDIO, KEY_SFX_VOLUME, _sfx_volume)
 	var err := config.save(CONFIG_PATH)
 	if err != OK:
 		push_warning("Failed to save settings: %s" % [err])
 
-func set_music_is_playing(is_playing: bool) -> void:
-	_music_is_playing = is_playing
+func set_music_volume(volume: float) -> void:
+	_music_volume = clamp(volume, 0.0, 1.0)
 	_save()
 
-func set_sfx_is_playing(is_playing: bool) -> void:
-	_sfx_is_playing = is_playing
+func set_sfx_volume(volume: float) -> void:
+	_sfx_volume = clamp(volume, 0.0, 1.0)
 	_save()
 
-func is_music_is_playing() -> bool:
-	return _music_is_playing
+func get_music_volume() -> float:
+	return _music_volume
 
-func is_sfx_is_playing() -> bool:
-	return _sfx_is_playing
+func get_sfx_volume() -> float:
+	return _sfx_volume
