@@ -19,6 +19,8 @@ A zen-like, one-button snake toy where you drift in circles, weave figure eights
 
 You start in a slow spiral, then chase fruit that stretches the body and alters the movement style. The playfield loops endlessly, so you just keep sketching ribbons and rhythms—more fidget toy than score chase.
 
-## Android
+## Play
 
-https://play.google.com/store/apps/details?id=com.andluck.zensnake
+- [Android](https://play.google.com/store/apps/details?id=com.andluck.zensnake)
+- [iPhone and iPad](https://apps.apple.com/us/app/kat-and-noodles/id6755672232)
+- [Web](https://ubershmekel.itch.io/zensnake)
