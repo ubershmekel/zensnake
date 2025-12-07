@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://ch3j7m8k1g545"]
+[gd_scene load_steps=13 format=3 uid="uid://ch3j7m8k1g545"]
 
 [ext_resource type="Script" uid="uid://bs0p4sgee8ia8" path="res://game/main_menu.gd" id="1_2gctw"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_20tr2"]
-[ext_resource type="Texture2D" uid="uid://d2lqlglfmw0pj" path="res://assets/buttons/1p.png" id="3_wo36y"]
-[ext_resource type="Texture2D" uid="uid://tyjib3ocbfq3" path="res://assets/buttons/2p.png" id="4_t606k"]
+[ext_resource type="Texture2D" uid="uid://rfap51sxtny3" path="res://assets/buttons/green-square-bright.png" id="3_rv8kf"]
+[ext_resource type="Texture2D" uid="uid://bihsw5tmkqse6" path="res://assets/buttons/square-orange-bright.png" id="4_rv8kf"]
 [ext_resource type="Texture2D" uid="uid://cm8jlum7qdv5x" path="res://assets/snake/head-large.png" id="5_7k2rn"]
+[ext_resource type="Texture2D" uid="uid://bbbrwhagt6jay" path="res://assets/snake/head-large-outline.png" id="5_rv8kf"]
+[ext_resource type="Texture2D" uid="uid://cra8iy056jlec" path="res://assets/caterpy/head-large-outline.png" id="6_5i8qu"]
 [ext_resource type="Texture2D" uid="uid://dcnd3gri12us" path="res://assets/caterpy/head-large.png" id="6_wr6kv"]
 [ext_resource type="Script" uid="uid://dwek2f4wyily3" path="res://game/intro_snake.gd" id="7_cdr06"]
 [ext_resource type="Texture2D" uid="uid://cyy0ta378rv1x" path="res://assets/snake/body3.png" id="8_ipm4r"]
@@ -18,37 +20,43 @@ script = ExtResource("1_2gctw")
 [node name="Background" parent="." instance=ExtResource("2_20tr2")]
 
 [node name="ModeSelect" type="Node2D" parent="."]
-visible = false
 
 [node name="Button1P" type="Button" parent="ModeSelect"]
-offset_left = 140.0
-offset_top = 199.0
-offset_right = 600.0
-offset_bottom = 659.0
-theme_override_font_sizes/font_size = 100
-icon = ExtResource("3_wo36y")
+offset_left = 121.0
+offset_top = 198.0
+offset_right = 481.0
+offset_bottom = 558.0
+theme_override_font_sizes/font_size = 80
+text = "1 player"
+icon = ExtResource("3_rv8kf")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Button2P" type="Button" parent="ModeSelect"]
-offset_left = 106.0
-offset_top = 774.0
-offset_right = 566.0
-offset_bottom = 1234.0
-theme_override_font_sizes/font_size = 100
-icon = ExtResource("4_t606k")
+offset_left = 221.0
+offset_top = 694.0
+offset_right = 599.0
+offset_bottom = 1054.0
+theme_override_font_sizes/font_size = 70
+text = "2 players"
+icon = ExtResource("4_rv8kf")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Head-large" type="Sprite2D" parent="ModeSelect"]
 position = Vector2(135, 202)
-texture = ExtResource("5_7k2rn")
+texture = ExtResource("5_rv8kf")
 
 [node name="Head-large2" type="Sprite2D" parent="ModeSelect"]
-position = Vector2(575, 873)
-texture = ExtResource("5_7k2rn")
+position = Vector2(594, 766)
+texture = ExtResource("5_rv8kf")
 
 [node name="Head-kat" type="Sprite2D" parent="ModeSelect"]
-position = Vector2(526, 750)
-texture = ExtResource("6_wr6kv")
+position = Vector2(519, 673)
+texture = ExtResource("6_5i8qu")
 
 [node name="Title" type="Node2D" parent="."]
+visible = false
 
 [node name="IntroSnake" type="Node2D" parent="Title"]
 z_index = 2

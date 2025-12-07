@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=12 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
@@ -6,7 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://blrxr0hpocrqn" path="res://assets/eat/orange.png" id="5_dakft"]
 [ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/apple.gd" id="5_dxrkv"]
 [ext_resource type="PackedScene" uid="uid://bkf7wuly2daas" path="res://game/2p_touch_button.tscn" id="6_dakft"]
-[ext_resource type="Texture2D" uid="uid://0m0lb7xepeki" path="res://assets/buttons/pause-button.png" id="7_l8g03"]
+[ext_resource type="Texture2D" uid="uid://caosjsa4j4g2m" path="res://assets/buttons/pause-button-idle.png" id="7_j8tme"]
+[ext_resource type="Texture2D" uid="uid://cvi0mfs0glnt7" path="res://assets/buttons/pause-button-pressed.png" id="8_3vho3"]
 [ext_resource type="Script" uid="uid://uaditmv5s6a3" path="res://game/touch_button_2p.gd" id="8_j8tme"]
 [ext_resource type="PackedScene" uid="uid://cyxnmvylkf8u4" path="res://game/pause_menu.tscn" id="9_3vho3"]
 
@@ -77,9 +78,12 @@ offset_top = -20.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
-texture_normal = ExtResource("7_l8g03")
+texture_normal = ExtResource("7_j8tme")
+texture_pressed = ExtResource("8_3vho3")
+texture_hover = ExtResource("8_3vho3")
 script = ExtResource("8_j8tme")
 base_color = Color(0.47018766, 0.23004624, 0.016702045, 1)
+is_modulating = false
 metadata/_custom_type_script = "uid://uaditmv5s6a3"
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_3vho3")]
