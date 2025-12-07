@@ -1,3 +1,4 @@
+@tool
 extends Area2D
 
 # Emit which snake (Node) ate the apple so the correct snake can react, along with the effect to apply
@@ -8,7 +9,14 @@ const TILE_SIZE = 32
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var _base_scale: Vector2 = sprite.scale
 
-@export var fruits: Array[FruitData] = [
+@export_enum("Apple", "Banana", "Cherries", "Chili", "Grapes", "Orange", "Watermelon")
+var fruit_type_selection: String = "Apple":
+	set(value):
+		fruit_type_selection = value
+		print("	Selected fruit type: %s" % fruit_type_selection)
+		_update_fruit_display()
+
+var fruits: Array[FruitData] = [
 	FruitData.new(
 		"apple",
 		preload("res://assets/eat/apple.png"),
@@ -59,6 +67,7 @@ var _eat_tween: Tween = null
 func _ready():
 	# Connect the area_entered signal to our function
 	self.area_entered.connect(_on_area_entered)
+	_update_fruit_display()
 	reposition()
 
 func _on_area_entered(area):
@@ -91,6 +100,17 @@ func _reset_visual_state():
 	sprite.modulate = Color.WHITE
 	sprite.rotation = 0
 
+func _update_fruit_display():
+	var selected_fruit_data: FruitData = null
+	for fruit in fruits:
+		if fruit.name.to_lower() == fruit_type_selection.to_lower():
+			selected_fruit_data = fruit
+			break
+
+	if selected_fruit_data:
+		_current_fruit = selected_fruit_data
+		sprite.texture = _current_fruit.texture
+
 func reposition():
 	if _eat_tween:
 		_eat_tween.kill()
@@ -102,8 +122,7 @@ func reposition():
 	if fruits.size() > 0:
 		var random_index = randi() % fruits.size()
 		_current_fruit = fruits[random_index]
-		var fruit_texture: Texture2D = _current_fruit.texture
-		sprite.texture = fruit_texture
+		sprite.texture = _current_fruit.texture
 
 	var viewport_size = get_viewport().get_visible_rect().size
 	var x_tiles = int(floor(viewport_size.x / TILE_SIZE))

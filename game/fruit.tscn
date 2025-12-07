@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cg2257rstylj"]
+
+[ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/apple.gd" id="1_3ee2v"]
+[ext_resource type="Texture2D" uid="uid://dql8nrl7f1gd5" path="res://assets/eat/waterm.png" id="2_3ee2v"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dxrkv"]
+radius = 24.0
+
+[node name="Fruit" type="Area2D"]
+z_index = 100
+script = ExtResource("1_3ee2v")
+fruit_type_selection = "Watermelon"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3ee2v")
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dxrkv")

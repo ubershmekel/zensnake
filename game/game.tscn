@@ -25,6 +25,7 @@ smooth_tween = true
 
 [node name="Apple" type="Area2D" parent="."]
 script = ExtResource("5_dxrkv")
+fruit_type_selection = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Apple"]
 scale = Vector2(2, 2)

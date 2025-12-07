@@ -27,7 +27,8 @@ offset_top = 198.0
 offset_right = 481.0
 offset_bottom = 558.0
 theme_override_font_sizes/font_size = 80
-text = "1 player"
+text = "1 player
+infinity"
 icon = ExtResource("3_rv8kf")
 icon_alignment = 1
 expand_icon = true
@@ -38,7 +39,8 @@ offset_top = 694.0
 offset_right = 599.0
 offset_bottom = 1054.0
 theme_override_font_sizes/font_size = 70
-text = "2 players"
+text = "2 players
+infinity"
 icon = ExtResource("4_rv8kf")
 icon_alignment = 1
 expand_icon = true
@@ -139,7 +141,7 @@ theme_override_font_sizes/normal_font_size = 40
 text = "For 2 players use \"a\" and \"b\" keys on a keyboard
 or tap left or right halfs of the screen"
 
-[node name="Sprite2D" type="Sprite2D" parent="Title"]
+[node name="TutorialCherry" type="Sprite2D" parent="Title"]
 position = Vector2(187, 572)
 scale = Vector2(2, 2)
 texture = ExtResource("9_7mn57")
