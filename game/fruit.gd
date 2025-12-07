@@ -5,6 +5,7 @@ extends Area2D
 signal eaten(snake, fruit: FruitData)
 
 const TILE_SIZE = 32
+const FruitDataCollection = preload("res://game/fruit_data_collection.gd")
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var _base_scale: Vector2 = sprite.scale
@@ -16,50 +17,7 @@ var fruit_type_selection: String = "Apple":
 		print("	Selected fruit type: %s" % fruit_type_selection)
 		_update_fruit_display()
 
-var fruits: Array[FruitData] = [
-	FruitData.new(
-		"apple",
-		preload("res://assets/eat/apple.png"),
-		false,
-		false
-	),
-	FruitData.new(
-		"banana",
-		preload("res://assets/eat/banana.png"),
-		false,
-		true
-	),
-	FruitData.new(
-		"cherries",
-		preload("res://assets/eat/cherries.png"),
-		true,
-		false
-	),
-	FruitData.new(
-		"chili",
-		preload("res://assets/eat/chili.png"),
-		true,
-		true
-	),
-	FruitData.new(
-		"grapes",
-		preload("res://assets/eat/grapes.png"),
-		false,
-		false
-	),
-	FruitData.new(
-		"orange",
-		preload("res://assets/eat/orange.png"),
-		false,
-		true
-	),
-	FruitData.new(
-		"watermelon",
-		preload("res://assets/eat/waterm.png"),
-		true,
-		false
-	),
-]
+var fruits: Dictionary = FruitDataCollection.FRUIT_DEFINITIONS;
 
 var _current_fruit: FruitData = null
 var _eat_tween: Tween = null
@@ -101,14 +59,9 @@ func _reset_visual_state():
 	sprite.rotation = 0
 
 func _update_fruit_display():
-	var selected_fruit_data: FruitData = null
-	for fruit in fruits:
-		if fruit.name.to_lower() == fruit_type_selection.to_lower():
-			selected_fruit_data = fruit
-			break
-
-	if selected_fruit_data:
-		_current_fruit = selected_fruit_data
+	var selected_fruit_name = fruit_type_selection.to_lower()
+	if fruits.has(selected_fruit_name):
+		_current_fruit = fruits[selected_fruit_name]
 		sprite.texture = _current_fruit.texture
 
 func reposition():
@@ -120,8 +73,10 @@ func reposition():
 	set_deferred("monitoring", true)
 	randomize()
 	if fruits.size() > 0:
-		var random_index = randi() % fruits.size()
-		_current_fruit = fruits[random_index]
+		var fruit_names: Array = fruits.keys()
+		var random_index = randi() % fruit_names.size()
+		var random_fruit_name: String = fruit_names[random_index]
+		_current_fruit = fruits[random_fruit_name]
 		sprite.texture = _current_fruit.texture
 
 	var viewport_size = get_viewport().get_visible_rect().size
