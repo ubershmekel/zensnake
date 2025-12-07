@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_dxrkv"]
-[ext_resource type="Texture2D" uid="uid://blrxr0hpocrqn" path="res://assets/eat/orange.png" id="5_dakft"]
-[ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/apple.gd" id="5_dxrkv"]
+[ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/fruit.gd" id="5_dxrkv"]
+[ext_resource type="Texture2D" uid="uid://dtia0nra6okha" path="res://assets/eat/grapes.png" id="5_j8tme"]
 [ext_resource type="PackedScene" uid="uid://bkf7wuly2daas" path="res://game/2p_touch_button.tscn" id="6_dakft"]
 [ext_resource type="Texture2D" uid="uid://caosjsa4j4g2m" path="res://assets/buttons/pause-button-idle.png" id="7_j8tme"]
 [ext_resource type="Texture2D" uid="uid://cvi0mfs0glnt7" path="res://assets/buttons/pause-button-pressed.png" id="8_3vho3"]
@@ -24,12 +24,13 @@ static_body = true
 smooth_tween = true
 
 [node name="Apple" type="Area2D" parent="."]
+z_index = 100
+position = Vector2(2016, 928)
 script = ExtResource("5_dxrkv")
-fruit_type_selection = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Apple"]
 scale = Vector2(2, 2)
-texture = ExtResource("5_dakft")
+texture = ExtResource("5_j8tme")
 region_rect = Rect2(64, 0, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Apple"]
@@ -69,6 +70,7 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="Pause Button" type="TextureButton" parent="CanvasLayer"]
+modulate = Color(1, 1, 1, 0.7607843)
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
