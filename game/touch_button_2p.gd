@@ -5,32 +5,35 @@ const GREEN := Color8(0x75, 0xbe, 0x99)
 const ORANGE := Color8(0xcd, 0x61, 0x3d)
 const BRIGHT = Color(1.7, 1.7, 1.7, 1.0)
 
-var active_index := -1   # which finger pressed the button
+# active_index is which finger pressed the button
+var active_index := -1
 ## Read-only exported property (visible but not editable)
 var _is_down: bool = false
 @export var base_color = GREEN
 ## If true, dragging back in re-presses the button
 @export var reenter_repress: bool = true
+# is_modulating decides if we change the colors of the button or not
+@export var is_modulating = true
 
 @export var is_down: bool:
 	get:
 		return _is_down
 	set(value):
 		_is_down = value
-		button_pressed = _is_down  # keep visuals in sync
+		# for TextureButton
+		button_pressed = _is_down
 
 func _ready() -> void:
-	# Optional: avoid default single-touch/Button behavior if you only want our logic
+	_initial_texture_normal = texture_normal
+	# Aavoid default single-touch/Button behavior
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
-	#match name:
-		#"TopButton":
-			#_base_color = GREEN
-		#"BottomButton":
-			#_base_color = ORANGE
-	modulate = base_color
 
-var _pressed_fingers: Dictionary = {}    # index -> true
-var _hover_fingers: Dictionary = {}      # index -> true
+	if is_modulating:
+		modulate = base_color
+
+var _pressed_fingers: Dictionary = {} # index -> true
+var _hover_fingers: Dictionary = {} # index -> true
+var _initial_texture_normal: Texture2D
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
@@ -93,10 +96,18 @@ func _trigger_pressed() -> void:
 
 
 func _on_button_down() -> void:
-	create_tween().tween_property(self, "modulate", BRIGHT, 0.05)
+	if is_modulating:
+		create_tween().tween_property(self, "modulate", BRIGHT, 0.05)
+	# Manually set the pressed texture
+	if texture_pressed:
+		texture_normal = texture_pressed
 
 func _on_button_up() -> void:
-	create_tween().tween_property(self, "modulate", base_color, 0.12)
+	if is_modulating:
+		create_tween().tween_property(self, "modulate", base_color, 0.12)
+	# Restore the initial normal texture
+	if _initial_texture_normal:
+		texture_normal = _initial_texture_normal
 
 func _on_pressed() -> void:
 	pass
