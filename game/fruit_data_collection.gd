@@ -1,4 +1,8 @@
+@tool
 extends Node
+
+# Ensure the FruitData script is loaded in the editor so static initialization succeeds.
+const FruitDataScript = preload("res://game/fruit_data.gd")
 
 # Shared dictionary of fruit data, exposed as a static so it can be accessed without instancing.
 static var FRUIT_DEFINITIONS: Dictionary = {
