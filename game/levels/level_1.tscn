@@ -6,6 +6,7 @@
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_tuvkr")
+growth_per_fruit = 1
 
 [node name="HowToPlay" type="Label" parent="."]
 offset_left = 50.0

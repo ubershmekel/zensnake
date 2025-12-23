@@ -125,14 +125,14 @@ func move() -> void:
 			_animate_segment_to(snake_nodes[i], previous_position)
 			previous_position = current_position
 
-func _on_fruit_eaten(eater: Node, fruit_data: FruitData = null):
-	# Grow!
-	snake_size += 10
+func _on_fruit_eaten(_eater: Node, fruit_data: FruitData = null, growth_amount: int = 10):
+	# Grow by the specified amount (level-specific)
+	snake_size += growth_amount
 	if fruit_data:
 		static_body = fruit_data.static_body
 		smooth_tween = fruit_data.smooth_tween
 		AudioManager.play_eat()
-	_play_head_pop()
+		_play_head_pop()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == hotkey:

@@ -6,6 +6,7 @@
 
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_217sc")
+growth_per_fruit = 1
 
 [node name="AnimationStyles" type="Label" parent="."]
 offset_left = 21.0
@@ -14,9 +15,8 @@ offset_right = 707.0
 offset_bottom = 291.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "Different fruit
-animate differently
-watermelon is stop-motion-ish"
+text = "Watermelon makes the
+snake move like stop-motion"
 script = ExtResource("2_2f1k2")
 animation_duration = 3.0
 start_delay = 3.0

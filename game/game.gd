@@ -62,7 +62,6 @@ func _load_level(i: int) -> void:
 
 	# Connect level events (per instance)
 	level.fruit_eaten.connect(_on_fruit_eaten)
-	level.fruit_eaten.connect($Snake._on_fruit_eaten)
 	level.level_done.connect(_on_level_done)
 
 func _on_level_done():
@@ -72,10 +71,12 @@ func _on_level_done():
 	
 
 func _on_fruit_eaten(eater: Node, fruit_data: FruitData = null):
-	# Forward the eaten event to the snake instance that ate the fruit.
-	# We call its handler so the proper snake grows.
+	# Handle growth logic here to avoid duplication and allow level-specific behavior
 	if eater and eater.has_method("_on_fruit_eaten"):
-		eater._on_fruit_eaten(eater, fruit_data)
+		# Get the growth amount from the current level
+		var growth_amount = level.growth_per_fruit
+		# Call the snake's handler with the level-specific growth amount
+		eater._on_fruit_eaten(eater, fruit_data, growth_amount)
 
 # The top controls the first snake
 # The bottom controls the last snake
