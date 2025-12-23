@@ -1,10 +1,10 @@
 @tool
 extends Area2D
-class_name Fruit
+class_name FruitClass
 
 # Emit which snake (Node) ate the apple so the correct snake can react, along with the effect to apply
 signal eaten(snake, fruit_data: FruitData)
-signal eaten_animation_done(fruit: Fruit)
+signal eaten_animation_done(fruit: FruitClass)
 
 const TILE_SIZE = 32
 const FruitDataCollection = preload("res://game/fruit_data_collection.gd")
@@ -75,7 +75,10 @@ func _reset_visual_state():
 	sprite.rotation = 0
 
 func _update_fruit_display():
-	sprite.texture = _current_fruit_data.texture
+	if sprite:
+		# button_pressed -> play -> load("res://game/game.tscn").instantiate()
+		# sets the fruit type but the sprite isn't loaded yet
+		sprite.texture = _current_fruit_data.texture
 
 func after_eaten():
 	if _eat_tween:

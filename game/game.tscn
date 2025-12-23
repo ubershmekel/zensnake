@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=14 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cvi0mfs0glnt7" path="res://assets/buttons/pause-button-pressed.png" id="8_3vho3"]
 [ext_resource type="Script" uid="uid://uaditmv5s6a3" path="res://game/touch_button_2p.gd" id="8_j8tme"]
 [ext_resource type="PackedScene" uid="uid://cyxnmvylkf8u4" path="res://game/pause_menu.tscn" id="9_3vho3"]
+[ext_resource type="PackedScene" uid="uid://cg2257rstylj" path="res://game/fruit.tscn" id="12_qf6n1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxrkv"]
 radius = 40.0
@@ -95,5 +96,137 @@ metadata/_custom_type_script = "uid://uaditmv5s6a3"
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_3vho3")]
 visible = false
+
+[node name="Level1" type="Node2D" parent="."]
+
+[node name="Fruit" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(237, 909)
+fruit_type_selection = "Orange"
+
+[node name="Fruit2" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(178, 895)
+fruit_type_selection = "Orange"
+
+[node name="Fruit4" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(110, 788)
+fruit_type_selection = "Orange"
+
+[node name="Fruit5" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(106, 730)
+fruit_type_selection = "Orange"
+
+[node name="Fruit6" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(103, 661)
+fruit_type_selection = "Orange"
+
+[node name="Fruit7" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(104, 589)
+fruit_type_selection = "Orange"
+
+[node name="Fruit8" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(133, 524)
+fruit_type_selection = "Orange"
+
+[node name="Fruit9" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(186, 468)
+fruit_type_selection = "Orange"
+
+[node name="Fruit10" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(249, 434)
+fruit_type_selection = "Orange"
+
+[node name="Fruit11" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(323, 432)
+fruit_type_selection = "Orange"
+
+[node name="Fruit12" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(289, 400)
+fruit_type_selection = "Orange"
+
+[node name="Fruit13" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(261, 360)
+fruit_type_selection = "Orange"
+
+[node name="Fruit14" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(231, 319)
+fruit_type_selection = "Orange"
+
+[node name="Fruit15" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(279, 324)
+fruit_type_selection = "Orange"
+
+[node name="Fruit16" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(307, 344)
+fruit_type_selection = "Orange"
+
+[node name="Fruit20" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(490, 468)
+fruit_type_selection = "Orange"
+
+[node name="Fruit21" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(540, 522)
+fruit_type_selection = "Orange"
+
+[node name="Fruit22" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(568, 584)
+fruit_type_selection = "Orange"
+
+[node name="Fruit23" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(579, 658)
+fruit_type_selection = "Orange"
+
+[node name="Fruit24" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(564, 728)
+fruit_type_selection = "Orange"
+
+[node name="Fruit25" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(538, 789)
+fruit_type_selection = "Orange"
+
+[node name="Fruit26" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(501, 842)
+fruit_type_selection = "Orange"
+
+[node name="Fruit27" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(475, 892)
+fruit_type_selection = "Orange"
+
+[node name="Fruit28" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(417, 911)
+fruit_type_selection = "Orange"
+
+[node name="Fruit29" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(361, 917)
+fruit_type_selection = "Orange"
+
+[node name="Fruit30" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(303, 921)
+fruit_type_selection = "Orange"
+
+[node name="Fruit17" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(319, 381)
+fruit_type_selection = "Orange"
+
+[node name="Fruit18" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(370, 409)
+fruit_type_selection = "Orange"
+
+[node name="Fruit19" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(430, 419)
+fruit_type_selection = "Orange"
+
+[node name="Fruit3" parent="Level1" instance=ExtResource("12_qf6n1")]
+position = Vector2(150, 847)
+fruit_type_selection = "Orange"
+
+[node name="Label" type="Label" parent="Level1"]
+offset_left = 50.0
+offset_top = 108.0
+offset_right = 601.0
+offset_bottom = 239.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Tap and hold anywhere
+on the screen to turn left"
 
 [connection signal="pressed" from="CanvasLayer/Pause Button" to="." method="_on_pause_button_pressed"]
