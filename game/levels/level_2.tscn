@@ -1,0 +1,173 @@
+[gd_scene load_steps=4 format=3 uid="uid://srhqfn52hnt"]
+
+[ext_resource type="Script" uid="uid://cpym8fqebntlq" path="res://game/level_eat_all_fruit.gd" id="1_217sc"]
+[ext_resource type="Script" uid="uid://khtj3vh7xq00" path="res://game/animate_label_in.gd" id="2_2f1k2"]
+[ext_resource type="PackedScene" uid="uid://cg2257rstylj" path="res://game/fruit.tscn" id="3_7dx7g"]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource("1_217sc")
+
+[node name="AnimationStyles" type="Label" parent="."]
+offset_left = 21.0
+offset_top = 93.0
+offset_right = 707.0
+offset_bottom = 291.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Different fruit
+animate differently
+watermelon is stop-motion-ish"
+script = ExtResource("2_2f1k2")
+animation_duration = 3.0
+start_delay = 3.0
+start_scale = 0.1
+
+[node name="Fruit" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(233, 952)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit2" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(169, 957)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit4" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(54, 934)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit5" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(77, 883)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit6" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(101, 834)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit7" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(119, 789)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit8" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(136, 743)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit9" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(152, 694)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit10" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(167, 647)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit11" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(354, 539)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit12" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(188, 595)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit13" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(201, 545)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit14" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(213, 497)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit15" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(221, 447)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit16" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(594, 699)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit20" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(445, 612)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit21" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(494, 642)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit22" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(543, 671)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit23" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(649, 732)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit24" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(621, 777)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit25" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(571, 820)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit26" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(516, 854)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit27" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(475, 892)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit28" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(417, 911)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit29" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(360, 931)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit30" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(296, 943)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit17" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(272, 472)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit18" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(310, 504)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit19" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(402, 581)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
+
+[node name="Fruit3" parent="." instance=ExtResource("3_7dx7g")]
+position = Vector2(107, 957)
+scale = Vector2(2, 2)
+fruit_type_selection = "Watermelon"
