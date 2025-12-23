@@ -15,7 +15,13 @@
 
 [sub_resource type="SystemFont" id="SystemFont_wo36y"]
 
-[node name="MainMenu" type="Node2D"]
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_2gctw")
 
 [node name="Background" parent="." instance=ExtResource("2_20tr2")]
@@ -59,7 +65,13 @@ texture = ExtResource("5_rv8kf")
 position = Vector2(519, 673)
 texture = ExtResource("6_5i8qu")
 
-[node name="Title" type="Node2D" parent="."]
+[node name="Title" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HoldButtonTutorial" type="Node2D" parent="Title"]
 position = Vector2(10, 914)
@@ -104,27 +116,48 @@ scale = Vector2(2, 2)
 texture = ExtResource("9_7mn57")
 
 [node name="CenterContainer" type="CenterContainer" parent="Title"]
-offset_top = 100.0
-offset_right = 723.0
-offset_bottom = 500.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 307.0
+grow_horizontal = 2
 
-[node name="Label" type="Label" parent="Title/CenterContainer"]
+[node name="Anchor" type="Control" parent="Title/CenterContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="Title/CenterContainer/Anchor"]
+layout_mode = 0
+offset_left = -330.0
+offset_top = -153.0
+offset_right = 329.0
+offset_bottom = 154.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 120
 text = "kat
 and noodles"
 
-[node name="Head-large" type="Sprite2D" parent="Title/CenterContainer"]
-position = Vector2(610, 190)
+[node name="Head-large" type="TextureRect" parent="Title/CenterContainer/Anchor"]
+layout_mode = 1
+offset_left = 182.0
+offset_top = -83.0
+offset_right = 342.0
+offset_bottom = 77.0
 texture = ExtResource("5_7k2rn")
 
-[node name="Head-kat" type="Sprite2D" parent="Title/CenterContainer"]
-position = Vector2(273, 103)
+[node name="Head-kat" type="TextureRect" parent="Title/CenterContainer/Anchor"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -159.0
+offset_top = -160.0
+offset_right = 1.0
+grow_horizontal = 0
 texture = ExtResource("6_wr6kv")
 
 [node name="Instructions1p" type="RichTextLabel" parent="Title"]
 visible = false
+layout_mode = 0
 offset_left = 40.0
 offset_top = 600.0
 offset_right = 640.0
@@ -138,6 +171,7 @@ or tap to turn left"
 
 [node name="Instructions2p" type="RichTextLabel" parent="Title"]
 visible = false
+layout_mode = 0
 offset_left = 40.0
 offset_top = 850.0
 offset_right = 640.0
