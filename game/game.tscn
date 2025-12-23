@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=13 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_dxrkv"]
+[ext_resource type="Script" uid="uid://br3mlsha4emkw" path="res://game/fruit_randomizer.gd" id="3_3vho3"]
+[ext_resource type="Texture2D" uid="uid://dsm554jm67s6v" path="res://assets/eat/apple.png" id="5_3vho3"]
 [ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/fruit.gd" id="5_dxrkv"]
-[ext_resource type="Texture2D" uid="uid://dtia0nra6okha" path="res://assets/eat/grapes.png" id="5_j8tme"]
 [ext_resource type="PackedScene" uid="uid://bkf7wuly2daas" path="res://game/2p_touch_button.tscn" id="6_dakft"]
 [ext_resource type="Texture2D" uid="uid://caosjsa4j4g2m" path="res://assets/buttons/pause-button-idle.png" id="7_j8tme"]
 [ext_resource type="Texture2D" uid="uid://cvi0mfs0glnt7" path="res://assets/buttons/pause-button-pressed.png" id="8_3vho3"]
@@ -19,22 +20,25 @@ script = ExtResource("1_h7iqs")
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
 
+[node name="FruitRandomizer" type="Node" parent="."]
+script = ExtResource("3_3vho3")
+
+[node name="Fruit" type="Area2D" parent="FruitRandomizer"]
+z_index = 100
+position = Vector2(32, -32)
+script = ExtResource("5_dxrkv")
+
+[node name="Sprite2D" type="Sprite2D" parent="FruitRandomizer/Fruit"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_3vho3")
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FruitRandomizer/Fruit"]
+shape = SubResource("CircleShape2D_dxrkv")
+
 [node name="Snake" parent="." instance=ExtResource("2_4fuuu")]
 static_body = true
 smooth_tween = true
-
-[node name="Apple" type="Area2D" parent="."]
-z_index = 100
-position = Vector2(2016, 928)
-script = ExtResource("5_dxrkv")
-
-[node name="Sprite2D" type="Sprite2D" parent="Apple"]
-scale = Vector2(2, 2)
-texture = ExtResource("5_j8tme")
-region_rect = Rect2(64, 0, 32, 32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Apple"]
-shape = SubResource("CircleShape2D_dxrkv")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

@@ -1,8 +1,10 @@
 @tool
 extends Area2D
+class_name Fruit
 
 # Emit which snake (Node) ate the apple so the correct snake can react, along with the effect to apply
-signal eaten(snake, fruit: FruitData)
+signal eaten(snake, fruit_data: FruitData)
+signal eaten_animation_done(fruit: Fruit)
 
 const TILE_SIZE = 32
 const FruitDataCollection = preload("res://game/fruit_data_collection.gd")
@@ -32,7 +34,6 @@ func _ready():
 		return
 	
 	set_fruit_type(fruit_type_selection.to_lower())
-	reposition()
 
 func set_fruit_type(value: String):
 	if not fruits.has(value):
@@ -66,7 +67,7 @@ func _play_eaten_animation():
 	_eat_tween.tween_property(sprite, "scale", pop_scale, duration).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	_eat_tween.parallel().tween_property(sprite, "modulate:a", 0.0, duration)
 	_eat_tween.parallel().tween_property(sprite, "rotation", spin, duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	_eat_tween.tween_callback(reposition)
+	_eat_tween.tween_callback(after_eaten)
 
 func _reset_visual_state():
 	sprite.scale = _base_scale
@@ -76,21 +77,24 @@ func _reset_visual_state():
 func _update_fruit_display():
 	sprite.texture = _current_fruit_data.texture
 
-func reposition():
+func after_eaten():
 	if _eat_tween:
 		_eat_tween.kill()
 		_eat_tween = null
 	_reset_visual_state()
 	# detect collisions
 	set_deferred("monitoring", true)
-	randomize()
+	emit_signal("eaten_animation_done", self)
+
+func random_type():
 	if fruits.size() > 0:
 		var fruit_names: Array = fruits.keys()
 		var random_index = randi() % fruit_names.size()
 		var random_fruit_name: String = fruit_names[random_index]
 		_current_fruit_data = fruits[random_fruit_name]
 		sprite.texture = _current_fruit_data.texture
-
+	
+func random_position():
 	var viewport_size = get_viewport().get_visible_rect().size
 	var x_tiles = int(floor(viewport_size.x / TILE_SIZE))
 	var y_tiles = int(floor(viewport_size.y / TILE_SIZE))

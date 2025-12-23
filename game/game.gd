@@ -18,8 +18,7 @@ func _ready():
 	$Snake.position.y = 0
 	# Connect the apple's "eaten" signal to our local handler so we can forward
 	# the event to the specific snake instance that ate the apple.
-	$Apple.eaten.connect(_on_apple_eaten)
-	$Apple.reposition()
+	$FruitRandomizer.fruit_eaten.connect(_on_fruit_eaten)
 	snakes = [$Snake]
 
 	# Apply textures to the primary snake
@@ -47,11 +46,11 @@ func _ready():
 		two_player_buttons.visible = false
 
 
-func _on_apple_eaten(snake, fruit: FruitData = null):
-	# Forward the eaten event to the snake instance that ate the apple.
+func _on_fruit_eaten(snake, fruit_data: FruitData = null):
+	# Forward the eaten event to the snake instance that ate the fruit.
 	# We call its handler so the proper snake grows.
-	if snake and snake.has_method("_on_apple_eaten"):
-		snake._on_apple_eaten(fruit)
+	if snake and snake.has_method("_on_fruit_eaten"):
+		snake._on_fruit_eaten(fruit_data)
 
 # The top controls the first snake
 # The bottom controls the last snake
