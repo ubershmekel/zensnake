@@ -73,7 +73,7 @@ func _process(delta: float) -> void:
 		move()
 
 func grow(custom_position: Vector2) -> void:
-	var new_body: Node2D = $SnakeBody.duplicate()
+	var new_body: Node2D = snake_nodes[-1].duplicate()
 	new_body.name = "SnakeBody_" + str(snake_nodes.size())
 	new_body.z_index = 10
 	new_body.get_node("Sprite2D").texture = body_textures[randi() % body_textures.size()]
@@ -139,6 +139,32 @@ func _on_snake_effect(effect: SnakeEffect):
 	AudioManager.play_eat()
 	_play_head_pop()
 
+func reset_for_new_level(target_position: Vector2, target_size: int = 2, duration: float = 0.35) -> void:
+	target_size = max(target_size, 2)
+	snake_size = target_size
+	_trim_segments_to_size(target_size)
+	direction = Vector2.UP
+	time_passed = 0.0
+	rotation_time_passed = 0.0
+	is_hotkey_pressed = false
+	is_button_down = false
+
+	for tween in node_move_tweens.values():
+		if tween:
+			tween.kill()
+	node_move_tweens.clear()
+
+	if _head_pop_tween:
+		_head_pop_tween.kill()
+		_head_pop_tween = null
+	_head_sprite.scale = _head_base_scale
+	$SnakeHead.rotation = direction.angle() + PI / 2
+
+	var tween := create_tween()
+	for i in range(snake_nodes.size()):
+		var destination := target_position + Vector2(0, SNAKE_MOVE_SIZE * i)
+		tween.tween_property(snake_nodes[i], "position", destination, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == hotkey:
 		is_hotkey_pressed = event.is_pressed()
@@ -172,3 +198,12 @@ func _play_head_pop() -> void:
 	_head_pop_tween = create_tween()
 	_head_pop_tween.tween_property(_head_sprite, "scale", pop_scale, 0.32).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
 	_head_pop_tween.tween_property(_head_sprite, "scale", _head_base_scale, 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+
+func _trim_segments_to_size(target_size: int) -> void:
+	while snake_nodes.size() > target_size:
+		var tail: Node2D = snake_nodes.pop_back()
+		if is_instance_valid(tail):
+			tail.queue_free()
+
+	while snake_nodes.size() < target_size:
+		grow(snake_nodes[-1].position)
