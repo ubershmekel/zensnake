@@ -1,7 +1,4 @@
-extends Node2D
-
-signal fruit_eaten(eater: Node, fruit: FruitData)
-signal all_fruits_eaten()
+extends LevelBase
 
 var _remaining_fruits: int = 0
 
@@ -30,4 +27,4 @@ func _on_fruit_eaten_animation_done(fruit: FruitClass) -> void:
 	
 	# Check if all fruits have been eaten
 	if _remaining_fruits <= 0:
-		all_fruits_eaten.emit()
+		level_done.emit()

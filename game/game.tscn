@@ -1,82 +1,62 @@
-[gd_scene load_steps=16 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=11 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_dxrkv"]
-[ext_resource type="Script" uid="uid://br3mlsha4emkw" path="res://game/fruit_randomizer.gd" id="3_3vho3"]
-[ext_resource type="Texture2D" uid="uid://dsm554jm67s6v" path="res://assets/eat/apple.png" id="5_3vho3"]
-[ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/fruit.gd" id="5_dxrkv"]
+[ext_resource type="PackedScene" uid="uid://d3rpmkvstrxxc" path="res://game/levels/infinite_random_fruit.tscn" id="3_j8tme"]
+[ext_resource type="PackedScene" uid="uid://bi5li70jeef0l" path="res://game/levels/level_1.tscn" id="5_3vho3"]
 [ext_resource type="PackedScene" uid="uid://bkf7wuly2daas" path="res://game/2p_touch_button.tscn" id="6_dakft"]
 [ext_resource type="Texture2D" uid="uid://caosjsa4j4g2m" path="res://assets/buttons/pause-button-idle.png" id="7_j8tme"]
 [ext_resource type="Texture2D" uid="uid://cvi0mfs0glnt7" path="res://assets/buttons/pause-button-pressed.png" id="8_3vho3"]
 [ext_resource type="Script" uid="uid://uaditmv5s6a3" path="res://game/touch_button_2p.gd" id="8_j8tme"]
 [ext_resource type="PackedScene" uid="uid://cyxnmvylkf8u4" path="res://game/pause_menu.tscn" id="9_3vho3"]
-[ext_resource type="PackedScene" uid="uid://cg2257rstylj" path="res://game/fruit.tscn" id="12_qf6n1"]
-[ext_resource type="Script" uid="uid://cpym8fqebntlq" path="res://game/level_eat_all_fruit.gd" id="12_vsp63"]
-[ext_resource type="Script" uid="uid://khtj3vh7xq00" path="res://game/animate_label_in.gd" id="13_b686c"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dxrkv"]
-radius = 40.0
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
+levels = Array[PackedScene]([ExtResource("5_3vho3"), ExtResource("3_j8tme")])
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
-
-[node name="FruitRandomizer" type="Node" parent="."]
-script = ExtResource("3_3vho3")
-
-[node name="Fruit" type="Area2D" parent="FruitRandomizer"]
-z_index = 100
-position = Vector2(32, -32)
-script = ExtResource("5_dxrkv")
-
-[node name="Sprite2D" type="Sprite2D" parent="FruitRandomizer/Fruit"]
-scale = Vector2(2, 2)
-texture = ExtResource("5_3vho3")
-region_rect = Rect2(64, 0, 32, 32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FruitRandomizer/Fruit"]
-shape = SubResource("CircleShape2D_dxrkv")
 
 [node name="Snake" parent="." instance=ExtResource("2_4fuuu")]
 static_body = true
 smooth_tween = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="LevelSlot" type="Node2D" parent="."]
 
-[node name="FullScreenButton" type="TextureButton" parent="CanvasLayer"]
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="FullScreenButton" type="TextureButton" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TwoPlayerButtons" type="GridContainer" parent="CanvasLayer"]
+[node name="TwoPlayerButtons" type="GridContainer" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BottomButton" parent="CanvasLayer/TwoPlayerButtons" instance=ExtResource("6_dakft")]
+[node name="BottomButton" parent="UI/TwoPlayerButtons" instance=ExtResource("6_dakft")]
 layout_mode = 2
 base_color = Color(0.803922, 0.380392, 0.239216, 1)
 
-[node name="Button" type="TextureButton" parent="CanvasLayer/TwoPlayerButtons"]
+[node name="Button" type="TextureButton" parent="UI/TwoPlayerButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Button2" type="TextureButton" parent="CanvasLayer/TwoPlayerButtons"]
+[node name="Button2" type="TextureButton" parent="UI/TwoPlayerButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TopButton" parent="CanvasLayer/TwoPlayerButtons" instance=ExtResource("6_dakft")]
+[node name="TopButton" parent="UI/TwoPlayerButtons" instance=ExtResource("6_dakft")]
 layout_mode = 2
 
-[node name="Pause Button" type="TextureButton" parent="CanvasLayer"]
+[node name="Pause Button" type="TextureButton" parent="UI"]
 modulate = Color(1, 1, 1, 0.7607843)
 anchors_preset = 6
 anchor_left = 1.0
@@ -96,174 +76,7 @@ base_color = Color(0.47018766, 0.23004624, 0.016702045, 1)
 is_modulating = false
 metadata/_custom_type_script = "uid://uaditmv5s6a3"
 
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("9_3vho3")]
+[node name="PauseMenu" parent="UI" instance=ExtResource("9_3vho3")]
 visible = false
 
-[node name="Level1" type="Node2D" parent="."]
-script = ExtResource("12_vsp63")
-
-[node name="HowToPlay" type="Label" parent="Level1"]
-offset_left = 50.0
-offset_top = 108.0
-offset_right = 601.0
-offset_bottom = 239.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "Tap and hold anywhere
-on the screen to turn left"
-script = ExtResource("13_b686c")
-animation_duration = 3.0
-start_delay = 3.0
-start_scale = 0.1
-
-[node name="Fruit" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(237, 909)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit2" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(178, 895)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit4" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(110, 788)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit5" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(106, 730)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit6" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(103, 661)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit7" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(104, 589)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit8" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(133, 524)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit9" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(186, 468)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit10" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(249, 434)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit11" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(323, 432)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit12" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(289, 400)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit13" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(261, 360)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit14" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(231, 319)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit15" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(279, 324)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit16" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(307, 344)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit20" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(490, 468)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit21" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(540, 522)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit22" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(568, 584)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit23" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(579, 658)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit24" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(564, 728)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit25" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(538, 789)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit26" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(501, 842)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit27" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(475, 892)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit28" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(417, 911)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit29" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(361, 917)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit30" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(303, 921)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit17" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(319, 381)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit18" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(370, 409)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit19" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(430, 419)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[node name="Fruit3" parent="Level1" instance=ExtResource("12_qf6n1")]
-position = Vector2(150, 847)
-scale = Vector2(2, 2)
-fruit_type_selection = "Orange"
-
-[connection signal="pressed" from="CanvasLayer/Pause Button" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="UI/Pause Button" to="." method="_on_pause_button_pressed"]

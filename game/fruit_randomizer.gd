@@ -1,6 +1,4 @@
-extends Node
-
-signal fruit_eaten(eater: Node, fruit: FruitData)
+extends LevelBase
 
 func _ready() -> void:
 	for child in get_children():

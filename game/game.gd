@@ -1,13 +1,17 @@
 extends Node2D
 
-@onready var bottom_button := $CanvasLayer/TwoPlayerButtons/BottomButton
-@onready var top_button := $CanvasLayer/TwoPlayerButtons/TopButton
-@onready var full_screen_button := $CanvasLayer/FullScreenButton
-@onready var two_player_buttons := $CanvasLayer/TwoPlayerButtons
+@export var levels: Array[PackedScene]
+
+@onready var bottom_button := $UI/TwoPlayerButtons/BottomButton
+@onready var top_button := $UI/TwoPlayerButtons/TopButton
+@onready var full_screen_button := $UI/FullScreenButton
+@onready var two_player_buttons := $UI/TwoPlayerButtons
 
 # player_count gets overwritten by the buttons in the main menu
 var player_count = 1
 var snakes = []
+var level_index := 0
+var level: LevelBase
 
 const SKIN_SNAKE: String = "snake"
 const SKIN_CATERPY: String = "caterpy"
@@ -18,7 +22,9 @@ func _ready():
 	$Snake.position.y = 0
 	# Connect the apple's "eaten" signal to our local handler so we can forward
 	# the event to the specific snake instance that ate the apple.
-	$FruitRandomizer.fruit_eaten.connect(_on_fruit_eaten)
+	#$FruitRandomizer.fruit_eaten.connect(_on_fruit_eaten)
+	_load_level(0)
+	
 	snakes = [$Snake]
 
 	# Apply textures to the primary snake
@@ -46,11 +52,30 @@ func _ready():
 		two_player_buttons.visible = false
 
 
-func _on_fruit_eaten(snake, fruit_data: FruitData = null):
+func _load_level(i: int) -> void:
+	if is_instance_valid(level):
+		level.queue_free()
+
+	level_index = i
+	level = levels[level_index].instantiate() as LevelBase
+	$LevelSlot.add_child(level)
+
+	# Connect level events (per instance)
+	level.fruit_eaten.connect(_on_fruit_eaten)
+	level.fruit_eaten.connect($Snake._on_fruit_eaten)
+	level.level_done.connect(_on_level_done)
+
+func _on_level_done():
+	print("level done")
+	level_index = (level_index + 1) % levels.size()
+	_load_level(level_index)
+	
+
+func _on_fruit_eaten(eater: Node, fruit_data: FruitData = null):
 	# Forward the eaten event to the snake instance that ate the fruit.
 	# We call its handler so the proper snake grows.
-	if snake and snake.has_method("_on_fruit_eaten"):
-		snake._on_fruit_eaten(fruit_data)
+	if eater and eater.has_method("_on_fruit_eaten"):
+		eater._on_fruit_eaten(eater, fruit_data)
 
 # The top controls the first snake
 # The bottom controls the last snake
@@ -65,4 +90,4 @@ func _process(_delta) -> void:
 
 func _on_pause_button_pressed() -> void:
 	get_tree().paused = true
-	$CanvasLayer/PauseMenu.visible = true
+	$UI/PauseMenu.visible = true

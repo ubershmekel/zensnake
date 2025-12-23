@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3rpmkvstrxxc"]
+
+[ext_resource type="Script" uid="uid://br3mlsha4emkw" path="res://game/fruit_randomizer.gd" id="1_ixf42"]
+[ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/fruit.gd" id="2_v63gm"]
+[ext_resource type="Texture2D" uid="uid://dsm554jm67s6v" path="res://assets/eat/apple.png" id="3_mktt2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dxrkv"]
+radius = 40.0
+
+[node name="InfiniteRandomFruit" type="Node2D"]
+script = ExtResource("1_ixf42")
+
+[node name="Fruit" type="Area2D" parent="."]
+z_index = 100
+position = Vector2(32, -32)
+script = ExtResource("2_v63gm")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fruit"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_mktt2")
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fruit"]
+shape = SubResource("CircleShape2D_dxrkv")

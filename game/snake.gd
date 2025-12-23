@@ -125,7 +125,7 @@ func move() -> void:
 			_animate_segment_to(snake_nodes[i], previous_position)
 			previous_position = current_position
 
-func _on_fruit_eaten(fruit_data: FruitData = null):
+func _on_fruit_eaten(eater: Node, fruit_data: FruitData = null):
 	# Grow!
 	snake_size += 10
 	if fruit_data:
