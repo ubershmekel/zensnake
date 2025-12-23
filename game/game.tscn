@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=15 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://uaditmv5s6a3" path="res://game/touch_button_2p.gd" id="8_j8tme"]
 [ext_resource type="PackedScene" uid="uid://cyxnmvylkf8u4" path="res://game/pause_menu.tscn" id="9_3vho3"]
 [ext_resource type="PackedScene" uid="uid://cg2257rstylj" path="res://game/fruit.tscn" id="12_qf6n1"]
+[ext_resource type="Script" uid="uid://cpym8fqebntlq" path="res://game/level_eat_all_fruit.gd" id="12_vsp63"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxrkv"]
 radius = 40.0
@@ -98,6 +99,17 @@ metadata/_custom_type_script = "uid://uaditmv5s6a3"
 visible = false
 
 [node name="Level1" type="Node2D" parent="."]
+script = ExtResource("12_vsp63")
+
+[node name="HowToPlay" type="Label" parent="Level1"]
+offset_left = 50.0
+offset_top = 108.0
+offset_right = 601.0
+offset_bottom = 239.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Tap and hold anywhere
+on the screen to turn left"
 
 [node name="Fruit" parent="Level1" instance=ExtResource("12_qf6n1")]
 position = Vector2(237, 909)
@@ -218,15 +230,5 @@ fruit_type_selection = "Orange"
 [node name="Fruit3" parent="Level1" instance=ExtResource("12_qf6n1")]
 position = Vector2(150, 847)
 fruit_type_selection = "Orange"
-
-[node name="Label" type="Label" parent="Level1"]
-offset_left = 50.0
-offset_top = 108.0
-offset_right = 601.0
-offset_bottom = 239.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 50
-text = "Tap and hold anywhere
-on the screen to turn left"
 
 [connection signal="pressed" from="CanvasLayer/Pause Button" to="." method="_on_pause_button_pressed"]
