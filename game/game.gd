@@ -20,9 +20,6 @@ const SKINS: Array[String] = [SKIN_SNAKE, SKIN_CATERPY]
 func _ready():
 	$Snake.position.x = 0
 	$Snake.position.y = 0
-	# Connect the apple's "eaten" signal to our local handler so we can forward
-	# the event to the specific snake instance that ate the apple.
-	#$FruitRandomizer.fruit_eaten.connect(_on_fruit_eaten)
 	_load_level(0)
 	
 	snakes = [$Snake]

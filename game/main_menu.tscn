@@ -30,39 +30,39 @@ script = ExtResource("1_2gctw")
 visible = false
 
 [node name="Button1P" type="Button" parent="ModeSelect"]
-offset_left = 121.0
-offset_top = 198.0
-offset_right = 481.0
-offset_bottom = 558.0
-theme_override_font_sizes/font_size = 80
+offset_left = 369.0
+offset_top = 579.0
+offset_right = 609.0
+offset_bottom = 819.0
+theme_override_font_sizes/font_size = 40
 text = "1 player
 infinity"
 icon = ExtResource("3_rv8kf")
 icon_alignment = 1
 expand_icon = true
 
+[node name="Head-large" type="Sprite2D" parent="ModeSelect"]
+position = Vector2(590, 562)
+texture = ExtResource("5_rv8kf")
+
 [node name="Button2P" type="Button" parent="ModeSelect"]
-offset_left = 221.0
-offset_top = 694.0
-offset_right = 599.0
-offset_bottom = 1054.0
-theme_override_font_sizes/font_size = 70
+offset_left = 58.0
+offset_top = 320.0
+offset_right = 298.0
+offset_bottom = 560.0
+theme_override_font_sizes/font_size = 36
 text = "2 players
 infinity"
 icon = ExtResource("4_rv8kf")
 icon_alignment = 1
 expand_icon = true
 
-[node name="Head-large" type="Sprite2D" parent="ModeSelect"]
-position = Vector2(135, 202)
-texture = ExtResource("5_rv8kf")
-
 [node name="Head-large2" type="Sprite2D" parent="ModeSelect"]
-position = Vector2(594, 766)
+position = Vector2(324, 419)
 texture = ExtResource("5_rv8kf")
 
 [node name="Head-kat" type="Sprite2D" parent="ModeSelect"]
-position = Vector2(519, 673)
+position = Vector2(283, 311)
 texture = ExtResource("6_5i8qu")
 
 [node name="Title" type="Control" parent="."]
