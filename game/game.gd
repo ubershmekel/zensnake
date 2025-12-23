@@ -72,11 +72,12 @@ func _on_level_done():
 
 func _on_fruit_eaten(eater: Node, fruit_data: FruitData = null):
 	# Handle growth logic here to avoid duplication and allow level-specific behavior
-	if eater and eater.has_method("_on_fruit_eaten"):
-		# Get the growth amount from the current level
-		var growth_amount = level.growth_per_fruit
-		# Call the snake's handler with the level-specific growth amount
-		eater._on_fruit_eaten(eater, fruit_data, growth_amount)
+	if eater and eater.has_method("_on_snake_effect"):
+		# Get the snake effect from fruit data and set level-specific growth
+		var snake_effect = fruit_data.snake_effect if fruit_data else SnakeEffect.new()
+		snake_effect.growth_amount = level.growth_per_fruit
+		# Apply the effect to the appropriate snake
+		eater._on_snake_effect(snake_effect)
 
 # The top controls the first snake
 # The bottom controls the last snake

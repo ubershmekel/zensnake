@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FruitData" load_steps=5 format=3 uid="uid://dyk6pwj3b58nb"]
+
+[ext_resource type="Script" uid="uid://cdrde7jab6w3h" path="res://game/fruit_data.gd" id="1_2lewl"]
+[ext_resource type="Script" uid="uid://bvq0chp7ae3u7" path="res://game/snake_effect.gd" id="2_hhgvd"]
+[ext_resource type="Texture2D" uid="uid://cjuhs17rylp0o" path="res://assets/eat/banana.png" id="3_fv527"]
+
+[sub_resource type="Resource" id="Resource_ui73l"]
+script = ExtResource("2_hhgvd")
+smooth_tween = true
+metadata/_custom_type_script = "uid://bvq0chp7ae3u7"
+
+[resource]
+script = ExtResource("1_2lewl")
+key = "banana"
+texture = ExtResource("3_fv527")
+snake_effect = SubResource("Resource_ui73l")
+metadata/_custom_type_script = "uid://cdrde7jab6w3h"

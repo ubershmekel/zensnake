@@ -126,13 +126,18 @@ func move() -> void:
 			previous_position = current_position
 
 func _on_fruit_eaten(_eater: Node, fruit_data: FruitData = null, growth_amount: int = 10):
-	# Grow by the specified amount (level-specific)
-	snake_size += growth_amount
-	if fruit_data:
-		static_body = fruit_data.static_body
-		smooth_tween = fruit_data.smooth_tween
-		AudioManager.play_eat()
-		_play_head_pop()
+	# Deprecated: Use _on_snake_effect instead
+	# This method is kept for backward compatibility
+	var effect = SnakeEffect.new(growth_amount, fruit_data.static_body if fruit_data else false, fruit_data.smooth_tween if fruit_data else false)
+	_on_snake_effect(effect)
+
+func _on_snake_effect(effect: SnakeEffect):
+	# Apply all effects from the SnakeEffect
+	snake_size += effect.growth_amount
+	static_body = effect.static_body
+	smooth_tween = effect.smooth_tween
+	AudioManager.play_eat()
+	_play_head_pop()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == hotkey:

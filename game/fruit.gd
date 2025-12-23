@@ -7,41 +7,33 @@ signal eaten(snake, fruit_data: FruitData)
 signal eaten_animation_done(fruit: FruitClass)
 
 const TILE_SIZE = 32
-const FruitDataCollection = preload("res://game/fruit_data_collection.gd")
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var _base_scale: Vector2 = sprite.scale
 
-@export_enum("Apple", "Banana", "Cherries", "Chili", "Grapes", "Orange", "Watermelon")
-var fruit_type_selection: String = "Apple":
+@export var fruit_types: FruitList = preload("res://resources/fruits_list_all.tres")
+
+@export var fruit_data: FruitData:
 	set(value):
-		fruit_type_selection = value
-		set_fruit_type(value.to_lower())
+		fruit_data = value
+		_apply_fruit_data()
 
-var fruits: Dictionary = FruitDataCollection.FRUIT_DEFINITIONS
-
-var _current_fruit_key: String = ""
-var _current_fruit_data: FruitData = null
 var _eat_tween: Tween = null
 
 func _ready():
 	# Connect the area_entered signal to our function
 	self.area_entered.connect(_on_area_entered)
 	# In the editor the tool script can run before the static dictionary is ready, so pull it here.
-	fruits = FruitDataCollection.FRUIT_DEFINITIONS
-	if fruits.is_empty():
-		push_warning("FRUIT_DEFINITIONS is empty; fruit visuals will not preview.")
+	if not fruit_data:
+		push_warning("fruit_data is empty; fruit visuals will not preview.")
 		return
 	
-	set_fruit_type(fruit_type_selection.to_lower())
+	_apply_fruit_data()
 
-func set_fruit_type(value: String):
-	if not fruits.has(value):
-		push_warning("Invalid fruit key: ", value)
-		push_warning(fruits.keys())
+func _apply_fruit_data():
+	if not fruit_data:
+		push_warning("Invalid fruit_data")
 		return
-	_current_fruit_key = value
-	_current_fruit_data = fruits[_current_fruit_key]
 	_update_fruit_display()
 
 func _on_area_entered(area):
@@ -50,7 +42,7 @@ func _on_area_entered(area):
 		# The head Area2D is a child of the snake Node2D instance.
 		# Emit the parent snake so the game can call the correct snake's grow method.
 		var snake = area.get_parent()
-		emit_signal("eaten", snake, _current_fruit_data)
+		emit_signal("eaten", snake, fruit_data)
 		_play_eaten_animation()
 
 func _play_eaten_animation():
@@ -78,7 +70,7 @@ func _update_fruit_display():
 	if sprite:
 		# button_pressed -> play -> load("res://game/game.tscn").instantiate()
 		# sets the fruit type but the sprite isn't loaded yet
-		sprite.texture = _current_fruit_data.texture
+		sprite.texture = fruit_data.texture
 
 func after_eaten():
 	if _eat_tween:
@@ -90,12 +82,11 @@ func after_eaten():
 	emit_signal("eaten_animation_done", self)
 
 func random_type():
-	if fruits.size() > 0:
-		var fruit_names: Array = fruits.keys()
-		var random_index = randi() % fruit_names.size()
-		var random_fruit_name: String = fruit_names[random_index]
-		_current_fruit_data = fruits[random_fruit_name]
-		sprite.texture = _current_fruit_data.texture
+	if fruit_types:
+		var random_index = randi() % fruit_types.fruits.size()
+		var random_fruit: FruitData = fruit_types.fruits[random_index]
+		fruit_data = random_fruit
+		sprite.texture = random_fruit.texture
 	
 func random_position():
 	var viewport_size = get_viewport().get_visible_rect().size

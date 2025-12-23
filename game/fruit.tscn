@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cg2257rstylj"]
+[gd_scene load_steps=6 format=3 uid="uid://cg2257rstylj"]
 
 [ext_resource type="Script" uid="uid://ddmnfgqttc1pb" path="res://game/fruit.gd" id="1_3ee2v"]
 [ext_resource type="Texture2D" uid="uid://dsm554jm67s6v" path="res://assets/eat/apple.png" id="2_3ee2v"]
+[ext_resource type="Resource" uid="uid://14nfogwm7k0l" path="res://resources/fruits_list_all.tres" id="2_70418"]
+[ext_resource type="Resource" uid="uid://pl5h7yuqy7d6" path="res://resources/fruit/apple.tres" id="3_f20vr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxrkv"]
 radius = 26.0
@@ -9,6 +11,8 @@ radius = 26.0
 [node name="Fruit" type="Area2D"]
 z_index = 100
 script = ExtResource("1_3ee2v")
+fruit_types = ExtResource("2_70418")
+fruit_data = ExtResource("3_f20vr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_3ee2v")

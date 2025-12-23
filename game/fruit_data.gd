@@ -1,18 +1,15 @@
-class_name FruitData
 extends Resource
+class_name FruitData
 
-@export var name: String = ""
+@export var key: String = ""
 @export var texture: Texture2D
-@export var static_body: bool = false
-@export var smooth_tween: bool = false
+@export var snake_effect: SnakeEffect
 
 func _init(
-	_name: String = "",
+	_key: String = "",
 	_texture: Texture2D = null,
-	_static_body: bool = false,
-	_smooth_tween: bool = false
+	_snake_effect: SnakeEffect = null
 ):
-	name = _name
+	key = _key
 	texture = _texture
-	static_body = _static_body
-	smooth_tween = _smooth_tween
+	snake_effect = _snake_effect if _snake_effect else SnakeEffect.new()
