@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ch3j7m8k1g545"]
+[gd_scene load_steps=14 format=3 uid="uid://ch3j7m8k1g545"]
 
 [ext_resource type="Script" uid="uid://bs0p4sgee8ia8" path="res://game/main_menu.gd" id="1_2gctw"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_20tr2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bbbrwhagt6jay" path="res://assets/snake/head-large-outline.png" id="5_rv8kf"]
 [ext_resource type="Texture2D" uid="uid://cra8iy056jlec" path="res://assets/caterpy/head-large-outline.png" id="6_5i8qu"]
 [ext_resource type="Texture2D" uid="uid://dcnd3gri12us" path="res://assets/caterpy/head-large.png" id="6_wr6kv"]
+[ext_resource type="Script" uid="uid://gtlrbuipmk80" path="res://game/hold_button_tutorial.gd" id="7_5i8qu"]
 [ext_resource type="Script" uid="uid://dwek2f4wyily3" path="res://game/intro_snake.gd" id="7_cdr06"]
 [ext_resource type="Texture2D" uid="uid://cyy0ta378rv1x" path="res://assets/snake/body3.png" id="8_ipm4r"]
 [ext_resource type="Texture2D" uid="uid://5rj2phnvmccy" path="res://assets/eat/cherries.png" id="9_7mn57"]
@@ -20,6 +21,7 @@ script = ExtResource("1_2gctw")
 [node name="Background" parent="." instance=ExtResource("2_20tr2")]
 
 [node name="ModeSelect" type="Node2D" parent="."]
+visible = false
 
 [node name="Button1P" type="Button" parent="ModeSelect"]
 offset_left = 121.0
@@ -58,33 +60,48 @@ position = Vector2(519, 673)
 texture = ExtResource("6_5i8qu")
 
 [node name="Title" type="Node2D" parent="."]
-visible = false
 
-[node name="IntroSnake" type="Node2D" parent="Title"]
+[node name="HoldButtonTutorial" type="Node2D" parent="Title"]
+position = Vector2(10, 914)
+script = ExtResource("7_5i8qu")
+
+[node name="HoldButton" type="Button" parent="Title/HoldButtonTutorial"]
+offset_right = 690.0
+offset_bottom = 172.0
+theme_override_font_sizes/font_size = 64
+text = "tap and hold this button
+down to turn left"
+
+[node name="IntroSnake" type="Node2D" parent="Title/HoldButtonTutorial"]
 z_index = 2
-position = Vector2(360, 800)
+position = Vector2(350, -114)
 script = ExtResource("7_cdr06")
 
-[node name="Head" type="Node2D" parent="Title/IntroSnake"]
+[node name="Head" type="Node2D" parent="Title/HoldButtonTutorial/IntroSnake"]
 z_index = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="Title/IntroSnake/Head"]
+[node name="Sprite2D" type="Sprite2D" parent="Title/HoldButtonTutorial/IntroSnake/Head"]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("5_7k2rn")
 
-[node name="Body1" type="Node2D" parent="Title/IntroSnake"]
+[node name="Body1" type="Node2D" parent="Title/HoldButtonTutorial/IntroSnake"]
 z_index = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="Title/IntroSnake/Body1"]
+[node name="Sprite2D" type="Sprite2D" parent="Title/HoldButtonTutorial/IntroSnake/Body1"]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_ipm4r")
 
-[node name="Tail" type="Node2D" parent="Title/IntroSnake"]
+[node name="Tail" type="Node2D" parent="Title/HoldButtonTutorial/IntroSnake"]
 z_index = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="Title/IntroSnake/Tail"]
+[node name="Sprite2D" type="Sprite2D" parent="Title/HoldButtonTutorial/IntroSnake/Tail"]
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_ipm4r")
+
+[node name="TutorialCherry" type="Sprite2D" parent="Title/HoldButtonTutorial"]
+position = Vector2(177, -342)
+scale = Vector2(2, 2)
+texture = ExtResource("9_7mn57")
 
 [node name="CenterContainer" type="CenterContainer" parent="Title"]
 offset_top = 100.0
@@ -119,15 +136,6 @@ theme_override_font_sizes/normal_font_size = 40
 text = "For 1 player use the \"a\" key on a keyboard
 or tap to turn left"
 
-[node name="HoldButton" type="Button" parent="Title"]
-offset_left = 10.0
-offset_top = 914.0
-offset_right = 700.0
-offset_bottom = 1086.0
-theme_override_font_sizes/font_size = 64
-text = "tap and hold this button
-down to turn left"
-
 [node name="Instructions2p" type="RichTextLabel" parent="Title"]
 visible = false
 offset_left = 40.0
@@ -140,11 +148,6 @@ theme_override_fonts/normal_font = SubResource("SystemFont_wo36y")
 theme_override_font_sizes/normal_font_size = 40
 text = "For 2 players use \"a\" and \"b\" keys on a keyboard
 or tap left or right halfs of the screen"
-
-[node name="TutorialCherry" type="Sprite2D" parent="Title"]
-position = Vector2(187, 572)
-scale = Vector2(2, 2)
-texture = ExtResource("9_7mn57")
 
 [connection signal="pressed" from="ModeSelect/Button1P" to="." method="_on_button_1p_pressed"]
 [connection signal="pressed" from="ModeSelect/Button2P" to="." method="_on_button_2p_pressed"]
