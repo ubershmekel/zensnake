@@ -239,14 +239,8 @@ func _burp_pulse_segments() -> void:
 
 	const burp_sound_duration := 0.2
 	await get_tree().create_timer(total_burp_duration_seconds - burp_sound_duration).timeout
-	print("burp")
 	AudioManager.play_burp()
 	await get_tree().create_timer(burp_sound_duration).timeout
-	#for tween in tweens:
-		#print("awaiting tween", tween)
-		#await tween.finished
-		#print("done tween", tween)
-	print("done burp seg")
 
 	
 func _shrink_tail_segments(target_size: int) -> void:

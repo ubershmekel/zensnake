@@ -9,165 +9,165 @@
 script = ExtResource("1_217sc")
 
 [node name="AnimationStyles" type="Label" parent="."]
-offset_left = 21.0
-offset_top = 93.0
-offset_right = 707.0
-offset_bottom = 291.0
+offset_left = 11.0
+offset_top = 388.0
+offset_right = 697.0
+offset_bottom = 586.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "Watermelon makes the
-snake move like stop-motion"
+text = "Different fruit give the snake
+a different animation style"
 script = ExtResource("2_2f1k2")
 animation_duration = 3.0
 start_delay = 3.0
 start_scale = 0.1
 
 [node name="Fruit" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(233, 952)
+position = Vector2(235, 1138)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit2" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(169, 957)
+position = Vector2(171, 1143)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit4" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(54, 934)
+position = Vector2(56, 1120)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit5" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(77, 883)
+position = Vector2(79, 1069)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit6" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(101, 834)
+position = Vector2(103, 1020)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit7" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(119, 789)
+position = Vector2(121, 975)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit8" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(136, 743)
+position = Vector2(138, 929)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit9" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(152, 694)
+position = Vector2(154, 880)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit10" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(167, 647)
+position = Vector2(169, 833)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit11" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(354, 539)
+position = Vector2(356, 725)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit12" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(188, 595)
+position = Vector2(190, 781)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit13" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(201, 545)
+position = Vector2(203, 731)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit14" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(213, 497)
+position = Vector2(215, 683)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit15" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(221, 447)
+position = Vector2(223, 633)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit16" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(594, 699)
+position = Vector2(596, 885)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit20" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(445, 612)
+position = Vector2(447, 798)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit21" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(494, 642)
+position = Vector2(496, 828)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit22" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(543, 671)
+position = Vector2(545, 857)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit23" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(649, 732)
+position = Vector2(651, 918)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit24" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(621, 777)
+position = Vector2(623, 963)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit25" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(571, 820)
+position = Vector2(573, 1006)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit26" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(516, 854)
+position = Vector2(518, 1040)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit27" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(475, 892)
+position = Vector2(477, 1078)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit28" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(417, 911)
+position = Vector2(419, 1097)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit29" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(360, 931)
+position = Vector2(362, 1117)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit30" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(296, 943)
+position = Vector2(298, 1129)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit17" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(272, 472)
+position = Vector2(274, 658)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit18" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(310, 504)
+position = Vector2(312, 690)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit19" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(402, 581)
+position = Vector2(404, 767)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
 
 [node name="Fruit3" parent="." instance=ExtResource("3_7dx7g")]
-position = Vector2(107, 957)
+position = Vector2(109, 1143)
 scale = Vector2(2, 2)
 fruit_data = ExtResource("4_2f1k2")
