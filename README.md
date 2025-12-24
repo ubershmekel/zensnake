@@ -54,7 +54,7 @@ Start in a slow spiral, then chase fruit that stretch the body and swap the move
 1. Open zensnake.xcodeproj
 1. Product -> Archive
 1. Distribute App -> App Store Connect -> Distribute
-1. Wait 3 minutes, TestFlight will catch the new version
+1. Wait 4 minutes, you can now test the new version on TestFlight
 1. Go to https://appstoreconnect.apple.com/login
 1. Click the little blue plus under iOS app, name the version
 1. Add Build
