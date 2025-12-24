@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://bdyqw0a3sby87"]
+
+[ext_resource type="Script" uid="uid://ckn2d86ml3oed" path="res://game/title_screen.gd" id="1_a8pn1"]
+[ext_resource type="Script" uid="uid://bcv836vvnkivw" path="res://game/margin_safe_area.gd" id="1_oi8xp"]
+[ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_a8pn1"]
+[ext_resource type="Script" uid="uid://gtlrbuipmk80" path="res://game/hold_button_tutorial.gd" id="2_g6p78"]
+[ext_resource type="Script" uid="uid://dwek2f4wyily3" path="res://game/intro_snake.gd" id="3_a8pn1"]
+[ext_resource type="Texture2D" uid="uid://cm8jlum7qdv5x" path="res://assets/snake/head-large.png" id="4_y5v3b"]
+[ext_resource type="Texture2D" uid="uid://cyy0ta378rv1x" path="res://assets/snake/body3.png" id="5_t2kev"]
+[ext_resource type="Texture2D" uid="uid://5rj2phnvmccy" path="res://assets/eat/cherries.png" id="6_pfca1"]
+[ext_resource type="Texture2D" uid="uid://dcnd3gri12us" path="res://assets/caterpy/head-large.png" id="7_dqdqf"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a8pn1")
+
+[node name="Background" parent="." instance=ExtResource("2_a8pn1")]
+
+[node name="MarginSafeArea" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oi8xp")
+
+[node name="Title" type="Control" parent="MarginSafeArea"]
+layout_mode = 2
+
+[node name="HoldButtonTutorial" type="Node2D" parent="MarginSafeArea/Title"]
+position = Vector2(10, 914)
+script = ExtResource("2_g6p78")
+
+[node name="HoldButton" type="Button" parent="MarginSafeArea/Title/HoldButtonTutorial"]
+offset_right = 690.0
+offset_bottom = 172.0
+theme_override_font_sizes/font_size = 64
+text = "tap and hold this button
+down to turn left"
+
+[node name="IntroSnake" type="Node2D" parent="MarginSafeArea/Title/HoldButtonTutorial"]
+z_index = 2
+position = Vector2(350, -114)
+script = ExtResource("3_a8pn1")
+
+[node name="Head" type="Node2D" parent="MarginSafeArea/Title/HoldButtonTutorial/IntroSnake"]
+z_index = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginSafeArea/Title/HoldButtonTutorial/IntroSnake/Head"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_y5v3b")
+
+[node name="Body1" type="Node2D" parent="MarginSafeArea/Title/HoldButtonTutorial/IntroSnake"]
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginSafeArea/Title/HoldButtonTutorial/IntroSnake/Body1"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_t2kev")
+
+[node name="Tail" type="Node2D" parent="MarginSafeArea/Title/HoldButtonTutorial/IntroSnake"]
+z_index = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="MarginSafeArea/Title/HoldButtonTutorial/IntroSnake/Tail"]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_t2kev")
+
+[node name="TutorialCherry" type="Sprite2D" parent="MarginSafeArea/Title/HoldButtonTutorial"]
+position = Vector2(177, -342)
+scale = Vector2(2, 2)
+texture = ExtResource("6_pfca1")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginSafeArea/Title"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 307.0
+grow_horizontal = 2
+
+[node name="Anchor" type="Control" parent="MarginSafeArea/Title/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
+layout_mode = 0
+offset_left = -330.0
+offset_top = -153.0
+offset_right = 329.0
+offset_bottom = 154.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 120
+text = "kat
+and noodles"
+
+[node name="Head-large" type="TextureRect" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
+layout_mode = 1
+offset_left = 182.0
+offset_top = -83.0
+offset_right = 342.0
+offset_bottom = 77.0
+texture = ExtResource("4_y5v3b")
+
+[node name="Head-kat" type="TextureRect" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -159.0
+offset_top = -160.0
+offset_right = 1.0
+grow_horizontal = 0
+texture = ExtResource("7_dqdqf")
+
+[node name="Control" type="Control" parent="MarginSafeArea/Title"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="intro_complete" from="MarginSafeArea/Title/HoldButtonTutorial" to="." method="_on_hold_button_tutorial_intro_complete"]

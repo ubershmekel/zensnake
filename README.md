@@ -39,9 +39,23 @@ Start in a slow spiral, then chase fruit that stretch the body and swap the move
 ### Android release checklist
 
 1. Godot: Project -> Export -> Android (Runnable).
-2. Bump Version -> Code.
-3. Export Project... to produce the new `.aab`.
-4. Go to https://play.google.com/console and create a new release.
-5. Upload the `.aab`.
-6. Update release notes.
-7. Review and approve the release.
+1. Bump Version -> Code.
+1. Export Project... to produce the new `.aab`.
+1. Go to https://play.google.com/console and create a new release.
+1. Upload the `.aab`.
+1. Update release notes.
+1. Review and approve the release.
+
+### iOS release checklist
+
+1. Godot: Project → Project Settings → Application → Config. Bump version.
+1. Godot: Project -> Export -> iOS (Runnable).
+1. Export Project... to produce the new `.ipa`.
+1. Open zensnake.xcodeproj
+1. Product -> Archive
+1. Distribute App -> App Store Connect -> Distribute
+1. Wait 3 minutes, TestFlight will catch the new version
+1. Go to https://appstoreconnect.apple.com/login
+1. Click the little blue plus under iOS app, name the version
+1. Add Build
+1. Add for Review
