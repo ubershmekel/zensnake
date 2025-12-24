@@ -17,6 +17,7 @@ var direction := Vector2.UP
 var time_passed := 0.0
 var snake_size := 3
 var rotation_time_passed := 0.0
+var pause_processing := false
 
 @export var body_element: Node2D
 
@@ -57,6 +58,9 @@ func load_skin(skin_name: String) -> void:
 	$SnakeBody/Sprite2D.texture = body_textures[0]
 
 func _process(delta: float) -> void:
+	if pause_processing:
+		return
+
 	time_passed += delta
 	rotation_time_passed += delta
 	var is_reversing := is_hotkey_pressed or is_button_down
@@ -142,7 +146,7 @@ func _on_snake_effect(effect: SnakeEffect):
 func reset_for_new_level(target_position: Vector2, target_size: int = 2, duration: float = 0.35) -> void:
 	target_size = max(target_size, 2)
 	snake_size = target_size
-	_trim_segments_to_size(target_size)
+	pause_processing = true
 	direction = Vector2.UP
 	time_passed = 0.0
 	rotation_time_passed = 0.0
@@ -159,15 +163,25 @@ func reset_for_new_level(target_position: Vector2, target_size: int = 2, duratio
 		_head_pop_tween = null
 	_head_sprite.scale = _head_base_scale
 	$SnakeHead.rotation = direction.angle() + PI / 2
+	await _burp_pulse_segments()
+	await _shrink_tail_segments(target_size)
+	await _animate_remaining_to_position(target_position, duration)
+	pause_processing = false
 
-	var tween := create_tween()
-	for i in range(snake_nodes.size()):
-		var destination := target_position + Vector2(0, SNAKE_MOVE_SIZE * i)
-		tween.tween_property(snake_nodes[i], "position", destination, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+func pause_and_burp() -> void:
+	pause_processing = true
+	await _burp_pulse_segments()
+	pause_processing = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.keycode == hotkey:
-		is_hotkey_pressed = event.is_pressed()
+		var key := event as InputEventKey
+		is_hotkey_pressed = key.is_pressed()
+		if key.echo:
+			return
+
+		# if is_hotkey_pressed:
+		# 	pause_and_burp()
 
 func _animate_segment_to(node: Node2D, target_position: Vector2, cancel_tween = false) -> void:
 	if smooth_tween:
@@ -207,3 +221,53 @@ func _trim_segments_to_size(target_size: int) -> void:
 
 	while snake_nodes.size() < target_size:
 		grow(snake_nodes[-1].position)
+
+func _burp_pulse_segments() -> void:
+	const total_burp_duration_seconds := 1.0
+	var burp_part_duration_seconds := total_burp_duration_seconds / snake_nodes.size()
+	for i in range(snake_nodes.size() - 1, -1, -1):
+		var node := snake_nodes[i]
+		if not is_instance_valid(node):
+			continue
+		var base_scale: Vector2 = node.scale
+		var pulse_scale := base_scale * 1.38
+		var seconds_delay := total_burp_duration_seconds - i * burp_part_duration_seconds
+		var tween := create_tween()
+		tween.tween_interval(seconds_delay)
+		tween.tween_property(node, "scale", pulse_scale, 0.1).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_property(node, "scale", base_scale, seconds_delay).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+
+	const burp_sound_duration := 0.2
+	await get_tree().create_timer(total_burp_duration_seconds - burp_sound_duration).timeout
+	print("burp")
+	AudioManager.play_burp()
+	await get_tree().create_timer(burp_sound_duration).timeout
+	#for tween in tweens:
+		#print("awaiting tween", tween)
+		#await tween.finished
+		#print("done tween", tween)
+	print("done burp seg")
+
+	
+func _shrink_tail_segments(target_size: int) -> void:
+	const shrink_body_cell_duration_seconds := 0.03
+	while snake_nodes.size() > target_size:
+		var tail: Node2D = snake_nodes.pop_back()
+		if not is_instance_valid(tail):
+			continue
+		var tween := create_tween()
+		tween.tween_property(tail, "scale", Vector2.ZERO, shrink_body_cell_duration_seconds).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+		await tween.finished
+		tail.queue_free()
+
+func _animate_remaining_to_position(target_position: Vector2, duration: float) -> void:
+	_trim_segments_to_size(2)
+	if snake_nodes.size() < 2:
+		grow(target_position + Vector2(0, SNAKE_MOVE_SIZE))
+
+	var tween := create_tween()
+	tween.set_parallel(true)
+	for i in range(snake_nodes.size()):
+		var destination := target_position + Vector2(0, SNAKE_MOVE_SIZE * i)
+		tween.tween_property(snake_nodes[i], "position", destination, duration).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	await tween.finished

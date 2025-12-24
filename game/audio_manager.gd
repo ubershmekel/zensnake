@@ -61,10 +61,10 @@ func play_burp():
 	var choice = options[randi() % options.size()]
 	play(choice)
 
-func play(id: SfxId) -> void:
+func play(id: SfxId) -> float:
 	if not sfx.has(id):
 		push_warning("Unknown SFX id: %s" % [id])
-		return
+		return 0.0
 
 	var player := AudioStreamPlayer.new()
 	add_child(player)
@@ -73,3 +73,4 @@ func play(id: SfxId) -> void:
 	player.stream = sfx[id]
 	player.finished.connect(func(): player.queue_free())
 	player.play()
+	return sfx[id].get_length()

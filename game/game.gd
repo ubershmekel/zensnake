@@ -66,20 +66,15 @@ func _load_level(i: int) -> void:
 
 func _on_level_done():
 	print("level done")
-	AudioManager.play_burp()
 
 	var base_position := LEVEL_RESET_POSITION
-	var animation_started := false
 	for i in range(snakes.size()):
 		var snake = snakes[i]
 		if not is_instance_valid(snake):
 			continue
 		var offset := Vector2(LEVEL_RESET_HORIZONTAL_SPACING * i, 0)
 		if snake.has_method("reset_for_new_level"):
-			snake.reset_for_new_level(base_position + offset, 2, LEVEL_RESET_ANIMATION_TIME)
-			animation_started = true
-	if animation_started:
-		await get_tree().create_timer(LEVEL_RESET_ANIMATION_TIME).timeout
+			await snake.reset_for_new_level(base_position + offset, 2, LEVEL_RESET_ANIMATION_TIME)
 
 	level_index = (level_index + 1) % levels.size()
 	_load_level(level_index)
