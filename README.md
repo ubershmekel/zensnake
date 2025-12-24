@@ -2,6 +2,12 @@
 
 A zen-like, one-button snake toy where you drift in circles, weave figure eights, or just twirl around with a friend.
 
+## Play
+
+- [Android](https://play.google.com/store/apps/details?id=com.andluck.zensnake)
+- [iPhone and iPad](https://apps.apple.com/us/app/kat-and-noodles/id6755672232)
+- [Web](https://ubershmekel.itch.io/zensnake)
+
 ## What it is
 
 - Single-button steering: the snake lazily curves on its own; press or hold to arc the other way.
@@ -19,8 +25,24 @@ A zen-like, one-button snake toy where you drift in circles, weave figure eights
 
 You start in a slow spiral, then chase fruit that stretches the body and alters the movement style. The playfield loops endlessly, so you just keep sketching ribbons and rhythms—more fidget toy than score chase.
 
-## Play
+## Development notes
 
-- [Android](https://play.google.com/store/apps/details?id=com.andluck.zensnake)
-- [iPhone and iPad](https://apps.apple.com/us/app/kat-and-noodles/id6755672232)
-- [Web](https://ubershmekel.itch.io/zensnake)
+### Exporting Android
+
+Godot Menu -> Project -> Export -> Android (Runnable)
+
+Then increment: Version -> Code
+
+Then click: Export Project...
+
+Find the new aab file
+
+Go to https://play.google.com/console
+
+Click "Create new release"
+
+Upload the aab file
+
+Update the version release notes
+
+Approve
