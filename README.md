@@ -58,4 +58,7 @@ Start in a slow spiral, then chase fruit that stretch the body and swap the move
 1. Go to https://appstoreconnect.apple.com/login
 1. Click the little blue plus under iOS app, name the version
 1. Add Build
+1. Edit "What's New in This Version"
+1. Save
 1. Add for Review
+1. Submit for Review
