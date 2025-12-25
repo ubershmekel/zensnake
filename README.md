@@ -5,8 +5,9 @@ A zen-like, one-button snake toy where you drift in circles, weave figure eights
 ## Play
 
 - [Android](https://play.google.com/store/apps/details?id=com.andluck.zensnake)
-- [iPhone and iPad](https://apps.apple.com/us/app/kat-and-noodles/id6755672232)
-- [Web](https://ubershmekel.itch.io/zensnake)
+- [iPhone](https://apps.apple.com/us/app/kat-and-noodles/id6755672232)
+- [Web](https://ubershmekel.itch.io/zensnake) (older version)
+- [Install the app on android or iphone](https://ubershmekel.github.io/zensnake/app/)
 
 ## Highlights
 
