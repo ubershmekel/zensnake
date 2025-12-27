@@ -1,10 +1,37 @@
-extends Node
+extends LevelBase
 
 const FRUIT_COUNT := 20
 const FALL_SPEED := 40.0
 
 @onready var _fruit_scene: PackedScene = preload("res://game/fruit.tscn")
 @onready var _grape_data: FruitData = preload("res://resources/fruit/grapes.tres")
+
+var fruit_spawned_count := 0;
+var fruit_eaten_count := 0;
+
+func _spawn_fruit():
+	var fruit: FruitClass = _fruit_scene.instantiate()
+	fruit.fruit_data = _grape_data
+	# Parent may still be configuring its children, so defer attaching the fruit.
+	add_child(fruit)
+	fruit.eaten.connect(_on_fruit_eaten)
+	fruit.eaten_animation_done.connect(_on_fruit_eaten_animation_done)
+	return fruit
+
+func _on_fruit_eaten(eater: Node, fruit_data: FruitData) -> void:
+	fruit_eaten_count += 1
+	# Emit signal so game can react to fruit being eaten
+	fruit_eaten.emit(eater, fruit_data)
+
+func _on_fruit_eaten_animation_done(fruit: FruitClass) -> void:
+	# Instead of respawning the fruit like fruit_randomizer does,
+	# we delete it to complete the "eat all fruit" level objective
+	fruit.queue_free()
+	
+	# Check if all fruits have been eaten
+	if fruit_eaten_count == fruit_spawned_count:
+		level_done.emit()
+
 
 var _fruits: Array[FruitClass] = []
 
@@ -15,11 +42,12 @@ func _ready() -> void:
 		push_warning("FruitRainManager has no parent to attach fruits to.")
 		return
 	var viewport_size := get_viewport().get_visible_rect().size
+	
+
 	for i in range(FRUIT_COUNT):
-		var fruit: FruitClass = _fruit_scene.instantiate()
-		fruit.fruit_data = _grape_data
+		fruit_spawned_count += 1
+		var fruit: FruitClass = _spawn_fruit()
 		fruit.position = Vector2(randf_range(0.0, viewport_size.x), randf_range(0.0, viewport_size.y))
-		parent.add_child(fruit)
 		_fruits.append(fruit)
 
 func _process(delta: float) -> void:
