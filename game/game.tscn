@@ -1,12 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=14 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
-[ext_resource type="PackedScene" uid="uid://srhqfn52hnt" path="res://game/levels/level_2.tscn" id="2_3vho3"]
+[ext_resource type="Script" path="res://game/level_resource.gd" id="1_lvr2g"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_dxrkv"]
-[ext_resource type="PackedScene" uid="uid://cejbvuk3pmp1g" path="res://game/levels/level_raining.tscn" id="2_qf6n1"]
-[ext_resource type="PackedScene" uid="uid://d3rpmkvstrxxc" path="res://game/levels/infinite_random_fruit.tscn" id="3_j8tme"]
-[ext_resource type="PackedScene" uid="uid://bi5li70jeef0l" path="res://game/levels/level_1.tscn" id="5_3vho3"]
+[ext_resource type="Resource" uid="uid://cohahkruemap4" path="res://resources/levels/level_1.tres" id="2_lvl1"]
+[ext_resource type="Resource" uid="uid://dc7c770w11b47" path="res://resources/levels/level_2.tres" id="2_lvl2"]
+[ext_resource type="Resource" uid="uid://gjfsmiuyx40" path="res://resources/levels/level_raining.tres" id="2_lvlrain"]
+[ext_resource type="Resource" uid="uid://dhumtotajhh1q" path="res://resources/levels/infinite_random_fruit.tres" id="3_infinite"]
 [ext_resource type="PackedScene" uid="uid://bkf7wuly2daas" path="res://game/2p_touch_button.tscn" id="6_dakft"]
 [ext_resource type="Texture2D" uid="uid://caosjsa4j4g2m" path="res://assets/buttons/pause-button-idle.png" id="7_j8tme"]
 [ext_resource type="Texture2D" uid="uid://cvi0mfs0glnt7" path="res://assets/buttons/pause-button-pressed.png" id="8_3vho3"]
@@ -15,7 +16,7 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
-levels = Array[PackedScene]([ExtResource("5_3vho3"), ExtResource("2_3vho3"), ExtResource("2_qf6n1"), ExtResource("3_j8tme")])
+levels = Array[ExtResource("1_lvr2g")]([ExtResource("2_lvl1"), ExtResource("2_lvl2"), ExtResource("2_lvlrain"), ExtResource("3_infinite")])
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
 

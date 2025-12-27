@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://dhumtotajhh1q"]
+
+[ext_resource type="Script" path="res://game/level_resource.gd" id="1_3eo5p"]
+[ext_resource type="PackedScene" uid="uid://d3rpmkvstrxxc" path="res://game/levels/infinite_random_fruit.tscn" id="2_j8k30"]
+
+[resource]
+script = ExtResource("1_3eo5p")
+name = "Infinite Random Fruit"
+scene = ExtResource("2_j8k30")
+metadata/_custom_type_script = "uid://q0jnbdhrdju5z"

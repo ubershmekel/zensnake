@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var levels: Array[PackedScene]
+@export var levels: Array[LevelResource]
 
 @onready var bottom_button := $UI/TwoPlayerButtons/BottomButton
 @onready var top_button := $UI/TwoPlayerButtons/TopButton
@@ -57,7 +57,12 @@ func _load_level(i: int) -> void:
 		level.queue_free()
 
 	level_index = i
-	level = levels[level_index].instantiate() as LevelBase
+	var level_resource: LevelResource = levels[level_index]
+	if level_resource == null or level_resource.scene == null:
+		push_error("Level resource missing or has no scene: %s" % level_resource)
+		return
+
+	level = level_resource.scene.instantiate() as LevelBase
 	$LevelSlot.add_child(level)
 
 	# Connect level events (per instance)

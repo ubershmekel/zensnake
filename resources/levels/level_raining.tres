@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://gjfsmiuyx40"]
+
+[ext_resource type="Script" path="res://game/level_resource.gd" id="1_0cg2t"]
+[ext_resource type="PackedScene" uid="uid://cejbvuk3pmp1g" path="res://game/levels/level_raining.tscn" id="2_mx480"]
+
+[resource]
+script = ExtResource("1_0cg2t")
+name = "Fruit Rain"
+scene = ExtResource("2_mx480")
+metadata/_custom_type_script = "uid://q0jnbdhrdju5z"
