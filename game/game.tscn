@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=13 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="PackedScene" uid="uid://srhqfn52hnt" path="res://game/levels/level_2.tscn" id="2_3vho3"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_dxrkv"]
+[ext_resource type="PackedScene" uid="uid://cejbvuk3pmp1g" path="res://game/levels/level_raining.tscn" id="2_qf6n1"]
 [ext_resource type="PackedScene" uid="uid://d3rpmkvstrxxc" path="res://game/levels/infinite_random_fruit.tscn" id="3_j8tme"]
 [ext_resource type="PackedScene" uid="uid://bi5li70jeef0l" path="res://game/levels/level_1.tscn" id="5_3vho3"]
 [ext_resource type="PackedScene" uid="uid://bkf7wuly2daas" path="res://game/2p_touch_button.tscn" id="6_dakft"]
@@ -14,7 +15,7 @@
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
-levels = Array[PackedScene]([ExtResource("5_3vho3"), ExtResource("2_3vho3"), ExtResource("3_j8tme")])
+levels = Array[PackedScene]([ExtResource("2_qf6n1"), ExtResource("5_3vho3"), ExtResource("2_3vho3"), ExtResource("3_j8tme")])
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
 

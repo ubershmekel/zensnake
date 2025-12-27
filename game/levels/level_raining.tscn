@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cejbvuk3pmp1g"]
+
+[ext_resource type="Script" uid="uid://cpym8fqebntlq" path="res://game/level_eat_all_fruit.gd" id="1_hewhw"]
+[ext_resource type="Script" uid="uid://khtj3vh7xq00" path="res://game/animate_label_in.gd" id="2_qrdo1"]
+[ext_resource type="Script" uid="uid://7h67wc4pua7e" path="res://game/fruit_rain_manager.gd" id="3_gxiwr"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_hewhw")
+
+[node name="Note" type="Label" parent="."]
+offset_left = 13.0
+offset_top = 964.0
+offset_right = 699.0
+offset_bottom = 1162.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "It's raining grapes!"
+script = ExtResource("2_qrdo1")
+animation_duration = 3.0
+start_delay = 3.0
+start_scale = 0.1
+
+[node name="FruitRainManager" type="Node" parent="."]
+script = ExtResource("3_gxiwr")
