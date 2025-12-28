@@ -1,12 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=16 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
-[ext_resource type="Script" path="res://game/level_resource.gd" id="1_lvr2g"]
+[ext_resource type="Script" uid="uid://bjv5w4sq3qd4x" path="res://game/level_resource.gd" id="1_lvr2g"]
 [ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="2_4fuuu"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_dxrkv"]
 [ext_resource type="Resource" uid="uid://cohahkruemap4" path="res://resources/levels/level_1.tres" id="2_lvl1"]
 [ext_resource type="Resource" uid="uid://dc7c770w11b47" path="res://resources/levels/level_2.tres" id="2_lvl2"]
 [ext_resource type="Resource" uid="uid://gjfsmiuyx40" path="res://resources/levels/level_raining.tres" id="2_lvlrain"]
+[ext_resource type="PackedScene" uid="uid://bf0xqkxs5pcjf" path="res://game/levels/level_shy_banana.tscn" id="3_b686c"]
 [ext_resource type="Resource" uid="uid://dhumtotajhh1q" path="res://resources/levels/infinite_random_fruit.tres" id="3_infinite"]
 [ext_resource type="PackedScene" uid="uid://bkf7wuly2daas" path="res://game/2p_touch_button.tscn" id="6_dakft"]
 [ext_resource type="Texture2D" uid="uid://caosjsa4j4g2m" path="res://assets/buttons/pause-button-idle.png" id="7_j8tme"]
@@ -14,9 +15,16 @@
 [ext_resource type="Script" uid="uid://uaditmv5s6a3" path="res://game/touch_button_2p.gd" id="8_j8tme"]
 [ext_resource type="PackedScene" uid="uid://cyxnmvylkf8u4" path="res://game/pause_menu.tscn" id="9_3vho3"]
 
+[sub_resource type="Resource" id="Resource_hb504"]
+resource_name = "Level: Shy Banana"
+script = ExtResource("1_lvr2g")
+name = "Shy Banana"
+scene = ExtResource("3_b686c")
+metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
-levels = Array[ExtResource("1_lvr2g")]([ExtResource("2_lvl1"), ExtResource("2_lvl2"), ExtResource("2_lvlrain"), ExtResource("3_infinite")])
+levels = Array[ExtResource("1_lvr2g")]([ExtResource("2_lvl1"), ExtResource("2_lvl2"), ExtResource("2_lvlrain"), SubResource("Resource_hb504"), ExtResource("3_infinite")])
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
 

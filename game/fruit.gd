@@ -12,6 +12,7 @@ const TILE_SIZE = 32
 @onready var _base_scale: Vector2 = sprite.scale
 
 @export var fruit_types: FruitList = preload("res://resources/fruits_list_all.tres")
+@export var shyness_velocity: float = 0.0
 
 @export var fruit_data: FruitData:
 	set(value):
@@ -19,6 +20,7 @@ const TILE_SIZE = 32
 		_apply_fruit_data()
 
 var _eat_tween: Tween = null
+var _wiggle_time := 0.0
 
 func _ready():
 	# Connect the area_entered signal to our function
@@ -29,6 +31,60 @@ func _ready():
 		return
 	
 	_apply_fruit_data()
+
+func _physics_process(delta: float) -> void:
+	if shyness_velocity <= 0.0:
+		return
+	var snake = _get_closest_snake()
+	if not is_instance_valid(snake):
+		return
+	var snake_pos = snake.global_position
+	if snake.has_method("get_head_pos"):
+		snake_pos = snake.get_head_pos()
+	var away = global_position - snake_pos
+	var distance = away.length()
+	if distance == 0.0:
+		return
+	const FULL_SPEED_DISTANCE := 150.0
+	const NO_EFFECT_DISTANCE := 400.0
+	var shy_percent = clamp((NO_EFFECT_DISTANCE - distance) / (NO_EFFECT_DISTANCE - FULL_SPEED_DISTANCE), 0.0, 1.0)
+	var speed = shyness_velocity * shy_percent
+	_apply_wiggle(delta, shy_percent)
+	if speed <= 0.0:
+		return
+	global_position += away / distance * speed * delta
+	_clamp_to_screen()
+
+func _get_closest_snake() -> Node2D:
+	var snakes = get_tree().get_nodes_in_group("snakes")
+	if snakes.is_empty():
+		return null
+	var closest: Node2D = null
+	var closest_dist_sq := INF
+	for snake in snakes:
+		if not is_instance_valid(snake):
+			continue
+		var snake_pos = snake.get_head_pos()
+		var dist_sq = global_position.distance_squared_to(snake_pos)
+		if dist_sq < closest_dist_sq:
+			closest_dist_sq = dist_sq
+			closest = snake
+	return closest
+
+func _apply_wiggle(delta: float, shy_percent: float) -> void:
+	if _eat_tween:
+		return
+	const WIGGLE_SPEED := 10.0
+	const WIGGLE_ANGLE := .58
+	var _wiggle_amount = max(0.1, shy_percent) * delta
+	_wiggle_time += _wiggle_amount * WIGGLE_SPEED
+	sprite.rotation = sin(_wiggle_time) * WIGGLE_ANGLE
+
+func _clamp_to_screen() -> void:
+	var view_size: Vector2 = get_viewport().get_visible_rect().size
+	const EDGE_BUFFER := 50.0
+	global_position.x = clamp(global_position.x, EDGE_BUFFER, view_size.x - EDGE_BUFFER)
+	global_position.y = clamp(global_position.y, EDGE_BUFFER, view_size.y - EDGE_BUFFER)
 
 func _apply_fruit_data():
 	if not fruit_data:

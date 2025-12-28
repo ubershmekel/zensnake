@@ -76,6 +76,9 @@ func _process(delta: float) -> void:
 		time_passed = 0.0 # Reset timer
 		move()
 
+func get_head_pos() -> Vector2:
+	return $SnakeHead.global_position
+
 func grow(custom_position: Vector2) -> void:
 	var new_body: Node2D = snake_nodes[-1].duplicate()
 	new_body.name = "SnakeBody_" + str(snake_nodes.size())

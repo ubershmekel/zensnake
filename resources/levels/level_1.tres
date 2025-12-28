@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://cog9hkruemap4"]
+[gd_resource type="Resource" script_class="LevelResource" load_steps=3 format=3 uid="uid://cohahkruemap4"]
 
-[ext_resource type="Script" uid="uid://q0jnbdhrdju5z" path="res://game/level_resource.gd" id="1_ncdvm"]
+[ext_resource type="Script" uid="uid://bjv5w4sq3qd4x" path="res://game/level_resource.gd" id="1_ncdvm"]
 [ext_resource type="PackedScene" uid="uid://bi5li70jeef0l" path="res://game/levels/level_1.tscn" id="2_ko2pa"]
 
 [resource]
+resource_name = "Level: Level 1"
 script = ExtResource("1_ncdvm")
 name = "Level 1"
 scene = ExtResource("2_ko2pa")
