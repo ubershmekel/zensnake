@@ -15,7 +15,7 @@ offset_right = 701.0
 offset_bottom = 255.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "The bananas are shy"
+text = "Some bananas are shy"
 script = ExtResource("2_idhg3")
 animation_duration = 3.0
 start_delay = 3.0
@@ -30,7 +30,7 @@ fruit_data = ExtResource("4_pvgbp")
 [node name="Fruit5" parent="." instance=ExtResource("3_l3487")]
 position = Vector2(387, 1084)
 scale = Vector2(2, 2)
-shyness_velocity = 300.0
+shyness_velocity = 200.0
 fruit_data = ExtResource("4_pvgbp")
 
 [node name="Fruit6" parent="." instance=ExtResource("3_l3487")]
@@ -84,7 +84,7 @@ fruit_data = ExtResource("4_pvgbp")
 [node name="Fruit13" parent="." instance=ExtResource("3_l3487")]
 position = Vector2(625, 945)
 scale = Vector2(2, 2)
-shyness_velocity = 500.0
+shyness_velocity = 800.0
 fruit_data = ExtResource("4_pvgbp")
 
 [node name="Fruit14" parent="." instance=ExtResource("3_l3487")]

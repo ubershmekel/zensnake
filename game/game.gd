@@ -26,7 +26,6 @@ func _ready():
 	_load_level(0)
 	
 	snakes = [$Snake]
-	$Snake.add_to_group("snakes")
 
 	# Apply textures to the primary snake
 	if player_count == 1:
@@ -40,7 +39,6 @@ func _ready():
 		var new_snake = $Snake.duplicate()
 		add_child(new_snake)
 		new_snake.hotkey = KEY_B
-		new_snake.add_to_group("snakes")
 		# Assign caterpy textures to the duplicated second-player snake
 		# Load the caterpy skin on the new snake (not the original)
 		new_snake.load_skin(SKIN_CATERPY)
