@@ -13,6 +13,7 @@ const TILE_SIZE = 32
 
 @export var fruit_types: FruitList = preload("res://resources/fruits_list_all.tres")
 @export var shyness_velocity: float = 0.0
+@export var fall_speed: float = 0.0
 
 @export var fruit_data: FruitData:
 	set(value):
@@ -33,8 +34,21 @@ func _ready():
 	_apply_fruit_data()
 
 func _physics_process(delta: float) -> void:
-	if shyness_velocity <= 0.0:
-		return
+	if shyness_velocity > 0.0:
+		_shyness_physics_process(delta)
+	
+	if fall_speed > 0.0:
+		_fall_physics_process(delta)
+	
+func _fall_physics_process(delta: float) -> void:
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
+	position.y += fall_speed * delta
+	if position.y > viewport_size.y:
+		position.y = - FruitClass.TILE_SIZE
+		position.x = randf_range(0.0, viewport_size.x)
+
+
+func _shyness_physics_process(delta: float) -> void:
 	var snake = _get_closest_snake()
 	if not is_instance_valid(snake):
 		return
@@ -81,10 +95,10 @@ func _apply_wiggle(delta: float, shy_percent: float) -> void:
 	sprite.rotation = sin(_wiggle_time) * WIGGLE_ANGLE
 
 func _clamp_to_screen() -> void:
-	var view_size: Vector2 = get_viewport().get_visible_rect().size
+	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	const EDGE_BUFFER := 50.0
-	global_position.x = clamp(global_position.x, EDGE_BUFFER, view_size.x - EDGE_BUFFER)
-	global_position.y = clamp(global_position.y, EDGE_BUFFER, view_size.y - EDGE_BUFFER)
+	global_position.x = clamp(global_position.x, EDGE_BUFFER, viewport_size.x - EDGE_BUFFER)
+	global_position.y = clamp(global_position.y, EDGE_BUFFER, viewport_size.y - EDGE_BUFFER)
 
 func _apply_fruit_data():
 	if not fruit_data:

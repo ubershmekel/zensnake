@@ -1,7 +1,6 @@
 extends LevelBase
 
 const FRUIT_COUNT := 20
-const FALL_SPEED := 40.0
 
 @onready var _fruit_scene: PackedScene = preload("res://game/fruit.tscn")
 @onready var _grape_data: FruitData = preload("res://resources/fruit/grapes.tres")
@@ -13,6 +12,7 @@ func _spawn_fruit():
 	var fruit: FruitClass = _fruit_scene.instantiate()
 	fruit.scale = Vector2(1.5, 1.5)
 	fruit.fruit_data = _grape_data
+	fruit.fall_speed = 40
 	# Parent may still be configuring its children, so defer attaching the fruit.
 	add_child(fruit)
 	fruit.eaten.connect(_on_fruit_eaten)
@@ -50,18 +50,3 @@ func _ready() -> void:
 		var fruit: FruitClass = _spawn_fruit()
 		fruit.position = Vector2(randf_range(0.0, viewport_size.x), randf_range(0.0, viewport_size.y))
 		_fruits.append(fruit)
-
-func _process(delta: float) -> void:
-	if _fruits.is_empty():
-		return
-	var viewport_size := get_viewport().get_visible_rect().size
-	for fruit in _fruits:
-		if not is_instance_valid(fruit):
-			# Fruit gets freed when eaten
-			continue
-		var pos := fruit.position
-		pos.y += FALL_SPEED * delta
-		if pos.y > viewport_size.y:
-			pos.y = - FruitClass.TILE_SIZE
-			pos.x = randf_range(0.0, viewport_size.x)
-		fruit.position = pos

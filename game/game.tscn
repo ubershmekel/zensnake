@@ -24,7 +24,7 @@ metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
-levels = Array[ExtResource("1_lvr2g")]([SubResource("Resource_hb504"), ExtResource("2_lvl1"), ExtResource("2_lvl2"), ExtResource("2_lvlrain"), ExtResource("3_infinite")])
+levels = Array[ExtResource("1_lvr2g")]([ExtResource("2_lvlrain"), SubResource("Resource_hb504"), ExtResource("2_lvl1"), ExtResource("2_lvl2"), ExtResource("3_infinite")])
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
 
