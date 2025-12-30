@@ -16,6 +16,7 @@ growth_per_fruit = 10
 z_index = 100
 position = Vector2(32, -32)
 script = ExtResource("2_v63gm")
+fall_speed = null
 fruit_data = ExtResource("3_v63gm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Fruit"]

@@ -25,149 +25,179 @@ start_scale = 0.1
 [node name="Fruit" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(250, 1124)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit2" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(191, 1110)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit4" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(123, 1003)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit5" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(119, 945)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit6" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(116, 876)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit7" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(117, 804)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit8" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(146, 739)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit9" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(199, 683)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit10" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(262, 649)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit11" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(336, 647)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit12" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(302, 615)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit13" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(274, 575)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit14" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(244, 534)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit15" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(292, 539)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit16" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(320, 559)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit20" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(503, 683)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit21" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(553, 737)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit22" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(581, 799)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit23" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(592, 873)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit24" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(577, 943)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit25" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(551, 1004)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit26" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(514, 1057)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit27" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(488, 1107)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit28" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(430, 1126)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit29" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(374, 1132)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit30" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(316, 1136)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit17" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(332, 596)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit18" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(383, 624)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit19" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(443, 634)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")
 
 [node name="Fruit3" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(163, 1062)
 scale = Vector2(2, 2)
+fall_speed = 0.0
 fruit_data = ExtResource("4_wi6ud")

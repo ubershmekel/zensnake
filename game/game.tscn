@@ -16,13 +16,6 @@
 [ext_resource type="Script" uid="uid://uaditmv5s6a3" path="res://game/touch_button_2p.gd" id="8_j8tme"]
 [ext_resource type="PackedScene" uid="uid://cyxnmvylkf8u4" path="res://game/pause_menu.tscn" id="9_3vho3"]
 
-[sub_resource type="Resource" id="Resource_hb504"]
-resource_name = "Level: Shy Banana"
-script = ExtResource("1_lvr2g")
-name = "Shy Banana"
-scene = ExtResource("3_b686c")
-metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
-
 [sub_resource type="Resource" id="Resource_ee6o4"]
 resource_name = "Level: Fast peppers"
 script = ExtResource("1_lvr2g")
@@ -30,15 +23,22 @@ name = "Fast peppers"
 scene = ExtResource("8_hb504")
 metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
 
+[sub_resource type="Resource" id="Resource_hb504"]
+resource_name = "Level: Shy Banana"
+script = ExtResource("1_lvr2g")
+name = "Shy Banana"
+scene = ExtResource("3_b686c")
+metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
-levels = Array[ExtResource("1_lvr2g")]([ExtResource("2_lvlrain"), SubResource("Resource_hb504"), ExtResource("2_lvl1"), ExtResource("2_lvl2"), ExtResource("3_infinite"), SubResource("Resource_ee6o4")])
+levels = Array[ExtResource("1_lvr2g")]([ExtResource("2_lvl1"), ExtResource("2_lvl2"), ExtResource("2_lvlrain"), SubResource("Resource_ee6o4"), SubResource("Resource_hb504"), ExtResource("3_infinite")])
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
 
 [node name="Snake" parent="." instance=ExtResource("2_4fuuu")]
 static_body = true
-smooth_tween = true
+smooth_tween = false
 
 [node name="LevelSlot" type="Node2D" parent="."]
 

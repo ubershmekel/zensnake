@@ -8,6 +8,7 @@
 script = ExtResource("2_hhgvd")
 static_body = true
 smooth_tween = true
+speed_factor = 1.1
 metadata/_custom_type_script = "uid://bvq0chp7ae3u7"
 
 [resource]

@@ -3,14 +3,15 @@ extends Node2D
 # --- Movement Settings ---
 const TILE_SIZE := 32
 const SNAKE_MOVE_SIZE := 40
-const MOVE_INTERVAL := 0.12 # seconds between moves
 const ROTATE_RATE := 15.0
-const ROTATION_INTERVAL := MOVE_INTERVAL
+const BASE_MOVE_INTERVAL := 0.12
+const ROTATION_INTERVAL := BASE_MOVE_INTERVAL
 
 @export var hotkey = KEY_A
 @export var static_body = false
 @export var smooth_tween = false
 
+var move_interval := BASE_MOVE_INTERVAL # seconds between moves
 var is_hotkey_pressed := false
 var is_button_down := false
 var direction := Vector2.UP
@@ -72,7 +73,7 @@ func _process(delta: float) -> void:
 		$SnakeHead.rotation = direction.angle() + PI / 2
 	
 	# Check if it's time to move
-	if time_passed >= MOVE_INTERVAL:
+	if time_passed >= move_interval:
 		time_passed = 0.0 # Reset timer
 		move()
 
@@ -132,23 +133,26 @@ func move() -> void:
 			_animate_segment_to(snake_nodes[i], previous_position)
 			previous_position = current_position
 
-func _on_fruit_eaten(_eater: Node, fruit_data: FruitData = null, growth_amount: int = 10):
+func _on_fruit_eaten(_eater: Node, fruit_data: FruitData = null):
 	# Deprecated: Use _on_snake_effect instead
 	# This method is kept for backward compatibility
-	var effect = SnakeEffect.new(growth_amount, fruit_data.static_body if fruit_data else false, fruit_data.smooth_tween if fruit_data else false)
-	_on_snake_effect(effect)
+	# var effect = SnakeEffect.new(growth_amount, fruit_data.static_body if fruit_data else false, fruit_data.smooth_tween if fruit_data else false)
+	if fruit_data:
+		_on_snake_effect(fruit_data.snake_effect)
 
 func _on_snake_effect(effect: SnakeEffect):
 	# Apply all effects from the SnakeEffect
 	snake_size += effect.growth_amount
 	static_body = effect.static_body
 	smooth_tween = effect.smooth_tween
+	move_interval = move_interval / effect.speed_factor
 	AudioManager.play_eat()
 	_play_head_pop()
 
 func reset_for_new_level(target_position: Vector2, target_size: int = 2, duration: float = 0.35) -> void:
 	target_size = max(target_size, 2)
 	snake_size = target_size
+	move_interval = BASE_MOVE_INTERVAL
 	pause_processing = true
 	direction = Vector2.UP
 	time_passed = 0.0
@@ -203,7 +207,7 @@ func _animate_segment_to(node: Node2D, target_position: Vector2, cancel_tween = 
 		return
 	
 	var tween := create_tween()
-	tween.tween_property(node, "position", target_position, MOVE_INTERVAL).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
+	tween.tween_property(node, "position", target_position, move_interval).set_trans(Tween.TRANS_LINEAR).set_ease(Tween.EASE_IN)
 	node_move_tweens[node] = tween
 
 func _play_head_pop() -> void:
