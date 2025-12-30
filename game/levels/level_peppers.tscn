@@ -1,0 +1,126 @@
+[gd_scene load_steps=5 format=3 uid="uid://gfm7g7ew6eoq"]
+
+[ext_resource type="Script" uid="uid://cpym8fqebntlq" path="res://game/level_eat_all_fruit.gd" id="1_67rjf"]
+[ext_resource type="Script" uid="uid://khtj3vh7xq00" path="res://game/animate_label_in.gd" id="2_h471r"]
+[ext_resource type="PackedScene" uid="uid://cg2257rstylj" path="res://game/fruit.tscn" id="3_7pu5a"]
+[ext_resource type="Resource" uid="uid://bdmrdob4fakp5" path="res://resources/fruit/chili.tres" id="4_67rjf"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_67rjf")
+
+[node name="Story" type="Label" parent="."]
+offset_left = 49.0
+offset_top = 595.0
+offset_right = 735.0
+offset_bottom = 793.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Do you ever feel like
+things are getting so fast
+that it's overwhelming?"
+script = ExtResource("2_h471r")
+animation_duration = 3.0
+start_delay = 3.0
+start_scale = 0.1
+
+[node name="Fruit4" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(56, 1120)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit7" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(276, 933)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit8" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(559, 938)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit9" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(83, 867)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit10" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(420, 346)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit11" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(296, 263)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit12" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(165, 1201)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit13" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(262, 607)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit14" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(86, 586)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit15" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(88, 102)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit20" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(360, 764)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit27" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(477, 1078)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit28" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(618, 1195)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit29" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(362, 1117)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit17" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(586, 125)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit18" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(633, 554)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")
+
+[node name="Fruit19" parent="." instance=ExtResource("3_7pu5a")]
+position = Vector2(588, 790)
+scale = Vector2(2, 2)
+fall_speed = 0.0
+fruit_data = ExtResource("4_67rjf")

@@ -10,6 +10,7 @@ radius = 26.0
 [node name="Fruit" type="Area2D" groups=["fruits"]]
 z_index = 100
 script = ExtResource("1_3ee2v")
+fall_speed = null
 fruit_data = ExtResource("3_f20vr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
