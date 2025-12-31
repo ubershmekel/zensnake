@@ -44,8 +44,7 @@ func _fall_physics_process(delta: float) -> void:
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	position.y += fall_speed * delta
 	if position.y > viewport_size.y:
-		position.y = - FruitClass.TILE_SIZE
-		position.x = randf_range(0.0, viewport_size.x)
+		position.y = -FruitClass.TILE_SIZE
 
 
 func _shyness_physics_process(delta: float) -> void:
