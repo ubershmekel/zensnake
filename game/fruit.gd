@@ -44,7 +44,7 @@ func _fall_physics_process(delta: float) -> void:
 	var viewport_size: Vector2 = get_viewport().get_visible_rect().size
 	position.y += fall_speed * delta
 	if position.y > viewport_size.y:
-		position.y = -FruitClass.TILE_SIZE
+		position.y = - FruitClass.TILE_SIZE
 
 
 func _shyness_physics_process(delta: float) -> void:
@@ -156,6 +156,7 @@ func random_type():
 		var random_fruit: FruitData = fruit_types.fruits[random_index]
 		fruit_data = random_fruit
 		sprite.texture = random_fruit.texture
+		return fruit_data
 	
 func random_position():
 	var viewport_size = get_viewport().get_visible_rect().size

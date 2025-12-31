@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://ijpro01eklid"]
+[gd_scene load_steps=20 format=3 uid="uid://ijpro01eklid"]
 
 [ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/game.gd" id="1_h7iqs"]
 [ext_resource type="Script" uid="uid://bjv5w4sq3qd4x" path="res://game/level_resource.gd" id="1_lvr2g"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://dc7c770w11b47" path="res://resources/levels/level_2.tres" id="2_lvl2"]
 [ext_resource type="Resource" uid="uid://gjfsmiuyx40" path="res://resources/levels/level_raining.tres" id="2_lvlrain"]
 [ext_resource type="PackedScene" uid="uid://bf0xqkxs5pcjf" path="res://game/levels/level_shy_banana.tscn" id="3_b686c"]
+[ext_resource type="PackedScene" uid="uid://cei24ibbxluhj" path="res://game/levels/level_random_pattern.tscn" id="3_ee6o4"]
 [ext_resource type="Resource" uid="uid://dhumtotajhh1q" path="res://resources/levels/infinite_random_fruit.tres" id="3_infinite"]
 [ext_resource type="PackedScene" uid="uid://bkf7wuly2daas" path="res://game/2p_touch_button.tscn" id="6_dakft"]
 [ext_resource type="Texture2D" uid="uid://caosjsa4j4g2m" path="res://assets/buttons/pause-button-idle.png" id="7_j8tme"]
@@ -23,6 +24,13 @@ name = "Fast peppers"
 scene = ExtResource("8_hb504")
 metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
 
+[sub_resource type="Resource" id="Resource_4cobl"]
+resource_name = "Level: Random Pattern"
+script = ExtResource("1_lvr2g")
+name = "Random Pattern"
+scene = ExtResource("3_ee6o4")
+metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
+
 [sub_resource type="Resource" id="Resource_hb504"]
 resource_name = "Level: Shy Banana"
 script = ExtResource("1_lvr2g")
@@ -32,7 +40,7 @@ metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_h7iqs")
-levels = Array[ExtResource("1_lvr2g")]([ExtResource("2_lvlrain"), ExtResource("2_lvl1"), ExtResource("2_lvl2"), SubResource("Resource_ee6o4"), SubResource("Resource_hb504"), ExtResource("3_infinite")])
+levels = Array[ExtResource("1_lvr2g")]([ExtResource("2_lvl1"), ExtResource("2_lvl2"), ExtResource("2_lvlrain"), SubResource("Resource_ee6o4"), SubResource("Resource_4cobl"), SubResource("Resource_hb504"), SubResource("Resource_4cobl"), ExtResource("3_infinite")])
 
 [node name="Background" parent="." instance=ExtResource("2_dxrkv")]
 

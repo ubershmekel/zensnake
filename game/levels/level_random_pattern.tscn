@@ -1,0 +1,526 @@
+[gd_scene load_steps=5 format=3 uid="uid://cei24ibbxluhj"]
+
+[ext_resource type="Script" uid="uid://cpym8fqebntlq" path="res://game/level_eat_all_fruit.gd" id="1_ijw17"]
+[ext_resource type="Script" uid="uid://khtj3vh7xq00" path="res://game/animate_label_in.gd" id="2_mvecb"]
+[ext_resource type="Script" uid="uid://p2cljh0u2tbm" path="res://game/pattern_fruit_spawner.gd" id="3_ijw17"]
+[ext_resource type="PackedScene" uid="uid://cg2257rstylj" path="res://game/fruit.tscn" id="4_mvecb"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_ijw17")
+
+[node name="Note" type="Label" parent="."]
+offset_left = 13.0
+offset_top = 964.0
+offset_right = 699.0
+offset_bottom = 1162.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "A pattern emerges"
+script = ExtResource("2_mvecb")
+animation_duration = 3.0
+start_delay = 3.0
+
+[node name="PatternFruitSpawner" type="Node" parent="."]
+script = ExtResource("3_ijw17")
+
+[node name="House" type="Node2D" parent="PatternFruitSpawner"]
+visible = false
+
+[node name="Fruit" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(117, 807)
+fall_speed = 0.0
+
+[node name="Fruit2" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(113, 885)
+fall_speed = 0.0
+
+[node name="Fruit18" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(184, 888)
+fall_speed = 0.0
+
+[node name="Fruit19" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(259, 884)
+fall_speed = 0.0
+
+[node name="Fruit20" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(332, 884)
+fall_speed = 0.0
+
+[node name="Fruit21" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(409, 890)
+fall_speed = 0.0
+
+[node name="Fruit22" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(482, 887)
+fall_speed = 0.0
+
+[node name="Fruit3" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(117, 651)
+fall_speed = 0.0
+
+[node name="Fruit4" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(113, 729)
+fall_speed = 0.0
+
+[node name="Fruit5" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(614, 806)
+fall_speed = 0.0
+
+[node name="Fruit6" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(610, 884)
+fall_speed = 0.0
+
+[node name="Fruit7" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(614, 650)
+fall_speed = 0.0
+
+[node name="Fruit8" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(610, 728)
+fall_speed = 0.0
+
+[node name="Fruit9" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(564, 509)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit10" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(600.00006, 582)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit23" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(543, 881)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit11" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(459.99997, 374.00003)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit24" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(417, 327.99997)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit25" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(374, 279)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit12" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(514, 440)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit13" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(175, 502.00003)
+rotation = 1.3089969
+fall_speed = 0.0
+
+[node name="Fruit14" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(137, 572)
+rotation = 1.3089969
+fall_speed = 0.0
+
+[node name="Fruit15" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(278, 386)
+rotation = 1.3089969
+fall_speed = 0.0
+
+[node name="Fruit17" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(323.00003, 336.00003)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit16" parent="PatternFruitSpawner/House" instance=ExtResource("4_mvecb")]
+position = Vector2(229, 445)
+rotation = 1.3089969
+fall_speed = 0.0
+
+[node name="Rainbow" type="Node2D" parent="PatternFruitSpawner"]
+
+[node name="Fruit3" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(117, 651)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit4" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(113, 729)
+rotation = 0.2617994
+fall_speed = 0.0
+
+[node name="Fruit6" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(253, 727)
+fall_speed = 0.0
+
+[node name="Fruit15" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(265, 667)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit18" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(294.99997, 616)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit19" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(352.00003, 579)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit20" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(512, 761)
+fall_speed = 0.0
+
+[node name="Fruit21" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(497, 692)
+fall_speed = 0.0
+
+[node name="Fruit22" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(475, 620)
+fall_speed = 0.0
+
+[node name="Fruit23" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(425.9999, 577.99994)
+rotation = 0.2617994
+fall_speed = 0.0
+
+[node name="Fruit5" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(675, 754)
+fall_speed = 0.0
+
+[node name="Fruit7" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(655, 623)
+fall_speed = 0.0
+
+[node name="Fruit8" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(667, 696)
+fall_speed = 0.0
+
+[node name="Fruit9" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(580.00006, 499)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit10" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(623, 559)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit11" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(465.99997, 416)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit24" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(420, 405)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit25" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(346, 392.99997)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit12" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(526, 444.99997)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit13" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(175, 502.00003)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit14" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(137, 572)
+rotation = 0.7853982
+fall_speed = 0.0
+
+[node name="Fruit17" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(286.00003, 411.00003)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit16" parent="PatternFruitSpawner/Rainbow" instance=ExtResource("4_mvecb")]
+position = Vector2(229, 445)
+rotation = 1.0471976
+fall_speed = 0.0
+
+[node name="Tee" type="Node2D" parent="PatternFruitSpawner"]
+visible = false
+
+[node name="Fruit6" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(346, 920)
+fall_speed = 0.0
+
+[node name="Fruit15" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(358, 860)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit18" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(355.00003, 807)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit19" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(344, 751)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit21" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(354, 669)
+fall_speed = 0.0
+
+[node name="Fruit22" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(352, 597)
+fall_speed = 0.0
+
+[node name="Fruit23" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(342, 519.00006)
+rotation = 0.2617994
+fall_speed = 0.0
+
+[node name="Fruit9" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(594, 465.00003)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit11" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(460.99997, 459.00003)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit24" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(406.99994, 465)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit25" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(338, 459)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit12" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(526, 449)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit13" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(128, 466)
+rotation = 1.3089969
+fall_speed = 0.0
+
+[node name="Fruit17" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(259.00003, 460.00006)
+rotation = 0.7853982
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit16" parent="PatternFruitSpawner/Tee" instance=ExtResource("4_mvecb")]
+position = Vector2(205, 469.00003)
+rotation = 1.3089969
+fall_speed = 0.0
+
+[node name="Smile" type="Node2D" parent="PatternFruitSpawner"]
+visible = false
+
+[node name="Fruit6" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(99, 748)
+fall_speed = 0.0
+
+[node name="Fruit15" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(636, 733)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit18" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(195.99994, 867)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit19" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(136, 820)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit21" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(260.99997, 896)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit22" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(350, 906)
+fall_speed = 0.0
+
+[node name="Fruit23" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(435.00006, 892)
+rotation = 0.2617994
+fall_speed = 0.0
+
+[node name="Fruit9" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(585, 804)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit11" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(452.99997, 661)
+rotation = 0.5235988
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit24" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(455.99997, 583)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit25" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(456.00006, 507.99997)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit12" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(518, 852)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit13" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(272, 516)
+rotation = 0.2617994
+fall_speed = 0.0
+
+[node name="Fruit17" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(267, 658)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit16" parent="PatternFruitSpawner/Smile" instance=ExtResource("4_mvecb")]
+position = Vector2(270, 590)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Heart" type="Node2D" parent="PatternFruitSpawner"]
+visible = false
+
+[node name="Fruit6" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(171, 650)
+fall_speed = 0.0
+
+[node name="Fruit15" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(520, 495)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit20" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(572, 529)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit18" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(239, 789.9999)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit19" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(200, 724.99994)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit21" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(288.99997, 853)
+rotation = 0.5235988
+fall_speed = 0.0
+
+[node name="Fruit22" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(350, 906)
+fall_speed = 0.0
+
+[node name="Fruit23" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(415.99994, 865)
+rotation = 0.2617994
+fall_speed = 0.0
+
+[node name="Fruit9" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(576, 693)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit10" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(607, 611)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit11" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(342.00003, 541)
+rotation = 0.5235988
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit24" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(388.99997, 598)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit25" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(447.99994, 538)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit12" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(530, 769.99994)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit14" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(471.99994, 819.9999)
+rotation = -0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit13" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(216.99995, 492)
+rotation = 0.2617994
+fall_speed = 0.0
+
+[node name="Fruit17" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(173, 561.00006)
+rotation = 0.2617994
+scale = Vector2(0.99999994, 0.99999994)
+fall_speed = 0.0
+
+[node name="Fruit16" parent="PatternFruitSpawner/Heart" instance=ExtResource("4_mvecb")]
+position = Vector2(286.99994, 489)
+rotation = 0.5235988
+fall_speed = 0.0

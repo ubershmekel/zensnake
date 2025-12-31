@@ -15,6 +15,9 @@ func _count_fruits() -> void:
 func _on_fruit_eaten(eater: Node, fruit_data: FruitData) -> void:
 	# Emit signal so game can react to fruit being eaten
 	fruit_eaten.emit(eater, fruit_data)
+	# In the pattern fruit spawner we have fruits that get freed without any
+	# signals sent, so count the remaining fruit every time they eat
+	_count_fruits()
 
 func _on_fruit_eaten_animation_done(fruit: FruitClass) -> void:
 	# Instead of respawning the fruit like fruit_randomizer does,
