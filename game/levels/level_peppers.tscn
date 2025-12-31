@@ -24,7 +24,7 @@ start_delay = 3.0
 start_scale = 0.1
 
 [node name="Fruit4" parent="." instance=ExtResource("3_7pu5a")]
-position = Vector2(56, 1120)
+position = Vector2(123, 1136)
 scale = Vector2(2, 2)
 fall_speed = 0.0
 fruit_data = ExtResource("4_67rjf")
@@ -55,12 +55,6 @@ fruit_data = ExtResource("4_67rjf")
 
 [node name="Fruit11" parent="." instance=ExtResource("3_7pu5a")]
 position = Vector2(296, 263)
-scale = Vector2(2, 2)
-fall_speed = 0.0
-fruit_data = ExtResource("4_67rjf")
-
-[node name="Fruit12" parent="." instance=ExtResource("3_7pu5a")]
-position = Vector2(165, 1201)
 scale = Vector2(2, 2)
 fall_speed = 0.0
 fruit_data = ExtResource("4_67rjf")
