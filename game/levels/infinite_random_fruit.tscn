@@ -20,7 +20,6 @@ fall_speed = null
 fruit_data = ExtResource("3_v63gm")
 
 [node name="Sprite2D" type="Sprite2D" parent="Fruit"]
-scale = Vector2(2, 2)
 texture = ExtResource("3_mktt2")
 region_rect = Rect2(64, 0, 32, 32)
 

@@ -72,7 +72,6 @@ texture = ExtResource("5_t2kev")
 
 [node name="TutorialCherry" type="Sprite2D" parent="MarginSafeArea/Title/HoldButtonTutorial"]
 position = Vector2(177, -342)
-scale = Vector2(2, 2)
 texture = ExtResource("6_pfca1")
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginSafeArea/Title"]

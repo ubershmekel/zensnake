@@ -10,7 +10,6 @@ var fruit_eaten_count := 0;
 
 func _spawn_fruit():
 	var fruit: FruitClass = _fruit_scene.instantiate()
-	fruit.scale = Vector2(1.5, 1.5)
 	fruit.fruit_data = _grape_data
 	fruit.fall_speed = 40
 	# Parent may still be configuring its children, so defer attaching the fruit.

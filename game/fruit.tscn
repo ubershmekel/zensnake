@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://pl5h7yuqy7d6" path="res://resources/fruit/apple.tres" id="3_f20vr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dxrkv"]
-radius = 26.0
+radius = 48.0
 
 [node name="Fruit" type="Area2D" groups=["fruits"]]
 z_index = 100
