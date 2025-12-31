@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Kat and Noodles"
-config/version="1.0.2"
+config/description="Kat and Noodles eat fruit and give you some calm zen"
+config/version="1.0.3"
 run/main_scene="uid://bdyqw0a3sby87"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="uid://bdbbr6t6n6lc6"
