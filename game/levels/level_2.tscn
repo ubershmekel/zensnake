@@ -20,7 +20,6 @@ a different animation style"
 script = ExtResource("2_2f1k2")
 animation_duration = 3.0
 start_delay = 3.0
-start_scale = 0.1
 
 [node name="Fruit" parent="." instance=ExtResource("3_7dx7g")]
 position = Vector2(235, 1138)

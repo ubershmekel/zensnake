@@ -18,9 +18,7 @@ theme_override_font_sizes/font_size = 50
 text = "Tap and hold anywhere
 on the screen to turn left"
 script = ExtResource("2_wi6ud")
-animation_duration = 3.0
 start_delay = 3.0
-start_scale = 0.1
 
 [node name="Fruit" parent="." instance=ExtResource("3_4ocoy")]
 position = Vector2(250, 1124)

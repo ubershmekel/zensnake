@@ -21,7 +21,6 @@ that it's overwhelming?"
 script = ExtResource("2_h471r")
 animation_duration = 3.0
 start_delay = 3.0
-start_scale = 0.1
 
 [node name="Fruit4" parent="." instance=ExtResource("3_7pu5a")]
 position = Vector2(123, 1136)

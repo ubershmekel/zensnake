@@ -17,4 +17,3 @@ text = "It's raining grapes!"
 script = ExtResource("2_qrdo1")
 animation_duration = 3.0
 start_delay = 3.0
-start_scale = 0.1
