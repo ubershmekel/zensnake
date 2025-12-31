@@ -15,7 +15,7 @@ config/description="Kat and Noodles eat fruit and give you some calm zen"
 config/version="1.0.3"
 run/main_scene="uid://bdyqw0a3sby87"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-boot_splash/image="uid://bdbbr6t6n6lc6"
+boot_splash/image="uid://bm1okrwrtdljb"
 config/icon="res://icon.svg"
 
 [autoload]
