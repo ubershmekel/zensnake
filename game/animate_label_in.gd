@@ -4,23 +4,26 @@ extends Label
 @export var start_delay: float = 0.0
 @export var start_scale: float = 1.0
 @export var character_interval: float = 0.04
+@export var fade_duration: float = 0.2
 
 var _reveal_tween: Tween = null
 var _reveal_token: int = 0
 
 func _ready() -> void:
 	reset()
+	wait_and_reveal()
+
+func wait_and_reveal() -> void:
+	# Trigger reveal animation after the configured delay
+	if start_delay > 0:
+		await get_tree().create_timer(start_delay).timeout
+	reveal()
 
 func reset() -> void:
 	# Start invisible
 	modulate.a = 0.0
 	scale = Vector2(start_scale, start_scale)
 	visible_characters = 0
-	
-	# Trigger reveal animation after the configured delay
-	if start_delay > 0:
-		await get_tree().create_timer(start_delay).timeout
-	reveal()
 
 func reveal() -> void:
 	# Cancel any existing tween
@@ -46,3 +49,11 @@ func _reveal_characters(token: int) -> void:
 			return
 		visible_characters = i + 1
 		await get_tree().create_timer(character_interval).timeout
+
+func fade_out(duration: float = -1.0) -> void:
+	# Cancel any existing tween to avoid fighting animations.
+	if _reveal_tween:
+		_reveal_tween.kill()
+	var tween := create_tween()
+	var final_duration := fade_duration if duration < 0.0 else duration
+	tween.tween_property(self, "modulate:a", 0.0, final_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)

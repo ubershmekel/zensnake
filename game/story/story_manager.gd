@@ -28,12 +28,28 @@ func on_fruit_eaten(_fruit) -> void:
 	if _active == null:
 		return
 	_fruit_count += 1
-	if _fruit_count % fruits_per_line != 0:
-		return
+	var phase := _fruit_count % 4
+	match phase:
+		0:
+			_clear_story_text() # no text
+		1:
+			_show_next_line() # text
+		2:
+			pass # text
+		3:
+			story_ui.fade_out(1.0) # no text
+
+
+func _clear_story_text() -> void:
+	story_ui.text = ""
+	story_ui.reset()
+
+
+func _show_next_line() -> void:
 	var lines := _active.get_lines()
 	if _line_index >= lines.size():
 		return
-	if story_ui is Label:
-		story_ui.text = lines[_line_index]
-		story_ui.reset()
+
+	story_ui.text = lines[_line_index]
+	story_ui.reveal()
 	_line_index += 1
