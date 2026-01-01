@@ -16,9 +16,13 @@ func _ready() -> void:
 	if library:
 		_active = library.pick_random(_rng)
 
+	# remove placeholder text
+	story_ui.text = ""
+
 	var fruits = get_tree().get_nodes_in_group("fruits")
 	for fruit in fruits:
 		fruit.eaten_animation_done.connect(on_fruit_eaten)
+	
 
 func on_fruit_eaten(_fruit) -> void:
 	if _active == null:
