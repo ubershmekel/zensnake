@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="StoryLibrary" load_steps=7 format=3 uid="uid://den4as1hjgv1l"]
+
+[ext_resource type="Script" uid="uid://d4gu4jnj56dah" path="res://game/story/story_library.gd" id="1_jbms3"]
+[ext_resource type="Script" uid="uid://birmfm2ixipu7" path="res://game/story/story_text.gd" id="2_7q8hf"]
+
+[sub_resource type="Resource" id="1"]
+resource_name = "StoryText: story_1"
+script = ExtResource("2_7q8hf")
+text_file = "res://resources/story/story_1.txt"
+id = "story_1"
+
+[sub_resource type="Resource" id="2"]
+resource_name = "StoryText: story_2"
+script = ExtResource("2_7q8hf")
+text_file = "res://resources/story/story_2.txt"
+id = "story_2"
+
+[sub_resource type="Resource" id="3"]
+resource_name = "StoryText: story_3"
+script = ExtResource("2_7q8hf")
+text_file = "res://resources/story/story_3.txt"
+id = "story_3"
+
+[sub_resource type="Resource" id="4"]
+resource_name = "StoryText: story_4"
+script = ExtResource("2_7q8hf")
+text_file = "res://resources/story/story_4.txt"
+id = "story_4"
+
+[resource]
+script = ExtResource("1_jbms3")
+sequences = Array[ExtResource("2_7q8hf")]([SubResource("1"), SubResource("2"), SubResource("3"), SubResource("4")])

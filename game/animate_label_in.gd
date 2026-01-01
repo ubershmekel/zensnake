@@ -9,6 +9,9 @@ var _reveal_tween: Tween = null
 var _reveal_token: int = 0
 
 func _ready() -> void:
+	reset()
+
+func reset() -> void:
 	# Start invisible
 	modulate.a = 0.0
 	scale = Vector2(start_scale, start_scale)

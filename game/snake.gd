@@ -5,7 +5,6 @@ const TILE_SIZE := 32
 const SNAKE_MOVE_SIZE := 40
 const ROTATE_RATE := 15.0
 const BASE_MOVE_INTERVAL := 0.12
-const ROTATION_INTERVAL := BASE_MOVE_INTERVAL
 
 @export var hotkey = KEY_A
 @export var static_body = false
@@ -66,7 +65,7 @@ func _process(delta: float) -> void:
 	rotation_time_passed += delta
 	var is_reversing := is_hotkey_pressed or is_button_down
 	
-	if rotation_time_passed >= ROTATION_INTERVAL:
+	if rotation_time_passed >= move_interval:
 		rotation_time_passed = 0.0
 		var rotation_amount_deg = - ROTATE_RATE if is_reversing else ROTATE_RATE
 		direction = direction.rotated(deg_to_rad(rotation_amount_deg))

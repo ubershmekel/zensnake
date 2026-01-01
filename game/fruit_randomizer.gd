@@ -1,12 +1,12 @@
 extends LevelBase
 
 func _ready() -> void:
-	for child in get_children():
-		if child is FruitClass:
-			child.random_position()
-			child.random_type()
-			child.eaten.connect(_on_fruit_eaten)
-			child.eaten_animation_done.connect(_on_fruit_eaten_animation_done)
+	var fruits = get_tree().get_nodes_in_group("fruits")
+	for fruit in fruits:
+		fruit.random_position()
+		fruit.random_type()
+		fruit.eaten.connect(_on_fruit_eaten)
+		fruit.eaten_animation_done.connect(_on_fruit_eaten_animation_done)
 
 func _on_fruit_eaten(eater: Node, fruit_data: FruitData) -> void:
 	# predetermined behavior: maybe hide that fruit permanently,
