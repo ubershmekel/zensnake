@@ -41,8 +41,12 @@ func on_fruit_eaten(_fruit) -> void:
 
 
 func _clear_story_text() -> void:
-	story_ui.text = ""
 	story_ui.reset()
+	story_ui.text = ""
+	var viewport_size := get_viewport().get_visible_rect().size
+	var min_y := viewport_size.y * 0.25
+	var max_y := viewport_size.y * 0.75
+	story_ui.position.y = _rng.randf_range(min_y, max_y)
 
 
 func _show_next_line() -> void:

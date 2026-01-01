@@ -162,8 +162,9 @@ func random_position():
 	var viewport_size = get_viewport().get_visible_rect().size
 	var x_tiles = int(floor(viewport_size.x / TILE_SIZE))
 	var y_tiles = int(floor(viewport_size.y / TILE_SIZE))
-	var random_x = randi_range(1, x_tiles - 1)
 	# y starts at 2 to avoid the iphone's dynamic island
-	var random_y = randi_range(2, y_tiles - 1)
+	# x and y avoid the corners as well
+	var random_x = randi_range(2, x_tiles - 2)
+	var random_y = randi_range(2, y_tiles - 2)
 	position = Vector2(random_x * TILE_SIZE, random_y * TILE_SIZE)
 	z_index = 100
