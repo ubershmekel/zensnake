@@ -1,21 +1,23 @@
-[gd_scene load_steps=5 format=3 uid="uid://cei24ibbxluhj"]
+[gd_scene load_steps=6 format=3 uid="uid://cei24ibbxluhj"]
 
 [ext_resource type="Script" uid="uid://cpym8fqebntlq" path="res://game/level_eat_all_fruit.gd" id="1_ijw17"]
 [ext_resource type="Script" uid="uid://khtj3vh7xq00" path="res://game/animate_label_in.gd" id="2_mvecb"]
 [ext_resource type="Script" uid="uid://p2cljh0u2tbm" path="res://game/pattern_fruit_spawner.gd" id="3_ijw17"]
 [ext_resource type="PackedScene" uid="uid://cg2257rstylj" path="res://game/fruit.tscn" id="4_mvecb"]
+[ext_resource type="Script" uid="uid://vh7o8347aoda" path="res://game/pattern_story_randomizer.gd" id="5_0xbhh"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ijw17")
 
-[node name="Note" type="Label" parent="."]
+[node name="Note" type="Label" parent="." groups=["StoryText"]]
 offset_left = 13.0
 offset_top = 964.0
 offset_right = 699.0
-offset_bottom = 1162.0
+offset_bottom = 1242.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
 text = "A pattern emerges"
+autowrap_mode = 2
 script = ExtResource("2_mvecb")
 animation_duration = 3.0
 start_delay = 3.0
@@ -524,3 +526,6 @@ fall_speed = 0.0
 position = Vector2(286.99994, 489)
 rotation = 0.5235988
 fall_speed = 0.0
+
+[node name="PatternStoryRandomizer" type="Node" parent="."]
+script = ExtResource("5_0xbhh")

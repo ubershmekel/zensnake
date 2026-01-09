@@ -40,7 +40,8 @@ func reveal() -> void:
 
 func _reveal_characters(token: int) -> void:
 	if character_interval <= 0.0:
-		visible_characters = text.length()
+		# Show all characters
+		visible_characters = -1
 		return
 
 	var total_chars := text.length()
@@ -49,6 +50,9 @@ func _reveal_characters(token: int) -> void:
 			return
 		visible_characters = i + 1
 		await get_tree().create_timer(character_interval).timeout
+	
+	# Show all characters after done animating
+	visible_characters = -1
 
 func fade_out(duration: float = -1.0) -> void:
 	# Cancel any existing tween to avoid fighting animations.
