@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Kat and Noodles"
 config/description="Kat and Noodles eat fruit and give you some calm zen"
-config/version="1.0.3"
+config/version="1.0.4"
 run/main_scene="uid://bdyqw0a3sby87"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/image="uid://bm1okrwrtdljb"
