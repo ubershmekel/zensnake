@@ -14,6 +14,6 @@ func _ready() -> void:
 
 	# randomize all the fruits to one kind
 	var fruits = get_tree().get_nodes_in_group("fruits")
-	var fruit_type = fruits[0].random_type()
+	var fruit_type = fruits[0].random_type(true)
 	for fruit in fruits:
 		fruit.fruit_data = fruit_type

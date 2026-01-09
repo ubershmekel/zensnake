@@ -12,6 +12,7 @@ const TILE_SIZE = 32
 @onready var _base_scale: Vector2 = sprite.scale
 
 @export var fruit_types: FruitList = preload("res://resources/fruits_list_all.tres")
+@export var simple_fruit_types: FruitList = preload("res://resources/fruits_list_simple.tres")
 @export var shyness_velocity: float = 0.0
 @export var fall_speed: float = 0.0
 
@@ -150,10 +151,11 @@ func after_eaten():
 	set_deferred("monitoring", true)
 	emit_signal("eaten_animation_done", self)
 
-func random_type():
-	if fruit_types:
-		var random_index = randi() % fruit_types.fruits.size()
-		var random_fruit: FruitData = fruit_types.fruits[random_index]
+func random_type(simple = false):
+	var collection = simple_fruit_types if simple else fruit_types
+	if collection:
+		var random_index = randi() % collection.fruits.size()
+		var random_fruit: FruitData = collection.fruits[random_index]
 		fruit_data = random_fruit
 		sprite.texture = random_fruit.texture
 		return fruit_data

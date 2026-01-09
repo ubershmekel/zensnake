@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FruitList" load_steps=7 format=3 uid="uid://ckonc6gj6jq7x"]
+
+[ext_resource type="Script" uid="uid://cdrde7jab6w3h" path="res://game/fruit_data.gd" id="1_4p1k3"]
+[ext_resource type="Script" uid="uid://dx4nkr7lg5nnl" path="res://game/fruit_list.gd" id="2_6cxxw"]
+[ext_resource type="Resource" uid="uid://pl5h7yuqy7d6" path="res://resources/fruit/apple.tres" id="2_rvh3h"]
+[ext_resource type="Resource" uid="uid://clvbqm1md7pay" path="res://resources/fruit/cherries.tres" id="3_vb7wb"]
+[ext_resource type="Resource" uid="uid://cram276famomh" path="res://resources/fruit/watermelon.tres" id="4_safo5"]
+[ext_resource type="Resource" uid="uid://bvuncaj43fvah" path="res://resources/fruit/grapes.tres" id="5_hm2pw"]
+
+[resource]
+script = ExtResource("2_6cxxw")
+fruits = Array[ExtResource("1_4p1k3")]([ExtResource("2_rvh3h"), ExtResource("3_vb7wb"), ExtResource("4_safo5"), ExtResource("5_hm2pw")])
+metadata/_custom_type_script = "uid://dx4nkr7lg5nnl"
