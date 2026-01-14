@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch3j7m8k1g545"]
+[gd_scene load_steps=8 format=3 uid="uid://ch3j7m8k1g545"]
 
 [ext_resource type="Script" uid="uid://bs0p4sgee8ia8" path="res://game/main_menu.gd" id="1_2gctw"]
 [ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="2_20tr2"]
 [ext_resource type="Texture2D" uid="uid://rfap51sxtny3" path="res://assets/buttons/green-square-bright.png" id="3_rv8kf"]
+[ext_resource type="FontFile" uid="uid://70dd4je8f5nu" path="res://assets/fonts/CaveatBrush-Regular.ttf" id="3_wr6kv"]
 [ext_resource type="Texture2D" uid="uid://bihsw5tmkqse6" path="res://assets/buttons/square-orange-bright.png" id="4_rv8kf"]
 [ext_resource type="Texture2D" uid="uid://bbbrwhagt6jay" path="res://assets/snake/head-large-outline.png" id="5_rv8kf"]
 [ext_resource type="Texture2D" uid="uid://cra8iy056jlec" path="res://assets/caterpy/head-large-outline.png" id="6_5i8qu"]
@@ -25,9 +26,10 @@ offset_left = 369.0
 offset_top = 579.0
 offset_right = 609.0
 offset_bottom = 819.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wr6kv")
 theme_override_font_sizes/font_size = 40
-text = "1 player
-infinity"
+text = "1 player"
 icon = ExtResource("3_rv8kf")
 icon_alignment = 1
 expand_icon = true
@@ -41,9 +43,10 @@ offset_left = 58.0
 offset_top = 320.0
 offset_right = 298.0
 offset_bottom = 560.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_wr6kv")
 theme_override_font_sizes/font_size = 36
-text = "2 players
-infinity"
+text = "2 players"
 icon = ExtResource("4_rv8kf")
 icon_alignment = 1
 expand_icon = true

@@ -21,3 +21,4 @@ func random_text() -> void:
 		if node is Label:
 			node.text = lines[rng.randi_range(0, lines.size() - 1)]
 			break
+#

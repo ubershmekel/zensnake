@@ -40,7 +40,7 @@ script = ExtResource("2_g6p78")
 [node name="HoldButton" type="Button" parent="MarginSafeArea/Title/HoldButtonTutorial"]
 offset_right = 690.0
 offset_bottom = 172.0
-theme_override_font_sizes/font_size = 64
+theme_override_font_sizes/font_size = 54
 text = "tap and hold this button
 down to turn left"
 
@@ -84,23 +84,34 @@ grow_horizontal = 2
 [node name="Anchor" type="Control" parent="MarginSafeArea/Title/CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
+[node name="TitleLabel" type="Label" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
 layout_mode = 0
 offset_left = -330.0
 offset_top = -153.0
 offset_right = 329.0
-offset_bottom = 154.0
+offset_bottom = 216.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 120
 text = "kat
 and noodles"
 
+[node name="SubTitleLabel" type="Label" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
+layout_mode = 0
+offset_left = -352.0
+offset_top = 206.0
+offset_right = 345.0
+offset_bottom = 415.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "zensnake"
+horizontal_alignment = 1
+
 [node name="Head-large" type="TextureRect" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
 layout_mode = 1
-offset_left = 182.0
-offset_top = -83.0
-offset_right = 342.0
-offset_bottom = 77.0
+offset_left = 158.0
+offset_top = -48.0
+offset_right = 318.0
+offset_bottom = 112.0
 texture = ExtResource("4_y5v3b")
 
 [node name="Head-kat" type="TextureRect" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
@@ -108,9 +119,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -159.0
-offset_top = -160.0
-offset_right = 1.0
+offset_left = -178.0
+offset_top = -152.0
+offset_right = -18.0
+offset_bottom = 8.0
 grow_horizontal = 0
 texture = ExtResource("7_dqdqf")
 

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c34rojlyaifed"
-path="res://.godot/imported/DeliusSwashCaps-Regular.ttf-c2bf7bfd1475b4551bb1f7adbf66fa56.fontdata"
+uid="uid://70dd4je8f5nu"
+path="res://.godot/imported/CaveatBrush-Regular.ttf-280c1536ec97d752d5189d7c20009cd2.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/DeliusSwashCaps-Regular.ttf"
-dest_files=["res://.godot/imported/DeliusSwashCaps-Regular.ttf-c2bf7bfd1475b4551bb1f7adbf66fa56.fontdata"]
+source_file="res://assets/fonts/CaveatBrush-Regular.ttf"
+dest_files=["res://.godot/imported/CaveatBrush-Regular.ttf-280c1536ec97d752d5189d7c20009cd2.fontdata"]
 
 [params]
 
