@@ -42,7 +42,7 @@ Start in a slow spiral, then chase fruit that stretch the body and swap the move
 1. Godot: Project -> Export -> Android (Runnable).
 1. Bump Version -> Code.
 1. Export Project... to produce the new `.aab`.
-1. Go to https://play.google.com/console and create a new release.
+1. Go to https://play.google.com/console -> Test and release -> Production -> Create new release.
 1. Upload the `.aab`.
 1. Update release notes.
 1. Review and approve the release.

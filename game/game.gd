@@ -21,10 +21,12 @@ const LEVEL_RESET_ANIMATION_TIME := 1.45
 const LEVEL_RESET_HORIZONTAL_SPACING := 120
 
 func _ready():
+	_setup_snakes()
+	_load_level(0)
+
+func _setup_snakes():
 	$Snake.position.x = 0
 	$Snake.position.y = 0
-	_load_level(0)
-	
 	snakes = [$Snake]
 
 	# Apply textures to the primary snake
@@ -51,7 +53,6 @@ func _ready():
 		full_screen_button.visible = true
 		two_player_buttons.visible = false
 
-
 func _load_level(i: int) -> void:
 	if is_instance_valid(level):
 		level.queue_free()
@@ -69,6 +70,14 @@ func _load_level(i: int) -> void:
 	level.fruit_eaten.connect(_on_fruit_eaten)
 	level.level_done.connect(_on_level_done)
 
+	
+	# Set arrow visibility on the snakes
+	for snake in snakes:
+		if level_index == 0:
+			snake.show_arrow = true
+		else:
+			snake.show_arrow = false
+
 func _on_level_done():
 	print("level done")
 
@@ -84,7 +93,6 @@ func _on_level_done():
 	level_index = (level_index + 1) % levels.size()
 	_load_level(level_index)
 	
-
 func _on_fruit_eaten(eater: Node, fruit_data: FruitData = null):
 	# Handle growth logic here to avoid duplication and allow level-specific behavior
 	if eater and eater.has_method("_on_snake_effect"):

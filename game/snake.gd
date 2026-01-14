@@ -9,6 +9,7 @@ const BASE_MOVE_INTERVAL := 0.12
 @export var hotkey = KEY_A
 @export var static_body = false
 @export var smooth_tween = false
+@export var show_arrow = false
 
 var move_interval := BASE_MOVE_INTERVAL # seconds between moves
 var is_hotkey_pressed := false
@@ -25,6 +26,7 @@ var pause_processing := false
 # This will hold ALL snake nodes (head + body)
 @onready var snake_nodes: Array[Node2D] = [$SnakeHead, $SnakeBody]
 @onready var _head_sprite: Sprite2D = $SnakeHead/Sprite2D
+@onready var _arrow_sprite: Sprite2D = $SnakeHead/Arrow
 var body_textures: Array[Texture2D] = []
 var node_move_tweens: Dictionary = {}
 var _head_pop_tween: Tween = null
@@ -44,6 +46,7 @@ func _ready():
 		segment.position = start
 	
 	load_skin("snake")
+	_arrow_sprite.visible = false
 
 func load_skin(skin_name: String) -> void:
 	var base_path = "res://assets/%s/" % skin_name
@@ -63,11 +66,15 @@ func _process(delta: float) -> void:
 
 	time_passed += delta
 	rotation_time_passed += delta
-	var is_reversing := is_hotkey_pressed or is_button_down
+	var is_turning_left := is_hotkey_pressed or is_button_down
+	if is_turning_left and show_arrow:
+		_arrow_sprite.visible = true
+	else:
+		_arrow_sprite.visible = false
 	
 	if rotation_time_passed >= move_interval:
 		rotation_time_passed = 0.0
-		var rotation_amount_deg = - ROTATE_RATE if is_reversing else ROTATE_RATE
+		var rotation_amount_deg = - ROTATE_RATE if is_turning_left else ROTATE_RATE
 		direction = direction.rotated(deg_to_rad(rotation_amount_deg))
 		$SnakeHead.rotation = direction.angle() + PI / 2
 	

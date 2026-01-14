@@ -1,25 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://sx70eol2d43p"]
+[gd_scene load_steps=6 format=3 uid="uid://sx70eol2d43p"]
 
 [ext_resource type="Script" uid="uid://yqbhanmpc8f7" path="res://game/snake.gd" id="1_ynf1u"]
+[ext_resource type="Texture2D" uid="uid://dxb3en580xb2p" path="res://assets/snake/head.png" id="2_ynf1u"]
+[ext_resource type="Texture2D" uid="uid://cqw8b5h4tqvh6" path="res://assets/snake/left-arrow.png" id="3_mttf6"]
 [ext_resource type="Texture2D" uid="uid://dvl7fxl080lhi" path="res://assets/snake/body1.png" id="3_wt7of"]
-[ext_resource type="Texture2D" uid="uid://c6uvu5ofxni6q" path="res://assets/snake/body2.png" id="4_m4e6x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4fuuu"]
 radius = 18.0
 
 [node name="Snake" type="Node2D" groups=["snakes"]]
 script = ExtResource("1_ynf1u")
-static_body = null
-smooth_tween = null
 
 [node name="SnakeHead" type="Area2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="SnakeHead"]
-texture = ExtResource("4_m4e6x")
+texture = ExtResource("2_ynf1u")
 region_rect = Rect2(32, 0, 32, 32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SnakeHead"]
 shape = SubResource("CircleShape2D_4fuuu")
+
+[node name="Arrow" type="Sprite2D" parent="SnakeHead"]
+z_index = 99
+position = Vector2(-54, 4)
+texture = ExtResource("3_mttf6")
 
 [node name="SnakeBody" type="Node2D" parent="."]
 
