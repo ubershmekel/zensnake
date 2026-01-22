@@ -44,11 +44,10 @@ func _reveal_characters(token: int) -> void:
 		visible_characters = -1
 		return
 
-	var total_chars := text.length()
-	for i in total_chars:
+	while visible_characters < text.length():
 		if token != _reveal_token:
 			return
-		visible_characters = i + 1
+		visible_characters = visible_characters + 1
 		await get_tree().create_timer(character_interval).timeout
 	
 	# Show all characters after done animating

@@ -1,19 +1,16 @@
 extends Node
 
-var lines := [
-	"A pattern emerges",
-	"Patterns take shape",
-	"What feels familiar to you?",
-	"Have you seen this before?",
-	"Order peeks through the noise",
-	"Some things happen often",
-	"There are patterns everywhere we look",
-]
+@export_file("*.txt") var text_file: String
 
 var rng := RandomNumberGenerator.new()
+var lines: Array[String]
 
 func _ready() -> void:
 	rng.randomize()
+	var packed := FileAccess.open(text_file, FileAccess.READ).get_as_text().split("\n")
+	lines = []
+	for s in packed:
+		lines.append(s)
 	random_text()
 
 func random_text() -> void:
@@ -21,4 +18,3 @@ func random_text() -> void:
 		if node is Label:
 			node.text = lines[rng.randi_range(0, lines.size() - 1)]
 			break
-#

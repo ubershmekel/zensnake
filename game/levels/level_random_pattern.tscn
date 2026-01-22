@@ -11,6 +11,7 @@ script = ExtResource("1_ijw17")
 
 [node name="PatternStoryRandomizer" type="Node" parent="."]
 script = ExtResource("5_0xbhh")
+text_file = "res://resources/story/patterns.txt"
 
 [node name="Note" type="Label" parent="PatternStoryRandomizer" groups=["StoryText"]]
 offset_left = 13.0

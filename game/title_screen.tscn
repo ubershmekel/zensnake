@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdyqw0a3sby87"]
+[gd_scene load_steps=12 format=3 uid="uid://bdyqw0a3sby87"]
 
 [ext_resource type="Script" uid="uid://ckn2d86ml3oed" path="res://game/title_screen.gd" id="1_a8pn1"]
 [ext_resource type="Script" uid="uid://bcv836vvnkivw" path="res://game/margin_safe_area.gd" id="1_oi8xp"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cyy0ta378rv1x" path="res://assets/snake/body3.png" id="5_t2kev"]
 [ext_resource type="Texture2D" uid="uid://5rj2phnvmccy" path="res://assets/eat/cherries.png" id="6_pfca1"]
 [ext_resource type="Texture2D" uid="uid://dcnd3gri12us" path="res://assets/caterpy/head-large.png" id="7_dqdqf"]
+[ext_resource type="Script" uid="uid://khtj3vh7xq00" path="res://game/animate_label_in.gd" id="9_y5v3b"]
+[ext_resource type="Script" uid="uid://vh7o8347aoda" path="res://game/pattern_story_randomizer.gd" id="11_t2kev"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -95,16 +97,19 @@ theme_override_font_sizes/font_size = 120
 text = "kat
 and noodles"
 
-[node name="SubTitleLabel" type="Label" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
+[node name="SubTitleLabel" type="Label" parent="MarginSafeArea/Title/CenterContainer/Anchor" groups=["StoryText"]]
 layout_mode = 0
 offset_left = -352.0
 offset_top = 206.0
 offset_right = 345.0
 offset_bottom = 415.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
+theme_override_font_sizes/font_size = 56
 text = "zensnake"
 horizontal_alignment = 1
+autowrap_mode = 2
+script = ExtResource("9_y5v3b")
+character_interval = 0.1
 
 [node name="Head-large" type="TextureRect" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
 layout_mode = 1
@@ -125,6 +130,10 @@ offset_right = -18.0
 offset_bottom = 8.0
 grow_horizontal = 0
 texture = ExtResource("7_dqdqf")
+
+[node name="SubtitleRandomizer" type="Node" parent="MarginSafeArea/Title/CenterContainer/Anchor"]
+script = ExtResource("11_t2kev")
+text_file = "res://resources/story/splash.txt"
 
 [node name="Control" type="Control" parent="MarginSafeArea/Title"]
 anchors_preset = 0
