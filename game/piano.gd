@@ -9,6 +9,7 @@ const BUS_SFX := "Sfx"
 const FADE_SECONDS := 5.5
 const SILENCE_DB := -80.0
 const NOTE_EXTENSION := ".ogg"
+const GENERATED_SAMPLES_SCRIPT := "res://game/piano_samples.gd"
 
 var _note_entries: Array[NoteEntry] = []
 var _nearest_by_midi: Dictionary[int, NoteEntry] = {}
@@ -57,6 +58,13 @@ func _load_samples() -> void:
 	_note_entries.clear()
 	_nearest_by_midi.clear()
 	var note_index: Dictionary[String, AudioStream] = {}
+
+	var generated_entries := _get_generated_entries()
+	if not generated_entries.is_empty():
+		_build_entries_from_generated(generated_entries, note_index)
+		_finalize_entries(note_index)
+		return
+
 	var dir := DirAccess.open("res://assets/audio/piano")
 	if dir == null:
 		push_warning("Missing piano samples directory.")
@@ -93,6 +101,54 @@ func _load_samples() -> void:
 		file_name = dir.get_next()
 	dir.list_dir_end()
 
+	_finalize_entries(note_index)
+
+func _get_generated_entries() -> Array:
+	if not ResourceLoader.exists(GENERATED_SAMPLES_SCRIPT):
+		return []
+	var script = load(GENERATED_SAMPLES_SCRIPT)
+	if script == null:
+		return []
+	var instance = script.new()
+	if instance == null:
+		return []
+	var entries = instance.get("ENTRIES")
+	if entries is Array:
+		return entries
+	return []
+
+func _build_entries_from_generated(entries: Array, note_index: Dictionary) -> void:
+	for entry in entries:
+		var note_name := ""
+		if typeof(entry) == TYPE_DICTIONARY:
+			if entry.has("note"):
+				note_name = str(entry["note"])
+			if note_name == "" and entry.has("file"):
+				note_name = _note_from_filename(str(entry["file"]))
+		else:
+			if entry.has_method("get"):
+				var note_val = entry.get("note")
+				if note_val != null:
+					note_name = str(note_val)
+				if note_name == "":
+					var file_val = entry.get("file")
+					if file_val != null:
+						note_name = _note_from_filename(str(file_val))
+		if note_name == "" or note_index.has(note_name):
+			continue
+		var stream = null
+		if typeof(entry) == TYPE_DICTIONARY:
+			if not entry.has("stream"):
+				continue
+			stream = entry["stream"]
+		else:
+			if entry.has_method("get"):
+				stream = entry.get("stream")
+		if stream == null:
+			continue
+		note_index[note_name] = stream
+
+func _finalize_entries(note_index: Dictionary) -> void:
 	for note_name in note_index.keys():
 		var midi := _note_to_midi(note_name)
 		if midi >= 0:
