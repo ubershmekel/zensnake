@@ -1,6 +1,6 @@
 extends Node
 
-enum SfxId {EAT1, EAT2, EAT3, BURP1, BURP2, BURP3, BURP4}
+enum SfxId {EAT1, EAT2, EAT3, BURP1, BURP2, BURP3, BURP4, BURP5}
 
 
 var sfx: Dictionary = {
@@ -11,6 +11,7 @@ var sfx: Dictionary = {
 	SfxId.BURP2: preload("res://assets/audio/burps/burp2.mp3"),
 	SfxId.BURP3: preload("res://assets/audio/burps/burp3.mp3"),
 	SfxId.BURP4: preload("res://assets/audio/burps/burp4.mp3"),
+	SfxId.BURP5: preload("res://assets/audio/burps/burp5.mp3"),
 }
 
 const BUS_MUSIC := "Music"
@@ -57,7 +58,7 @@ func play_eat():
 	play(choice)
 
 func play_burp():
-	const options = [SfxId.BURP1, SfxId.BURP2, SfxId.BURP3, SfxId.BURP4]
+	const options = [SfxId.BURP1, SfxId.BURP2, SfxId.BURP3, SfxId.BURP4, SfxId.BURP5]
 	var choice = options[randi() % options.size()]
 	play(choice)
 
