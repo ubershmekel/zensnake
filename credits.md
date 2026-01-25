@@ -6,11 +6,13 @@ Yuval Greenfield - https://yuvalg.com/
 
 dan.anh - https://dananh.carrd.co/
 
-# Music
-
-Wholesome Kevin MacLeod (incompetech.com) Licensed under Creative Commons: By
-Attribution 3.0 License http://creativecommons.org/licenses/by/3.0/
-
 # Sounds
 
-https://versilian-studios.com/vcsl-keys/
+Yuval, and https://versilian-studios.com/vcsl-keys/
+
+# Music
+
+Music by
+<a href="https://pixabay.com/users/happinessinmusic-33141819/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=463485">HappinessInMusic</a>
+from
+<a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=463485">Pixabay</a>

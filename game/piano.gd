@@ -6,8 +6,9 @@ class NoteEntry:
 	var stream: AudioStream
 
 const BUS_SFX := "Sfx"
-const FADE_SECONDS := 0.2
+const FADE_SECONDS := 5.5
 const SILENCE_DB := -80.0
+const NOTE_EXTENSION := ".ogg"
 
 var _note_entries: Array[NoteEntry] = []
 var _nearest_by_midi: Dictionary[int, NoteEntry] = {}
@@ -65,11 +66,11 @@ func _load_samples() -> void:
 	var file_name := dir.get_next()
 	while file_name != "":
 		if dir.current_is_dir():
-      # Skip directories
+	  # Skip directories
 			file_name = dir.get_next()
 			continue
-		if not file_name.to_lower().ends_with(".mp3"):
-      # Only load MP3 files
+		if not file_name.to_lower().ends_with(NOTE_EXTENSION):
+	  # Only load eg .mp3 files
 			file_name = dir.get_next()
 			continue
 
@@ -131,7 +132,7 @@ func _find_nearest_entry(target_midi: int) -> NoteEntry:
 
 func _note_from_filename(file_name: String) -> String:
 	var regex := RegEx.new()
-	regex.compile("_([A-G](?:#|b)?-?\\d+)\\.mp3$")
+	regex.compile("_([A-G](?:#|b)?-?\\d+)\\" + NOTE_EXTENSION + "$")
 	var result := regex.search(file_name)
 	if result == null:
 		return ""

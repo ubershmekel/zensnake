@@ -18,10 +18,15 @@ const BUS_MUSIC := "Music"
 const BUS_SFX := "Sfx"
 
 var music_player: AudioStreamPlayer
-var song = preload("res://assets/audio/Wholesome2.mp3")
+var song = preload("res://assets/audio/music/background-music-yoga-463485.mp3")
 var play_head = 0
 var _music_volume := 1.0
 var _sfx_volume := 1.0
+@onready var piano := preload("res://game/piano.gd").new()
+
+const PIANO_EAT_NOTES = ["A2", "D2", "A3", "D3", "A4", "D4"]
+var piano_eat_i = 0;
+const PIANO_EAT_DURATION_MS := 920
 
 
 func _ready() -> void:
@@ -30,6 +35,7 @@ func _ready() -> void:
 	music_player.stream = song
 	music_player.bus = BUS_MUSIC
 	add_child(music_player)
+	add_child(piano)
 	set_music_volume(Settings.get_music_volume())
 	set_sfx_volume(Settings.get_sfx_volume())
 	music_player.play(play_head)
@@ -53,9 +59,13 @@ func get_sfx_volume() -> float:
 	return _sfx_volume
 
 func play_eat():
-	const options = [SfxId.EAT1, SfxId.EAT2, SfxId.EAT3]
-	var choice = options[randi() % options.size()]
-	play(choice)
+	if piano == null:
+		return
+
+	var note = PIANO_EAT_NOTES[randi() % PIANO_EAT_NOTES.size()]
+	#var note = PIANO_EAT_NOTES[piano_eat_i]
+	#piano_eat_i = (piano_eat_i + 1) % PIANO_EAT_NOTES.size()
+	piano.play(note, PIANO_EAT_DURATION_MS)
 
 func play_burp():
 	const options = [SfxId.BURP1, SfxId.BURP2, SfxId.BURP3, SfxId.BURP4, SfxId.BURP5]
