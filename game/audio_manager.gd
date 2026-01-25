@@ -18,13 +18,13 @@ const BUS_MUSIC := "Music"
 const BUS_SFX := "Sfx"
 
 var music_player: AudioStreamPlayer
-var song = preload("res://assets/audio/music/background-music-yoga-463485.mp3")
+var song = preload("res://assets/audio/music/yoga-music-456102.mp3")
 var play_head = 0
 var _music_volume := 1.0
 var _sfx_volume := 1.0
 @onready var piano := preload("res://game/piano.gd").new()
 
-const PIANO_EAT_NOTES = ["A2", "D2", "A3", "D3", "A4", "D4"]
+const PIANO_EAT_NOTES = ["G2", "D2", "G3", "D3", "G4", "D4"]
 var piano_eat_i = 0;
 const PIANO_EAT_DURATION_MS := 920
 
