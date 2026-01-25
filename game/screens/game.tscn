@@ -1,0 +1,108 @@
+[gd_scene load_steps=20 format=3 uid="uid://ijpro01eklid"]
+
+[ext_resource type="Script" uid="uid://d0r0rhe1vp8y2" path="res://game/screens/game.gd" id="1_knm74"]
+[ext_resource type="Script" uid="uid://bjv5w4sq3qd4x" path="res://game/level_resource.gd" id="2_g1imx"]
+[ext_resource type="Resource" uid="uid://cohahkruemap4" path="res://resources/levels/level_1.tres" id="3_udjmf"]
+[ext_resource type="Resource" uid="uid://dc7c770w11b47" path="res://resources/levels/level_2.tres" id="4_mhc7v"]
+[ext_resource type="PackedScene" uid="uid://cei24ibbxluhj" path="res://game/levels/level_random_pattern.tscn" id="5_ghijl"]
+[ext_resource type="Resource" uid="uid://gjfsmiuyx40" path="res://resources/levels/level_raining.tres" id="6_27030"]
+[ext_resource type="PackedScene" uid="uid://gfm7g7ew6eoq" path="res://game/levels/level_peppers.tscn" id="7_eje8d"]
+[ext_resource type="PackedScene" uid="uid://bf0xqkxs5pcjf" path="res://game/levels/level_shy_banana.tscn" id="8_07nr7"]
+[ext_resource type="Resource" uid="uid://dhumtotajhh1q" path="res://resources/levels/infinite_random_fruit.tres" id="9_2n27y"]
+[ext_resource type="PackedScene" uid="uid://dyvnendyx60xo" path="res://game/background.tscn" id="10_628ml"]
+[ext_resource type="PackedScene" uid="uid://sx70eol2d43p" path="res://game/snake.tscn" id="11_uqf1h"]
+[ext_resource type="PackedScene" uid="uid://bkf7wuly2daas" path="res://game/2p_touch_button.tscn" id="12_cl4v4"]
+[ext_resource type="Texture2D" uid="uid://caosjsa4j4g2m" path="res://assets/buttons/pause-button-idle.png" id="13_xdp8h"]
+[ext_resource type="Texture2D" uid="uid://cvi0mfs0glnt7" path="res://assets/buttons/pause-button-pressed.png" id="14_ccexe"]
+[ext_resource type="Script" uid="uid://uaditmv5s6a3" path="res://game/touch_button_2p.gd" id="15_n8vgc"]
+[ext_resource type="PackedScene" uid="uid://cyxnmvylkf8u4" path="res://game/pause_menu.tscn" id="16_vpoy3"]
+
+[sub_resource type="Resource" id="Resource_4cobl"]
+resource_name = "Level: Random Pattern"
+script = ExtResource("2_g1imx")
+name = "Random Pattern"
+scene = ExtResource("5_ghijl")
+metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
+
+[sub_resource type="Resource" id="Resource_ee6o4"]
+resource_name = "Level: Fast peppers"
+script = ExtResource("2_g1imx")
+name = "Fast peppers"
+scene = ExtResource("7_eje8d")
+metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
+
+[sub_resource type="Resource" id="Resource_hb504"]
+resource_name = "Level: Shy Banana"
+script = ExtResource("2_g1imx")
+name = "Shy Banana"
+scene = ExtResource("8_07nr7")
+metadata/_custom_type_script = "uid://bjv5w4sq3qd4x"
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_knm74")
+levels = Array[ExtResource("2_g1imx")]([ExtResource("3_udjmf"), ExtResource("4_mhc7v"), SubResource("Resource_4cobl"), ExtResource("6_27030"), SubResource("Resource_ee6o4"), SubResource("Resource_4cobl"), SubResource("Resource_hb504"), ExtResource("9_2n27y")])
+
+[node name="Background" parent="." instance=ExtResource("10_628ml")]
+
+[node name="Snake" parent="." instance=ExtResource("11_uqf1h")]
+static_body = true
+
+[node name="LevelSlot" type="Node2D" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="FullScreenButton" type="TextureButton" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TwoPlayerButtons" type="GridContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BottomButton" parent="UI/TwoPlayerButtons" instance=ExtResource("12_cl4v4")]
+layout_mode = 2
+base_color = Color(0.803922, 0.380392, 0.239216, 1)
+
+[node name="Button" type="TextureButton" parent="UI/TwoPlayerButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button2" type="TextureButton" parent="UI/TwoPlayerButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TopButton" parent="UI/TwoPlayerButtons" instance=ExtResource("12_cl4v4")]
+layout_mode = 2
+
+[node name="Pause Button" type="TextureButton" parent="UI"]
+modulate = Color(1, 1, 1, 0.7607843)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("13_xdp8h")
+texture_pressed = ExtResource("14_ccexe")
+texture_hover = ExtResource("14_ccexe")
+script = ExtResource("15_n8vgc")
+base_color = Color(0.47018766, 0.23004624, 0.016702045, 1)
+is_modulating = false
+metadata/_custom_type_script = "uid://uaditmv5s6a3"
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("16_vpoy3")]
+visible = false
+
+[connection signal="pressed" from="UI/Pause Button" to="." method="_on_pause_button_pressed"]

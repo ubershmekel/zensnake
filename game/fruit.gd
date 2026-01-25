@@ -138,7 +138,7 @@ func _reset_visual_state():
 
 func _update_fruit_display():
 	if sprite:
-		# button_pressed -> play -> load("res://game/game.tscn").instantiate()
+		# button_pressed -> play -> load("res://game/screen/game.tscn").instantiate()
 		# sets the fruit type but the sprite isn't loaded yet
 		sprite.texture = fruit_data.texture
 
