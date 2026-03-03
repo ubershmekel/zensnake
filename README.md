@@ -55,10 +55,10 @@ Xcode Cloud machines do not include Godot by default, so the `.xcodeproj` must b
 
 1. Keep the iOS export preset configured as **Export as Xcode project** (`application/export_project_only=true`).
 1. Commit both `ci_scripts/ci_post_clone.sh` and `ci_scripts/ci_pre_xcodebuild.sh`.
-1. In Xcode Cloud, point the workflow to `exports/zensnake.xcodeproj` + scheme `zensnake`.
+1. In Xcode Cloud, point the workflow to `zensnake.xcodeproj` + scheme `zensnake`.
 1. Optional: set `GODOT_VERSION` and `GODOT_VERSION_DIR` env vars in the workflow if you upgrade Godot.
 
-The hooks install Godot + export templates and generate the project. `ci_pre_xcodebuild.sh` calls `ci_post_clone.sh` as a safety net so `exports/zensnake.xcodeproj` is present right before `xcodebuild` runs.
+The hooks install Godot + export templates and generate the project. `ci_pre_xcodebuild.sh` calls `ci_post_clone.sh` as a safety net so `zensnake.xcodeproj` is present right before `xcodebuild` runs.
 
 ```bash
 ./ci_scripts/ci_post_clone.sh
@@ -66,8 +66,8 @@ The hooks install Godot + export templates and generate the project. `ci_pre_xco
 
 1. Godot: Project → Project Settings → Application → Config. Bump version.
 1. Godot: Project -> Export -> iOS (Runnable).
-1. Export Project... to produce the `exports/zensnake.xcodeproj`.
-1. Open `exports/zensnake.xcodeproj`.
+1. Export Project... to produce the `zensnake.xcodeproj`.
+1. Open `zensnake.xcodeproj`.
 1. Product -> Archive
 1. Distribute App -> App Store Connect -> Distribute
 1. Wait 4 minutes, you can now test the new version on TestFlight
