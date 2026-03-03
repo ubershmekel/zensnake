@@ -67,8 +67,8 @@ The post-clone hook installs Godot + export templates, then runs headless export
 
 1. Godot: Project → Project Settings → Application → Config. Bump version.
 1. Godot: Project -> Export -> iOS (Runnable).
-1. Export Project... to produce the new `.ipa`.
-1. Open zensnake.xcodeproj
+1. Export Project... to produce the `exports/zensnake.xcodeproj`.
+1. Open `exports/zensnake.xcodeproj`.
 1. Product -> Archive
 1. Distribute App -> App Store Connect -> Distribute
 1. Wait 4 minutes, you can now test the new version on TestFlight
