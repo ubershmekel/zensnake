@@ -23,6 +23,9 @@ if [ ! -d "$CACHE_DIR/Godot.app" ] && [ ! -d "$CACHE_DIR/Godot_macos.app" ]; the
   ditto -x -k "$GODOT_ZIP" "$CACHE_DIR"
 fi
 
+# Remove macOS quarantine bit so Gatekeeper does not block the headless binary.
+xattr -dr com.apple.quarantine "$CACHE_DIR" 2>/dev/null || true
+
 if [ -x "$CACHE_DIR/Godot.app/Contents/MacOS/Godot" ]; then
   GODOT_BIN="$CACHE_DIR/Godot.app/Contents/MacOS/Godot"
 elif [ -x "$CACHE_DIR/Godot_macos.app/Contents/MacOS/Godot" ]; then
