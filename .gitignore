@@ -5,8 +5,8 @@
 export.zip
 exports.zip
 export/
-exports/
-zensnake.xcodeproj/
+exports/*
+!exports/ci_scripts/
 *.zip
 .vscode/settings.json
 *.tmp

@@ -1,10 +1,10 @@
 #!/bin/sh
 set -eu
 
-# Xcode Cloud hook: install Godot and generate zensnake.xcodeproj before xcodebuild starts.
+# Xcode Cloud hook: install Godot and generate exports/zensnake.xcodeproj before xcodebuild starts.
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-WORKSPACE_DIR="${CI_PRIMARY_REPOSITORY_PATH:-$(cd "$SCRIPT_DIR/.." && pwd)}"
+WORKSPACE_DIR="${CI_PRIMARY_REPOSITORY_PATH:-$(cd "$SCRIPT_DIR/../.." && pwd)}"
 cd "$WORKSPACE_DIR"
 
 GODOT_VERSION="${GODOT_VERSION:-4.5-stable}"
@@ -55,7 +55,8 @@ if [ ! -f "$TEMPLATES_DIR/.installed" ]; then
   touch "$TEMPLATES_DIR/.installed"
 fi
 
-EXPORT_PATH="$WORKSPACE_DIR/zensnake.xcodeproj"
+EXPORT_PATH="$WORKSPACE_DIR/exports/zensnake.xcodeproj"
+mkdir -p "$WORKSPACE_DIR/exports"
 rm -rf "$EXPORT_PATH"
 "$GODOT_BIN" --headless --path "$WORKSPACE_DIR" --export-release "iOS" "$EXPORT_PATH"
 
