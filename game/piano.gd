@@ -17,7 +17,7 @@ var _nearest_by_midi: Dictionary[int, NoteEntry] = {}
 func _ready() -> void:
 	_load_samples()
 
-func play(note_name: String, duration_ms: int) -> void:
+func play(note_name: String, duration_ms: int, volume := 1.0) -> void:
 	if _note_entries.is_empty():
 		_load_samples()
 	if _note_entries.is_empty():
@@ -40,7 +40,7 @@ func play(note_name: String, duration_ms: int) -> void:
 	player.bus = BUS_SFX
 	player.stream = entry.stream
 	player.pitch_scale = pow(2.0, float(semitone_diff) / 12.0)
-	player.volume_db = 0.0
+	player.volume_db = linear_to_db(volume)
 	add_child(player)
 	player.play()
 

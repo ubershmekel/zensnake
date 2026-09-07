@@ -27,6 +27,7 @@ var _sfx_volume := 1.0
 const PIANO_EAT_NOTES = ["G2", "D2", "G3", "D3", "G4", "D4"]
 var piano_eat_i = 0;
 const PIANO_EAT_DURATION_MS := 920
+const PIANO_EAT_VOLUME := 0.5
 
 
 func _ready() -> void:
@@ -65,7 +66,7 @@ func play_eat():
 	var note = PIANO_EAT_NOTES[randi() % PIANO_EAT_NOTES.size()]
 	#var note = PIANO_EAT_NOTES[piano_eat_i]
 	#piano_eat_i = (piano_eat_i + 1) % PIANO_EAT_NOTES.size()
-	piano.play(note, PIANO_EAT_DURATION_MS)
+	piano.play(note, PIANO_EAT_DURATION_MS, PIANO_EAT_VOLUME)
 
 func play_burp():
 	const options = [SfxId.BURP1, SfxId.BURP2, SfxId.BURP3, SfxId.BURP4, SfxId.BURP5]
