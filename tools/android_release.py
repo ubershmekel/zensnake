@@ -9,8 +9,13 @@ import argparse
 import io
 import os
 import re
+import shutil
+import stat
 import sys
+import zipfile
 
+ANDROID_DIR = "android"
+BUILD_DIR = os.path.join("android", "build")
 CONFIG_GRADLE = os.path.join("android", "build", "config.gradle")
 EXPORT_PRESETS = "export_presets.cfg"
 MERGED_MANIFEST = os.path.join(
@@ -27,6 +32,78 @@ def read(path):
 def write(path, text):
     with io.open(path, "w", encoding="utf-8", newline="\n") as handle:
         handle.write(text)
+
+
+def templates_root():
+    """Where the Godot editor keeps its downloaded export templates."""
+    override = os.environ.get("GODOT_EXPORT_TEMPLATES")
+    if override:
+        return override
+    if sys.platform == "win32":
+        return os.path.join(os.environ["APPDATA"], "Godot", "export_templates")
+    if sys.platform == "darwin":
+        return os.path.expanduser(
+            "~/Library/Application Support/Godot/export_templates"
+        )
+    return os.path.expanduser("~/.local/share/godot/export_templates")
+
+
+def resolve_version_dir(root, requested):
+    if requested:
+        path = os.path.join(root, requested)
+        if not os.path.isdir(path):
+            sys.exit("No export templates for %s in %s" % (requested, root))
+        return requested, path
+
+    if not os.path.isdir(root):
+        sys.exit(
+            "No export templates found in %s. Install them from the Godot editor "
+            "(Editor -> Manage Export Templates)." % root
+        )
+    installed = sorted(
+        name for name in os.listdir(root) if os.path.isdir(os.path.join(root, name))
+    )
+    if len(installed) != 1:
+        sys.exit(
+            "Found %d template versions in %s (%s). Pass --godot-version to pick one."
+            % (len(installed), root, ", ".join(installed) or "none")
+        )
+    return installed[0], os.path.join(root, installed[0])
+
+
+def install_template(args):
+    """Unpack Godot's Android build template into android/build.
+
+    This is what the editor's "Install Android Build Template" menu item does.
+    Godot's --install-android-build-template flag is not used because it only
+    works alongside an --export-* flag; on its own it starts the editor and
+    never exits, which hangs a CI runner.
+    """
+    root = templates_root()
+    version, version_dir = resolve_version_dir(root, args.godot_version)
+    source_zip = os.path.join(version_dir, "android_source.zip")
+    if not os.path.isfile(source_zip):
+        sys.exit("No android_source.zip in %s" % version_dir)
+
+    if os.path.isdir(BUILD_DIR):
+        shutil.rmtree(BUILD_DIR)
+    os.makedirs(BUILD_DIR)
+
+    with zipfile.ZipFile(source_zip) as archive:
+        archive.extractall(BUILD_DIR)
+        # extractall drops the executable bit, which Linux needs for gradlew.
+        for entry in archive.infolist():
+            mode = entry.external_attr >> 16
+            if mode and not entry.is_dir():
+                target = os.path.join(BUILD_DIR, entry.filename)
+                if os.path.exists(target):
+                    os.chmod(target, stat.S_IMODE(mode))
+
+    # Markers the editor writes so it treats the template as installed.
+    write(os.path.join(ANDROID_DIR, ".build_version"), version + "\n")
+    open(os.path.join(BUILD_DIR, ".gdignore"), "w").close()
+
+    print("Installed Android build template %s from %s" % (version, source_zip))
 
 
 def patch_template(args):
@@ -95,6 +172,14 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command")
     sub.required = True
+
+    p = sub.add_parser("install-template", help="unpack the Android build template")
+    p.add_argument(
+        "--godot-version",
+        help='template version directory, e.g. "4.5.1.stable" '
+        "(default: the only one installed)",
+    )
+    p.set_defaults(func=install_template)
 
     p = sub.add_parser("patch-template", help="bump SDK versions in config.gradle")
     p.add_argument("--compile-sdk", required=True)

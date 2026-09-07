@@ -9,6 +9,8 @@ version: "3"
 vars:
   GODOT: '{{.GODOT | default (env "GODOT") | default "godot"}}'
   PYTHON: '{{.PYTHON | default (env "PYTHON") | default "python"}}'
+  # Template version directory under the Godot editor's export_templates.
+  GODOT_VERSION: "4.5.1.stable"
   # Play only enforces targetSdk. compileSdk stays a step behind because
   # compiling against 37 needs AGP 9.x and Godot still ships AGP 8.6.1.
   TARGET_SDK: "37"
@@ -33,9 +35,12 @@ tasks:
       - '"{{.GODOT}}" --path . -e'
 
   android-template:
-    desc: Install Godot's Android build template, then re-apply the SDK bump
+    desc: >-
+      Reinstall Godot's Android build template into android/build, then
+      re-apply the SDK bump. Wipes android/build, so any local edits are lost.
     cmds:
-      - '"{{.GODOT}}" --headless --path . --install-android-build-template'
+      - '"{{.PYTHON}}" tools/android_release.py install-template
+        --godot-version {{.GODOT_VERSION}}'
       - task: android-patch-template
 
   android-patch-template:
