@@ -1,0 +1,126 @@
+name: Build Android AAB
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: 4.5.1-stable
+  # Must match the templates directory Godot looks in: <major.minor.patch>.<status>
+  GODOT_TEMPLATE_DIR: 4.5.1.stable
+  # Keep in sync with Taskfile.yml.
+  COMPILE_SDK: "36"
+  BUILD_TOOLS: "36.1.0"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android SDK packages
+        run: |
+          sdkmanager "platforms;android-${COMPILE_SDK}" "build-tools;${BUILD_TOOLS}"
+
+      - name: Install Task
+        uses: arduino/setup-task@v2
+        with:
+          version: 3.x
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache Godot editor and export templates
+        id: godot-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/godot-bin
+            ~/.local/share/godot/export_templates
+          key: godot-${{ env.GODOT_VERSION }}
+
+      - name: Download Godot and export templates
+        if: steps.godot-cache.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          base="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}"
+          mkdir -p ~/godot-bin "$HOME/.local/share/godot/export_templates"
+
+          curl -fL -o godot.zip "${base}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          unzip -q godot.zip -d ~/godot-bin
+          mv ~/godot-bin/Godot_v${GODOT_VERSION}_linux.x86_64 ~/godot-bin/godot
+          chmod +x ~/godot-bin/godot
+
+          curl -fL -o templates.tpz "${base}/Godot_v${GODOT_VERSION}_export_templates.tpz"
+          unzip -q templates.tpz -d templates
+          # The archive unpacks to a "templates" folder that must be renamed to the version.
+          mv templates/templates "$HOME/.local/share/godot/export_templates/${GODOT_TEMPLATE_DIR}"
+
+      # Godot reads the Android SDK and JDK locations from its editor settings
+      # only - it has no ANDROID_HOME/JAVA_HOME fallback for exporting.
+      - name: Configure Godot editor settings
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.config/godot
+          cat > ~/.config/godot/editor_settings-4.5.tres <<EOF
+          [gd_resource type="EditorSettings" format=3]
+
+          [resource]
+          export/android/android_sdk_path = "${ANDROID_SDK_ROOT}"
+          export/android/java_sdk_path = "${JAVA_HOME}"
+          EOF
+
+      # The release keystore lives outside the repo, so CI recreates the
+      # credentials file Godot expects from repository secrets.
+      - name: Write release keystore and credentials
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_ALIAS: ${{ secrets.ANDROID_KEYSTORE_ALIAS }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+        run: |
+          set -euo pipefail
+          if [ -z "${KEYSTORE_BASE64}" ]; then
+            echo "::error::ANDROID_KEYSTORE_BASE64 secret is not set."
+            exit 1
+          fi
+          mkdir -p ~/keys .godot
+          echo "${KEYSTORE_BASE64}" | base64 -d > ~/keys/upload-keystore.jks
+          cat > .godot/export_credentials.cfg <<EOF
+          [preset.1.options]
+
+          keystore/release="$HOME/keys/upload-keystore.jks"
+          keystore/release_user="${KEYSTORE_ALIAS}"
+          keystore/release_password="${KEYSTORE_PASSWORD}"
+          EOF
+
+      - name: Import project assets
+        run: ~/godot-bin/godot --headless --path . --import
+
+      - name: Install and patch the Android build template
+        run: task android-template GODOT="$HOME/godot-bin/godot"
+
+      - name: Build signed AAB
+        run: task build-android GODOT="$HOME/godot-bin/godot"
+
+      - name: Remove keystore
+        if: always()
+        run: rm -f ~/keys/upload-keystore.jks .godot/export_credentials.cfg
+
+      - name: Upload AAB
+        uses: actions/upload-artifact@v4
+        with:
+          name: zensnake-aab
+          path: exports/zensnake.aab
+          if-no-files-found: error
