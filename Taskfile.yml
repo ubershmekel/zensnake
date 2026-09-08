@@ -65,10 +65,12 @@ tasks:
     cmds:
       - '"{{.PYTHON}}" tools/android_release.py verify --target-sdk {{.TARGET_SDK}}'
 
-  bump-android:
-    desc: Increment version/code in export_presets.cfg (Play rejects a reused code)
+  bump-version:
+    desc: >-
+      Bump config/version in project.godot (drives both the Android
+      versionName and the iOS version) and the Android version/code.
     cmds:
-      - '"{{.PYTHON}}" tools/android_release.py bump'
+      - '"{{.PYTHON}}" tools/bump_version.py {{.CLI_ARGS}}'
 
   build-web:
     desc: Export the web build to export/

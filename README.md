@@ -51,8 +51,26 @@ export GODOT="E:/dev/Godot/Godot_v4.5.1-stable_win64_console.exe"
 | --- | --- |
 | `task build-android` | Export the signed release `.aab`, then verify it targets SDK 37 |
 | `task build-web` / `task build-ios` | Export the other two presets |
-| `task bump-android` | Increment `version/code` (Play rejects a reused code) |
+| `task bump-version` | Bump the version for both stores (see [Versioning](#versioning)) |
 | `task android-template` | Reinstall Godot's Android build template and re-patch it |
+
+### Versioning
+
+There is one number to think about: `config/version` in `project.godot`.
+`task bump-version` moves it, and derives everything else, so an iOS and an
+Android release always carry the same version.
+
+- Both stores show `config/version`. The Android `version/name` and the iOS
+  `short_version`/`version` are deliberately blank in `export_presets.cfg`, so
+  they inherit it.
+- Android also needs `version/code`, a plain integer Play requires to increase
+  on every upload. It is computed as `major * 10000 + minor * 100 + patch`
+  rather than counted separately, so `1.0.8` is `10008` and `1.1.0` is `10100`.
+  Read the code and you know the version.
+
+`--part` picks what moves: `task bump-version -- --part minor`. The bump refuses
+to run, touching neither file, if it would move `version/code` backwards or if
+minor/patch reach 100.
 
 ### Android SDK 37 notes
 
@@ -64,7 +82,7 @@ patch is re-applied automatically by `task build-android`.
 
 ### Android release checklist
 
-1. `task bump-android`
+1. `task bump-version`
 1. `task build-android` (or download the artifact from the Build Android AAB action).
 1. Go to https://play.google.com/console -> Test and release -> Production -> Create new release.
 1. Upload the `.aab`.
@@ -101,7 +119,7 @@ The hooks install Godot + export templates and generate the project. `ci_pre_xco
 ./exports/ci_scripts/ci_post_clone.sh
 ```
 
-1. Godot: Project → Project Settings → Application → Config. Bump version.
+1. `task bump-version` (same task as Android - `config/version` drives both).
 1. Godot: Project -> Export -> iOS (Runnable).
 1. Export Project... to produce the `exports/zensnake.xcodeproj`.
 1. Open `exports/zensnake.xcodeproj`.
